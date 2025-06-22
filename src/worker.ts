@@ -1,10 +1,6 @@
 /// <reference types="@cloudflare/workers-types" />
-export interface Env {
-  ASSETS: Fetcher;
-}
-
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: any, ctx: ExecutionContext) {
     return await env.ASSETS.fetch(request);
   },
 };
