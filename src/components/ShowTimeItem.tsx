@@ -23,27 +23,18 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
   });
 
   return (
-    <a
-      href={showtime.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: 'block',
-        padding: '0.5rem 0',
-        borderBottom: '1px solid #ddd',
-        textDecoration: 'none',
-        color: '#444',
-      }}
-    >
-      <div style={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
-        {showtime.title} &middot; {showtime.cinema} &middot; {timeString}
-      </div>
-      <div style={{ fontSize: '0.8rem', color: '#444', marginTop: '0.25rem' }}>
-        {showtime.description.length > 100
-          ? showtime.description.slice(0, 250) + '...'
-          : showtime.description}
-      </div>
-    </a>
+    <div style={{ marginTop: '.5rem' }}>
+      <p>
+        <a href={showtime.link} target="_blank" rel="noopener noreferrer">
+          {showtime.title} &middot; {showtime.cinema} &middot; {timeString}
+        </a>
+      </p>
+      {showtime.description.length > 200
+        ? showtime.description.slice(0, 200) + '...'
+        : showtime.description}
+      <br />&nbsp;
+        <hr></hr>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ const App: FC = () => {
   useEffect(() => {
     fetch('https://data.filmhose.uk/cinescrapers.json')
       .then((res) => res.json())
-      .then(data => setData(data as ShowTime[]));
+      .then((data) => setData(data as ShowTime[]));
   }, []);
 
   const now = new Date();
@@ -59,34 +59,25 @@ const App: FC = () => {
   }
 
   return (
-    <div
-      style={{
-        maxWidth: '100%',
-        width: 'min(100%, 600px)',
-        margin: '0 auto',
-        padding: '0 1rem', // tighter horizontal padding
-        textAlign: 'left',
-        backgroundColor: 'white',
-        color: 'black',
-      }}
-    >
+    <div className="container">
+      <div id="header">
+        <h1>FilmHose</h1>
+        <h2>Listings for London's independent / arts cinemas</h2>
+      </div>
+
       <p>
-        This is a very early attempt at hacking together a listings site that
-        covers London's indendent / arts cinemas. It's kind of working, but
-        don't be surprised if there are issues! See{' '}
-        <a href="https://github.com/Joeboy/cinescrapers">here</a> for more info
-      </p>
-      <p>Showing this week:</p>
+        See <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
+        info. Showing this week:</p>
       {Object.entries(grouped).map(([dateKey, { label, shows }]) => (
         <section
           key={dateKey}
-          style={{
-            marginBottom: '2rem',
-            backgroundColor: '#fff',
-            padding: '1rem',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-          }}
+          // style={{
+          //   marginBottom: '2rem',
+          //   backgroundColor: '#fff',
+          //   padding: '1rem',
+          //   borderRadius: '4px',
+          //   border: '1px solid #ccc',
+          // }}
         >
           <h2 style={{ marginTop: 0 }}>{label}</h2>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
