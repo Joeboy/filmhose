@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import type { FC } from 'react';
 import ShowTimeItem, { type ShowTime } from './components/ShowTimeItem';
+import DateNav from './components/DateNav';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
+  const [weekRange, setWeekRange] = useState<'this' | 'next'>('this');
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  });
 
   useEffect(() => {
     fetch('https://data.filmhose.uk/cinescrapers.json')
       .then((res) => res.json())
       .then((data) => setData(data as ShowTime[]));
   }, []);
-
-  const now = new Date();
-  const endDate = new Date(now);
-  endDate.setDate(now.getDate() + 6); // Today + 6 = 7 days total
-  endDate.setHours(23, 59, 59, 999);
 
   const formatDateLabel = (date: Date): string => {
     const today = new Date();
@@ -31,7 +32,7 @@ const App: FC = () => {
       weekday: 'short',
       month: 'short',
       day: 'numeric',
-    });
+    }).replace(/[\.,]/g, ''); // remove trailing period after abbrev'd day
 
     if (isSameDay(date, today)) return `Today, ${baseLabel}`;
     if (isSameDay(date, tomorrow)) return `Tomorrow, ${baseLabel}`;
@@ -43,20 +44,11 @@ const App: FC = () => {
       ...show,
       datetimeObj: new Date(show.datetime),
     }))
-    .filter(({ datetimeObj }) => datetimeObj >= now && datetimeObj <= endDate)
+    .filter(({ datetimeObj }) => {
+      const key = datetimeObj.toISOString().split('T')[0];
+      return key === selectedDate;
+    })
     .sort((a, b) => a.datetimeObj.getTime() - b.datetimeObj.getTime());
-
-  const grouped: Record<string, { label: string; shows: ShowTime[] }> = {};
-  for (const showtime of upcomingShowtimes) {
-    const dateKey = showtime.datetimeObj.toISOString().split('T')[0]; // YYYY-MM-DD
-    if (!grouped[dateKey]) {
-      grouped[dateKey] = {
-        label: formatDateLabel(showtime.datetimeObj),
-        shows: [],
-      };
-    }
-    grouped[dateKey].shows.push(showtime);
-  }
 
   return (
     <div>
@@ -69,31 +61,26 @@ const App: FC = () => {
         </div>
       </div>
       <div className="container">
+        <DateNav
+          weekRange={weekRange}
+          setWeekRange={setWeekRange}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          formatDateLabel={formatDateLabel}
+        />
+
         <p>
-          See <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
-          info. Showing this week:
+          See <a href="https://github.com/Joeboy/cinescrapers">here</a> if
+          you're a nerd and want to know where this data comes from.
         </p>
-        {Object.entries(grouped).map(([dateKey, { label, shows }]) => (
-          <section
-            key={dateKey}
-            // style={{
-            //   marginBottom: '2rem',
-            //   backgroundColor: '#fff',
-            //   padding: '1rem',
-            //   borderRadius: '4px',
-            //   border: '1px solid #ccc',
-            // }}
-          >
-            <h2 style={{ marginTop: 0 }}>{label}</h2>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              {shows.map((showtime) => (
-                <li key={showtime.id}>
-                  <ShowTimeItem showtime={showtime} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <h2>{formatDateLabel(new Date(selectedDate))}</h2>
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          {upcomingShowtimes.map((showtime) => (
+            <li key={showtime.id}>
+              <ShowTimeItem showtime={showtime} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
