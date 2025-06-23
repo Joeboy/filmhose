@@ -1,15 +1,17 @@
 import './DateNav.css';
 import type { FC, Dispatch, SetStateAction } from 'react';
 
+export type WeekRange = 'this' | 'next';
+
 interface DateNavProps {
-  weekRange: 'this' | 'next';
-  setWeekRange: Dispatch<SetStateAction<'this' | 'next'>>;
+  weekRange: WeekRange;
+  setWeekRange: Dispatch<SetStateAction<WeekRange>>;
   selectedDate: string;
   setSelectedDate: Dispatch<SetStateAction<string>>;
   formatDateLabel: (date: Date) => string;
 }
 
-const getDateRange = (range: 'this' | 'next'): Date[] => {
+const getDateRange = (range: WeekRange): Date[] => {
   const dates: Date[] = [];
   const today = new Date();
   const base = new Date(today);
@@ -27,14 +29,14 @@ const getDateRange = (range: 'this' | 'next'): Date[] => {
   return dates;
 };
 
-const DateNav: FC<DateNavProps> = ({
+export const DateNav: FC<DateNavProps> = ({
   weekRange,
   setWeekRange,
   selectedDate,
   setSelectedDate,
   formatDateLabel,
 }) => {
-  const ranges: { key: 'this' | 'next'; label: string }[] = [
+  const ranges: { key: WeekRange; label: string }[] = [
     { key: 'this', label: 'This week' },
     { key: 'next', label: 'Next week' },
   ];
@@ -42,17 +44,13 @@ const DateNav: FC<DateNavProps> = ({
   const currentRangeDates = getDateRange(weekRange);
 
   return (
-    <div className='date-nav'>
-      <div>
+    <div className="date-nav">
+      <div className="date-nav-range">
         {ranges.map(({ key, label }) => (
           <button
             className="date-nav-button"
             key={key}
-            onClick={() => {
-              setWeekRange(key);
-              const newDate = getDateRange(key)[0];
-              setSelectedDate(newDate.toISOString().split('T')[0]);
-            }}
+            onClick={() => setWeekRange(key)}
             style={{
               fontWeight: weekRange === key ? 'bold' : 'normal',
             }}
@@ -61,11 +59,12 @@ const DateNav: FC<DateNavProps> = ({
           </button>
         ))}
       </div>
-      <div>
+      <div className="date-nav-days">
         {currentRangeDates.map((date) => {
           const key = date.toISOString().split('T')[0];
           return (
-            <button className='date-nav-button'
+            <button
+              className="date-nav-button"
               key={key}
               onClick={() => setSelectedDate(key)}
               style={{
@@ -80,5 +79,3 @@ const DateNav: FC<DateNavProps> = ({
     </div>
   );
 };
-
-export default DateNav;

@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import type { FC } from 'react';
 import ShowTimeItem, { type ShowTime } from './components/ShowTimeItem';
-import DateNav from './components/DateNav';
+import { DateNav, type WeekRange } from './components/DateNav';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
-  const [weekRange, setWeekRange] = useState<'this' | 'next'>('this');
-  const [selectedDate, setSelectedDate] = useState<string>(() => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
-  });
+  const [weekRange, setWeekRange] = useState<WeekRange>('this');
+
+  const [selectedDates, setSelectedDates] = useState<Record<WeekRange, string>>(
+    () => {
+      const today = new Date().toISOString().split('T')[0];
+      return { this: today, next: '' };
+    }
+  );
+
+  const selectedDate = selectedDates[weekRange];
 
   useEffect(() => {
     fetch('https://data.filmhose.uk/cinescrapers.json')
@@ -65,12 +70,26 @@ const App: FC = () => {
       <div className="container">
         <DateNav
           weekRange={weekRange}
-          setWeekRange={setWeekRange}
+          setWeekRange={(key) => {
+            setWeekRange(key);
+            setSelectedDates((prev) => {
+              const wk = key as WeekRange;
+              const existing = prev[wk];
+              return {
+                ...prev,
+                [wk]: existing || new Date().toISOString().split('T')[0],
+              };
+            });
+          }}
           selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
+          setSelectedDate={(date) =>
+            setSelectedDates((prev) => ({ ...prev, [weekRange]: date }))
+          }
           formatDateLabel={formatDateLabel}
         />
-        <h2>{formatDateLabel(new Date(selectedDate))}</h2>
+        <h2 className="date-heading">
+          {formatDateLabel(new Date(selectedDate))}
+        </h2>
         <p>
           <i>
             See <a href="https://github.com/Joeboy/cinescrapers">here</a> if
