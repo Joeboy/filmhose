@@ -59,36 +59,42 @@ const App: FC = () => {
   }
 
   return (
-    <div className="container">
+    <div>
       <div id="header">
-        <h1>FilmHose</h1>
-        <h2>Listings for London's independent / arts cinemas</h2>
+        <div className="container">
+          <h1>
+            <a href="/">FilmHose</a>
+          </h1>
+          <h2>Listings for London's independent / arts cinemas</h2>
+        </div>
       </div>
-
-      <p>
-        See <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
-        info. Showing this week:</p>
-      {Object.entries(grouped).map(([dateKey, { label, shows }]) => (
-        <section
-          key={dateKey}
-          // style={{
-          //   marginBottom: '2rem',
-          //   backgroundColor: '#fff',
-          //   padding: '1rem',
-          //   borderRadius: '4px',
-          //   border: '1px solid #ccc',
-          // }}
-        >
-          <h2 style={{ marginTop: 0 }}>{label}</h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {shows.map((showtime) => (
-              <li key={showtime.id}>
-                <ShowTimeItem showtime={showtime} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <div className="container">
+        <p>
+          See <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
+          info. Showing this week:
+        </p>
+        {Object.entries(grouped).map(([dateKey, { label, shows }]) => (
+          <section
+            key={dateKey}
+            // style={{
+            //   marginBottom: '2rem',
+            //   backgroundColor: '#fff',
+            //   padding: '1rem',
+            //   borderRadius: '4px',
+            //   border: '1px solid #ccc',
+            // }}
+          >
+            <h2 style={{ marginTop: 0 }}>{label}</h2>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {shows.map((showtime) => (
+                <li key={showtime.id}>
+                  <ShowTimeItem showtime={showtime} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </div>
   );
 };
