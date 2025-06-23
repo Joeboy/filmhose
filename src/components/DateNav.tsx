@@ -1,3 +1,4 @@
+import './DateNav.css';
 import type { FC, Dispatch, SetStateAction } from 'react';
 
 interface DateNavProps {
@@ -41,10 +42,11 @@ const DateNav: FC<DateNavProps> = ({
   const currentRangeDates = getDateRange(weekRange);
 
   return (
-    <div>
-      <div style={{ marginBottom: '1rem' }}>
+    <div className='date-nav'>
+      <div>
         {ranges.map(({ key, label }) => (
           <button
+            className="date-nav-button"
             key={key}
             onClick={() => {
               setWeekRange(key);
@@ -52,7 +54,6 @@ const DateNav: FC<DateNavProps> = ({
               setSelectedDate(newDate.toISOString().split('T')[0]);
             }}
             style={{
-              marginRight: '0.5rem',
               fontWeight: weekRange === key ? 'bold' : 'normal',
             }}
           >
@@ -60,15 +61,14 @@ const DateNav: FC<DateNavProps> = ({
           </button>
         ))}
       </div>
-      <div style={{ marginBottom: '2rem' }}>
+      <div>
         {currentRangeDates.map((date) => {
           const key = date.toISOString().split('T')[0];
           return (
-            <button
+            <button className='date-nav-button'
               key={key}
               onClick={() => setSelectedDate(key)}
               style={{
-                marginRight: '0.5rem',
                 fontWeight: selectedDate === key ? 'bold' : 'normal',
               }}
             >

@@ -28,11 +28,13 @@ const App: FC = () => {
       a.getMonth() === b.getMonth() &&
       a.getDate() === b.getDate();
 
-    const baseLabel = date.toLocaleDateString(undefined, {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-    }).replace(/[\.,]/g, ''); // remove trailing period after abbrev'd day
+    const baseLabel = date
+      .toLocaleDateString(undefined, {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      })
+      .replace(/[\.,]/g, '');
 
     if (isSameDay(date, today)) return `Today, ${baseLabel}`;
     if (isSameDay(date, tomorrow)) return `Tomorrow, ${baseLabel}`;
@@ -68,13 +70,14 @@ const App: FC = () => {
           setSelectedDate={setSelectedDate}
           formatDateLabel={formatDateLabel}
         />
-
-        <p>
-          See <a href="https://github.com/Joeboy/cinescrapers">here</a> if
-          you're a nerd and want to know where this data comes from.
-        </p>
         <h2>{formatDateLabel(new Date(selectedDate))}</h2>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        <p>
+          <i>
+            See <a href="https://github.com/Joeboy/cinescrapers">here</a> if
+            you're a nerd and want to know where this data comes from.
+          </i>
+        </p>
+        <ul className="showtime-list">
           {upcomingShowtimes.map((showtime) => (
             <li key={showtime.id}>
               <ShowTimeItem showtime={showtime} />
