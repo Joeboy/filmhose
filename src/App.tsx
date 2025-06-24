@@ -2,23 +2,16 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import type { FC } from 'react';
 import { type ShowTime } from './components/ShowTimeItem';
-import { DateNav, type WeekRange } from './components/DateNav';
+import Calendar from './components/Calendar';
 import ShowTimeList from './components/ShowTimeList';
 import { formatDateLabel } from './formatDateLabel';
 import { toNaiveDateString } from './toNaiveDateString';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
-  const [weekRange, setWeekRange] = useState<WeekRange>('this');
-
-  const [selectedDates, setSelectedDates] = useState<Record<WeekRange, string>>(
-    () => {
-      const today = toNaiveDateString(new Date());
-      return { this: today, next: '', calendar: today };
-    }
+  const [selectedDate, setSelectedDate] = useState(() =>
+    toNaiveDateString(new Date())
   );
-
-  const selectedDate = selectedDates[weekRange];
 
   useEffect(() => {
     fetch('https://data.filmhose.uk/cinescrapers.json')
@@ -48,26 +41,11 @@ const App: FC = () => {
         </div>
       </div>
       <div className="container">
-        <DateNav
-          weekRange={weekRange}
-          setWeekRange={(key) => {
-            setWeekRange(key);
-            setSelectedDates((prev) => {
-              const wk = key as WeekRange;
-              const existing = prev[wk];
-              return {
-                ...prev,
-                [wk]: existing || new Date().toISOString().split('T')[0],
-              };
-            });
-          }}
-          selectedDate={selectedDate}
-          setSelectedDate={(date) =>
-            setSelectedDates((prev) => ({ ...prev, [weekRange]: date }))
-          }
-          formatDateLabel={formatDateLabel}
-        />
-
+        <p>
+          Go <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
+          info about this project.
+        </p>
+        <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
         <ShowTimeList
           showtimes={upcomingShowtimes}
           date={new Date(selectedDate)}

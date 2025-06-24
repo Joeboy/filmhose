@@ -1,3 +1,12 @@
+.calendar-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
 .calendar-widget .react-calendar {
     background: none;
     color: #222;
