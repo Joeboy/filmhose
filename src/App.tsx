@@ -4,8 +4,11 @@ import type { FC } from 'react';
 import { type ShowTime } from './components/ShowTimeItem';
 import Calendar from './components/Calendar';
 import ShowTimeList from './components/ShowTimeList';
-import { formatDateLabel } from './formatDateLabel';
 import { toNaiveDateString } from './toNaiveDateString';
+import About from './components/About';
+import HelpWanted from './components/HelpWanted';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AppHeader from './components/AppHeader';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
@@ -31,27 +34,29 @@ const App: FC = () => {
     .sort((a, b) => a.datetimeObj.getTime() - b.datetimeObj.getTime());
 
   return (
-    <div>
-      <div id="header">
+    <Router>
+      <div>
+        <AppHeader />
         <div className="container">
-          <h1>
-            <a href="/">FilmHose</a>
-          </h1>
-          <h2>Listings for London's independent / arts cinemas</h2>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
+                  <ShowTimeList
+                    showtimes={upcomingShowtimes}
+                    date={new Date(selectedDate)}
+                  />
+                </>
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/help" element={<HelpWanted />} />
+          </Routes>
         </div>
       </div>
-      <div className="container">
-        <p>
-          Go <a href="https://github.com/Joeboy/cinescrapers">here</a> for more
-          info about this project.
-        </p>
-        <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
-        <ShowTimeList
-          showtimes={upcomingShowtimes}
-          date={new Date(selectedDate)}
-        />
-      </div>
-    </div>
+    </Router>
   );
 };
 
