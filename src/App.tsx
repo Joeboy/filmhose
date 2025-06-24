@@ -5,6 +5,7 @@ import { type ShowTime } from './components/ShowTimeItem';
 import { DateNav, type WeekRange } from './components/DateNav';
 import ShowTimeList from './components/ShowTimeList';
 import { formatDateLabel } from './formatDateLabel';
+import { toNaiveDateString } from './toNaiveDateString';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
@@ -12,8 +13,8 @@ const App: FC = () => {
 
   const [selectedDates, setSelectedDates] = useState<Record<WeekRange, string>>(
     () => {
-      const today = new Date().toISOString().split('T')[0];
-      return { this: today, next: '' };
+      const today = toNaiveDateString(new Date());
+      return { this: today, next: '', calendar: today };
     }
   );
 
@@ -31,7 +32,7 @@ const App: FC = () => {
       datetimeObj: new Date(show.datetime),
     }))
     .filter(({ datetimeObj }) => {
-      const key = datetimeObj.toISOString().split('T')[0];
+      const key = toNaiveDateString(datetimeObj);
       return key === selectedDate;
     })
     .sort((a, b) => a.datetimeObj.getTime() - b.datetimeObj.getTime());
