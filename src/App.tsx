@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { type ShowTime } from './components/ShowTimeItem';
 import { DateNav, type WeekRange } from './components/DateNav';
 import ShowTimeList from './components/ShowTimeList';
+import { formatDateLabel } from './formatDateLabel';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
@@ -23,29 +24,6 @@ const App: FC = () => {
       .then((res) => res.json())
       .then((data) => setData(data as ShowTime[]));
   }, []);
-
-  const formatDateLabel = (date: Date): string => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-
-    const isSameDay = (a: Date, b: Date) =>
-      a.getFullYear() === b.getFullYear() &&
-      a.getMonth() === b.getMonth() &&
-      a.getDate() === b.getDate();
-
-    const baseLabel = date
-      .toLocaleDateString(undefined, {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-      })
-      .replace(/[\.,]/g, '');
-
-    if (isSameDay(date, today)) return `Today, ${baseLabel}`;
-    if (isSameDay(date, tomorrow)) return `Tomorrow, ${baseLabel}`;
-    return baseLabel;
-  };
 
   const upcomingShowtimes = data
     .map((show) => ({
@@ -89,7 +67,10 @@ const App: FC = () => {
           formatDateLabel={formatDateLabel}
         />
 
-        <ShowTimeList showtimes={upcomingShowtimes} date={new Date(selectedDate)} formatDateLabel={formatDateLabel} />
+        <ShowTimeList
+          showtimes={upcomingShowtimes}
+          date={new Date(selectedDate)}
+        />
       </div>
     </div>
   );

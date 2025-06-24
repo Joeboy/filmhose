@@ -1,14 +1,14 @@
 import React from 'react';
 import ShowTimeItem, { type ShowTime } from './ShowTimeItem';
+import { formatDateLabel } from '../formatDateLabel';
 import './ShowTimeList.css';
 
 interface ShowTimeListProps {
   showtimes: ShowTime[];
   date: Date;
-  formatDateLabel: (date: Date) => string;
 }
 
-const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes, date, formatDateLabel }) => (
+const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes, date }) => (
   <>
     <h2 className="date-heading">{formatDateLabel(date)}</h2>
     <ul className="showtime-list">
