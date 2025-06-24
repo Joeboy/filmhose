@@ -4,16 +4,21 @@ import './ShowTimeList.css';
 
 interface ShowTimeListProps {
   showtimes: ShowTime[];
+  date: Date;
+  formatDateLabel: (date: Date) => string;
 }
 
-const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes }) => (
-  <ul className="showtime-list">
-    {showtimes.map((showtime) => (
-      <li key={showtime.id}>
-        <ShowTimeItem showtime={showtime} />
-      </li>
-    ))}
-  </ul>
+const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes, date, formatDateLabel }) => (
+  <>
+    <h2 className="date-heading">{formatDateLabel(date)}</h2>
+    <ul className="showtime-list">
+      {showtimes.map((showtime) => (
+        <li key={showtime.id}>
+          <ShowTimeItem showtime={showtime} />
+        </li>
+      ))}
+    </ul>
+  </>
 );
 
 export default ShowTimeList;

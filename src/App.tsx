@@ -88,16 +88,8 @@ const App: FC = () => {
           }
           formatDateLabel={formatDateLabel}
         />
-        <h2 className="date-heading">
-          {formatDateLabel(new Date(selectedDate))}
-        </h2>
-        <p>
-          <i>
-            See <a href="https://github.com/Joeboy/cinescrapers">here</a> if
-            you're a nerd and want to know where this data comes from.
-          </i>
-        </p>
-        <ShowTimeList showtimes={upcomingShowtimes} />
+
+        <ShowTimeList showtimes={upcomingShowtimes} date={new Date(selectedDate)} formatDateLabel={formatDateLabel} />
       </div>
     </div>
   );
