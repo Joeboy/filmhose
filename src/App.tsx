@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import type { FC } from 'react';
-import ShowTimeItem, { type ShowTime } from './components/ShowTimeItem';
+import { type ShowTime } from './components/ShowTimeItem';
 import { DateNav, type WeekRange } from './components/DateNav';
+import ShowTimeList from './components/ShowTimeList';
 
 const App: FC = () => {
   const [data, setData] = useState<ShowTime[]>([]);
@@ -96,13 +97,7 @@ const App: FC = () => {
             you're a nerd and want to know where this data comes from.
           </i>
         </p>
-        <ul className="showtime-list">
-          {upcomingShowtimes.map((showtime) => (
-            <li key={showtime.id}>
-              <ShowTimeItem showtime={showtime} />
-            </li>
-          ))}
-        </ul>
+        <ShowTimeList showtimes={upcomingShowtimes} />
       </div>
     </div>
   );
