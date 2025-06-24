@@ -18,8 +18,9 @@ interface Props {
 
 const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const timeString = new Date(showtime.datetime).toLocaleTimeString([], {
-    hour: '2-digit',
+    hour: 'numeric',
     minute: '2-digit',
+    hour12: true,
   });
 
   return (
