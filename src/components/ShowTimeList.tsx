@@ -11,13 +11,17 @@ interface ShowTimeListProps {
 const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes, date }) => (
   <>
     <h2 className="date-heading">{formatDateLabel(date)}</h2>
-    <ul className="showtime-list">
-      {showtimes.map((showtime) => (
-        <li key={showtime.id}>
-          <ShowTimeItem showtime={showtime} />
-        </li>
-      ))}
-    </ul>
+    {showtimes.length === 0 ? (
+      <p className="showtime-list-empty">Could not find any matching showtimes.</p>
+    ) : (
+      <ul className="showtime-list">
+        {showtimes.map((showtime) => (
+          <li key={showtime.id}>
+            <ShowTimeItem showtime={showtime} />
+          </li>
+        ))}
+      </ul>
+    )}
   </>
 );
 

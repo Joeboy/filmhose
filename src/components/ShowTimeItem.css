@@ -9,7 +9,7 @@
     font-weight: normal;
     font-size: 1rem;
     margin:0px;
-    padding: 0.2em 8px 0.2em 8px;
+    padding: 0.2rem 8px 0.2rem 0.4rem;
 }
 
 .showtime-listing h3 a {
@@ -22,13 +22,14 @@
 }
 
 .showtime-listing .showtime-listing-details {
-    margin: 0.25em 0.2em .2em 0.2em;
+    margin: 0.25rem 0.2rem .2rem 0.4rem;
     font-size: 0.9rem;
     color: #666;
 }
 
 .showtime-listing .showtime-listing-description {
-    margin: 0.25em 0.2em .2em 0.2em;
+    margin: 0.25em 0.2rem .2rem 0.4em;
+    padding: 0rem 0.5rem 0rem 0rem;
     font-size: 0.9rem;
     color: #222827;
 }
