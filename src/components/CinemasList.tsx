@@ -23,7 +23,6 @@ const CinemasList = () => {
       <p>And this is the slightly oppressive To Do list:</p>
 
       <ul>
-        <li>The Genesis</li>
         <li>Kiln Theatre</li>
         <li>Arthouse Crouch End</li>
         <li>BFI IMAX</li>
