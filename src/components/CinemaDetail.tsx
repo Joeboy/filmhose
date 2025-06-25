@@ -30,6 +30,20 @@ const CinemaDetail = (props: CinemaDetailProps) => {
       )}
       {cinema.address && <p>Address: {cinema.address}</p>}
       {cinema.phone && <p>Phone: {cinema.phone}</p>}
+      {cinema.latitude && cinema.longitude && (
+        <div style={{ margin: '1em 0' }}>
+          <iframe
+            title="Google Map"
+            width="100%"
+            height="300"
+            style={{ border: 0, borderRadius: '8px' }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps?q=${cinema.latitude},${cinema.longitude}&z=16&output=embed`}
+          ></iframe>
+        </div>
+      )}
     </div>
   );
 };
