@@ -30,11 +30,11 @@ const HelpWanted: React.FC = () => (
     </p>
     <h4>Other Data Sources</h4>
     <p>
-      Obviously if there's any more official sources available for any of these
-      cinemas, it would be great to hear about that! I had a look for what APIs
-      are available, but the things I found were expensive, limited or both. If
-      you're mates with any of these cinemas, please ask if there's any way I
-      could get their listings data more straightforwardly!
+      Obviously if there are any more official sources available for any of
+      these cinemas, it would be great to hear about that! I had a look for what
+      APIs are available, but the things I found were expensive, limited or
+      both. If you're mates with any of these cinemas, please ask if there's any
+      way I could get their listings data more straightforwardly!
     </p>
     <h4>Sponsorship</h4>
     <p>
@@ -51,7 +51,8 @@ const HelpWanted: React.FC = () => (
       There's still a lot of scrapers to write, and they'll need to be
       maintained on an ongoing basis. There's a significant amount of work
       involved so it would be great to have some financial support to keep it
-      going.
+      going. Also, for $70 a month I think I could subscribe to the listings
+      from the big cinema chains and make the listings more exhaustive.
     </p>
   </div>
 );
