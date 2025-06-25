@@ -22,11 +22,11 @@ const HelpWanted: React.FC = () => (
       The idea is to create{' '}
       <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> for all
       the independent and arts cinemas in London. This is still at quite an
-      early stage, with five sites covered so far and about another thirty on
-      the list. It doesn't seem <em>too</em> difficult or massively
-      time-consuming, maybe it takes an hour per website (depending on the
-      site). If anybody's up for helping out, please submit a pull request to
-      the CineScrapers GitHub project.
+      early stage, with seven sites covered so far and about another 25 on the
+      list. It doesn't seem <em>too</em> difficult or massively time-consuming,
+      maybe it takes an hour per website (depending on the site). If anybody's
+      up for helping out, please submit a pull request to the CineScrapers
+      GitHub project.
     </p>
     <h4>Other Data Sources</h4>
     <p>
@@ -58,12 +58,10 @@ const HelpWanted: React.FC = () => (
     <h4>Get in touch</h4>
     <p>
       If you want to get in touch about any of the above, you can reach me at{' '}
-      <a
-        href={
-          'mailto:' + ['joe', 'filmhose.uk'].join('@')
-        }
-      >
-        {'joe'}<span style={{ display: 'none' }}>-nospam-</span>{'@filmhose.uk'}
+      <a href={'mailto:' + ['joe', 'filmhose.uk'].join('@')}>
+        {'joe'}
+        <span style={{ display: 'none' }}>-nospam-</span>
+        {'@filmhose.uk'}
       </a>
       .
     </p>
