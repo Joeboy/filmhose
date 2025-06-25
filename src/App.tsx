@@ -17,7 +17,7 @@ const App: FC = () => {
   );
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_API_URL);
+    console.log(import.meta.env.VITE_CINESCRAPERS_URL);
     fetch('https://data.filmhose.uk/cinescrapers.json')
       .then((res) => res.json())
       .then((data) => {
