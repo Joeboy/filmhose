@@ -3,7 +3,8 @@ import './ShowTimeItem.css';
 
 export interface ShowTime {
   id: string;
-  cinema: string;
+  cinema_shortname: string;
+  cinema_name: string;
   title: string;
   link: string;
   datetime: string;
@@ -32,7 +33,7 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
         </a>
       </h3>
       <p className="showtime-listing-details">
-        {timeString} &middot; {showtime.cinema}
+        {timeString} &middot; {showtime.cinema_name}
       </p>
       <p className="showtime-listing-description">
         {showtime.description.length > 200
