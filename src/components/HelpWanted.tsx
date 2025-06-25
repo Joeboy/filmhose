@@ -54,6 +54,19 @@ const HelpWanted: React.FC = () => (
       going. Also, for $70 a month I think I could subscribe to the listings
       from the big cinema chains and make the listings more exhaustive.
     </p>
+
+    <h4>Get in touch</h4>
+    <p>
+      If you want to get in touch about any of the above, you can reach me at{' '}
+      <a
+        href={
+          'mailto:' + ['joe', 'filmhose.uk'].join('@')
+        }
+      >
+        {'joe'}<span style={{ display: 'none' }}>-nospam-</span>{'@filmhose.uk'}
+      </a>
+      .
+    </p>
   </div>
 );
 
