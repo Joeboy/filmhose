@@ -17,7 +17,7 @@ const App: FC = () => {
   );
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_CINESCRAPERS_URL)
+    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
       .then((res) => res.json())
       .then((data) => {
         // Patch records: if 'cinema' exists, set both 'cinema_shortname' and 'cinema_name' to its value

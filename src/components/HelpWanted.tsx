@@ -44,7 +44,7 @@ const HelpWanted: React.FC = () => (
     </p>
 
     <p>
-      Also if anybody wants to do some more businessy sponsorship that gets your
+      Also if anybody wants to do some more corporate sponsorship that gets your
       organization's name on the site, please get in touch with me.
     </p>
     <p>
