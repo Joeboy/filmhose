@@ -5,7 +5,7 @@ import './AppHeader.css';
 const AppHeader: React.FC = () => (
   <div id="header-container">
     <div id="header">
-      <div className="container">
+      <div className="container" style={{ paddingBottom: '0.5rem' }}>
         <h1>
           <Link to="/">FilmHose</Link>
         </h1>
