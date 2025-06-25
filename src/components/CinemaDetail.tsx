@@ -2,8 +2,14 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CinemaContext } from './CinemaContext';
 
-const CinemaDetail = () => {
-  const { shortname } = useParams<{ shortname: string }>();
+interface CinemaDetailProps {
+  shortname?: string;
+}
+
+const CinemaDetail = (props: CinemaDetailProps) => {
+  // Use prop if provided, otherwise useParams (for route usage)
+  const params = useParams<{ shortname: string }>();
+  const shortname = props.shortname || params.shortname;
   const cinemas = useContext(CinemaContext);
   const cinema = shortname ? cinemas[shortname] : undefined;
 

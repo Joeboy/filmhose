@@ -33,3 +33,49 @@
     font-size: 0.9rem;
     color: #222827;
 }
+
+.cinema-popup-overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.cinema-popup {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 95vw;
+  width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  padding: 1.5em 1em 1em 1em;
+  position: relative;
+}
+
+.cinema-popup-close {
+  position: absolute;
+  top: 0.5em;
+  right: 0.7em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #444;
+  cursor: pointer;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .cinema-popup {
+    width: 98vw;
+    min-width: 0;
+    padding: 1em 0.5em 0.5em 0.5em;
+  }
+}
