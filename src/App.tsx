@@ -19,7 +19,22 @@ const App: FC = () => {
   useEffect(() => {
     fetch('https://data.filmhose.uk/cinescrapers.json')
       .then((res) => res.json())
-      .then((data) => setData(data as ShowTime[]));
+      .then((data) => {
+        // Patch records: if 'cinema' exists, set both 'cinema_shortname' and 'cinema_name' to its value
+        const patched = Array.isArray(data)
+          ? data.map((rec) => {
+              if (rec.cinema) {
+                return {
+                  ...rec,
+                  cinema_shortname: rec.cinema,
+                  cinema_name: rec.cinema,
+                };
+              }
+              return rec;
+            })
+          : data;
+        setData(patched as ShowTime[]);
+      });
   }, []);
 
   const upcomingShowtimes = data
