@@ -17,8 +17,7 @@ const App: FC = () => {
   );
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_CINESCRAPERS_URL);
-    fetch('https://data.filmhose.uk/cinescrapers.json')
+    fetch(import.meta.env.VITE_CINESCRAPERS_URL)
       .then((res) => res.json())
       .then((data) => {
         // Patch records: if 'cinema' exists, set both 'cinema_shortname' and 'cinema_name' to its value
@@ -59,7 +58,10 @@ const App: FC = () => {
               path="/"
               element={
                 <>
-                  <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
+                  <Calendar
+                    selectedDate={selectedDate}
+                    onSelectDate={setSelectedDate}
+                  />
                   <ShowTimeList
                     showtimes={upcomingShowtimes}
                     date={new Date(selectedDate)}
