@@ -28,7 +28,6 @@ const CinemasList = () => {
         <li>Arthouse Crouch End</li>
         <li>BFI IMAX</li>
         <li>The Arzner</li>
-        <li>The Castle Cinema</li>
         <li>The Lumiere Romford</li>
         <li>Cine Lumiere, South Kensington</li>
         <li>The Rio (Dalston)</li>
