@@ -9,9 +9,13 @@ import About from './components/About';
 import HelpWanted from './components/HelpWanted';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
+import { CinemaContext, type Cinema } from './components/CinemaContext';
+import CinemasList from './components/CinemasList';
+import CinemaDetail from './components/CinemaDetail';
 
 const App: FC = () => {
-  const [data, setData] = useState<ShowTime[]>([]);
+  const [showtimes, setShowtimes] = useState<ShowTime[]>([]);
+  const [cinemas, setCinemas] = useState<Record<string, Cinema>>({});
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date())
   );
@@ -33,11 +37,26 @@ const App: FC = () => {
               return rec;
             })
           : data;
-        setData(patched as ShowTime[]);
+        setShowtimes(patched as ShowTime[]);
+      });
+    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
+      .then((res) => res.json())
+      .then((cinemaData) => {
+        if (Array.isArray(cinemaData)) {
+          const mapping: Record<string, Cinema> = {};
+          for (const c of cinemaData) {
+            if (c.shortname) {
+              mapping[c.shortname] = c;
+            }
+          }
+          setCinemas(mapping);
+        } else {
+          setCinemas({});
+        }
       });
   }, []);
 
-  const upcomingShowtimes = data
+  const upcomingShowtimes = showtimes
     .map((show) => ({
       ...show,
       datetimeObj: new Date(show.datetime),
@@ -53,25 +72,29 @@ const App: FC = () => {
       <div>
         <AppHeader />
         <div className="container">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Calendar
-                    selectedDate={selectedDate}
-                    onSelectDate={setSelectedDate}
-                  />
-                  <ShowTimeList
-                    showtimes={upcomingShowtimes}
-                    date={new Date(selectedDate)}
-                  />
-                </>
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/help" element={<HelpWanted />} />
-          </Routes>
+          <CinemaContext.Provider value={cinemas}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Calendar
+                      selectedDate={selectedDate}
+                      onSelectDate={setSelectedDate}
+                    />
+                    <ShowTimeList
+                      showtimes={upcomingShowtimes}
+                      date={new Date(selectedDate)}
+                    />
+                  </>
+                }
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/help" element={<HelpWanted />} />
+              <Route path="/cinemas" element={<CinemasList />} />
+              <Route path="/cinemas/:shortname" element={<CinemaDetail />} />
+            </Routes>
+          </CinemaContext.Provider>
         </div>
       </div>
     </Router>

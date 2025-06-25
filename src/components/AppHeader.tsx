@@ -14,7 +14,8 @@ const AppHeader: React.FC = () => (
     </div>
     <div className="container">
       <nav>
-        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/help">Help wanted</Link>
+        <Link to="/">Home</Link> | <Link to="/cinemas">Cinemas</Link> | <Link to="/about">About</Link> |{' '}
+        <Link to="/help">Help wanted</Link>
       </nav>
     </div>
   </div>
