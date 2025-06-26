@@ -19,12 +19,15 @@ const App: FC = () => {
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date())
   );
+  const [loadingShowtimes, setLoadingShowtimes] = useState(true);
 
   useEffect(() => {
+    setLoadingShowtimes(true);
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
       .then((res) => res.json())
       .then((data) => {
         setShowtimes(data as ShowTime[]);
+        setLoadingShowtimes(false);
       });
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
       .then((res) => res.json())
@@ -72,6 +75,7 @@ const App: FC = () => {
                     <ShowTimeList
                       showtimes={upcomingShowtimes}
                       date={new Date(selectedDate)}
+                      loading={loadingShowtimes}
                     />
                   </>
                 }
