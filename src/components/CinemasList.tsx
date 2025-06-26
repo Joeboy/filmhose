@@ -25,14 +25,12 @@ const CinemasList = () => {
       <ul>
         <li>Kiln Theatre</li>
         <li>BFI IMAX</li>
-        <li>The Arzner</li>
         <li>The Lumiere Romford</li>
         <li>Cine Lumiere, South Kensington</li>
         <li>The Nickel</li>
         <li>ActOne</li>
         <li>Ciné Reel</li>
         <li>Electric Cinema</li>
-        <li>Lexi Cinema</li>
         <li>Peckhamplex</li>
         <li>Throwley Yard</li>
         <li>Phoenix Cinema</li>
@@ -48,7 +46,9 @@ const CinemasList = () => {
         <li>Sands Films</li>
       </ul>
       <p>&nbsp;</p>
-      <p>Feel free to <a href="/help">lend a hand</a> if you have python skills!</p>
+      <p>
+        Feel free to <a href="/help">lend a hand</a> if you have python skills!
+      </p>
     </div>
   );
 };
