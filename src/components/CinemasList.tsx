@@ -31,7 +31,6 @@ const CinemasList = () => {
         <li>ActOne</li>
         <li>Ciné Reel</li>
         <li>Electric Cinema</li>
-        <li>Peckhamplex</li>
         <li>Throwley Yard</li>
         <li>Phoenix Cinema</li>
         <li>David Lean Cinema</li>
