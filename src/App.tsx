@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DateTime } from 'luxon';
 import './App.css';
 import type { FC } from 'react';
 import { type ShowTime } from './components/ShowTimeItem';
@@ -46,17 +47,20 @@ const App: FC = () => {
       });
   }, []);
 
+  // Get current time in London and subtract 1 hour
+  const nowLondon = DateTime.now().setZone('Europe/London');
+  const cutoff = nowLondon.minus({ hours: 1 });
+
   const upcomingShowtimes = showtimes
     .map((show) => ({
       ...show,
-      datetimeObj: new Date(show.datetime),
+      datetimeObj: DateTime.fromISO(show.datetime, { zone: 'Europe/London' }),
     }))
     .filter(({ datetimeObj }) => {
-      const key = toNaiveDateString(datetimeObj);
-      return key === selectedDate;
+      const key = toNaiveDateString(datetimeObj.toJSDate());
+      return key === selectedDate && datetimeObj > cutoff;
     })
-    .sort((a, b) => a.datetimeObj.getTime() - b.datetimeObj.getTime());
-
+    .sort((a, b) => a.datetimeObj.toMillis() - b.datetimeObj.toMillis());
   return (
     <Router>
       <div>
