@@ -18,13 +18,14 @@ const About: React.FC = () => (
       The idea there is to write{' '}
       <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> that
       grab data from the individual cinema websites, and assemble it all in one
-      place. This is still very much a work in progress. Right now I have
-      scrapers for five of the bigger indie cinemas, with about another thirty
-      on the list. But that gets you a lot of film options already!
+      place. This is still a work in progress. Right now I have scrapers for 13
+      of the bigger indie cinemas, with about another twenty on the list. But
+      that gets you a lot of film options already!
     </p>
     <p>
       FilmHose is a <a href="https://react.dev/">React</a> app that lets you
-      browse the data. The source is available <a href="https://github.com/Joeboy/filmhose">here</a>.
+      browse the data. The source is available{' '}
+      <a href="https://github.com/Joeboy/filmhose">here</a>.
     </p>
     <p>
       If any of this seems interesting, go <a href="/help">here</a> to see how
