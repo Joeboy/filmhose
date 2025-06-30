@@ -37,7 +37,6 @@ const CinemasList = () => {
         <li>David Lean Cinema</li>
         <li>Regent Street Cinema</li>
         <li>Chiswick Cinema</li>
-        <li>Garden Cinema</li>
         <li>Bertha Dochouse</li>
         <li>Cinema Museum, Kenninton</li>
         <li>Theatreship, Canary Wharf</li>
