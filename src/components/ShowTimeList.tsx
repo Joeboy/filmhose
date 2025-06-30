@@ -23,7 +23,7 @@ const ShowTimeList: React.FC<ShowTimeListProps> = ({
       DateTime.fromJSDate(date).setZone('Europe/London').toISODate();
     if (isToday && nowLondon.hour >= 21) {
       emptyMsg =
-        "Could not find any matching showtimes (perhaps because it's quite late - maybe try tomorrow)";
+        "Could not find any more showtimes for today (perhaps because it's quite late - maybe try tomorrow)";
     }
   }
   return (
