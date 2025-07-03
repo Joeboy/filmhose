@@ -40,7 +40,6 @@ const CinemasList = () => {
         <li>Cinema Museum, Kenninton</li>
         <li>Theatreship, Canary Wharf</li>
         <li>Whirled Cinema</li>
-        <li>Rich Mix</li>
         <li>Sands Films</li>
       </ul>
       <p>&nbsp;</p>
