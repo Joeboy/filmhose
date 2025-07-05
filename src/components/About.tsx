@@ -31,6 +31,29 @@ const About: React.FC = () => (
       If any of this seems interesting, go <a href="/help">here</a> to see how
       you can help.
     </p>
+    <p>Follow the socials on:</p>
+    <ul>
+      <li>
+        Bluesky:{' '}
+        <a
+          href="https://bsky.app/profile/filmhose.bsky.social"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @filmhose.bsky.social
+        </a>
+      </li>
+      <li>
+        Twitter/X:{' '}
+        <a
+          href="https://x.com/FilmHose"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @FilmHose
+        </a>
+      </li>
+    </ul>{' '}
   </div>
 );
 
