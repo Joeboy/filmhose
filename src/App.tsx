@@ -49,7 +49,7 @@ const App: FC = () => {
 
   // Get current time in London and subtract 1 hour
   const nowLondon = DateTime.now().setZone('Europe/London');
-  const cutoff = nowLondon.minus({ hours: 1 });
+  const cutoff = nowLondon.minus({ minutes: 30 });
 
   const upcomingShowtimes = showtimes
     .map((show) => ({
