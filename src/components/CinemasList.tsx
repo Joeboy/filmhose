@@ -9,8 +9,7 @@ const CinemasList = () => {
     <div className="cinemas-list">
       <h1>Cinemas</h1>
       <p>
-        It's still early days, this is the list of cinema websites I'm getting
-        data for:
+        This is the list of cinema websites I'm getting data for:
       </p>
       <ul>
         {cinemaArr.map((cinema) => (
@@ -20,10 +19,9 @@ const CinemasList = () => {
         ))}
       </ul>
       <p>&nbsp;</p>
-      <p>And this is the slightly oppressive To Do list:</p>
+      <p>And this is what's on the TO DO list:</p>
 
       <ul>
-        <li>Kiln Theatre</li>
         <li>BFI IMAX</li>
         <li>The Lumiere Romford</li>
         <li>Cine Lumiere, South Kensington</li>
