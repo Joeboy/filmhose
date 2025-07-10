@@ -40,22 +40,17 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
         </a>
       </h3>
       {showtime.thumbnail && (
-        <img
-          src={
-            import.meta.env.VITE_CINESCRAPERS_HOST +
-            '/thumbnails/' +
-            showtime.thumbnail
-          }
-          alt={showtime.title + ' thumbnail'}
-          className="showtime-thumbnail"
-          style={{
-            width: '120px',
-            height: '120px',
-            float: 'right',
-            border: '1px solid',
-            margin: '.7em .5em 0 .5em',
-          }}
-        />
+        <a href={showtime.link}>
+          <img
+            src={
+              import.meta.env.VITE_CINESCRAPERS_HOST +
+              '/thumbnails/' +
+              showtime.thumbnail
+            }
+            alt={showtime.title + ' thumbnail'}
+            className="showtime-thumbnail"
+          />
+        </a>
       )}
       <p className="showtime-listing-details">
         {timeString} &middot;{' '}
