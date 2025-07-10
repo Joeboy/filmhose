@@ -13,6 +13,7 @@ export interface ShowTime {
   datetime: string;
   description: string;
   image_src: string;
+  thumbnail: string;
   last_updated: string;
   scraper: string;
 }
@@ -38,6 +39,24 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           {showtime.title}
         </a>
       </h3>
+      {showtime.thumbnail && (
+        <img
+          src={
+            import.meta.env.VITE_CINESCRAPERS_HOST +
+            '/thumbnails/' +
+            showtime.thumbnail
+          }
+          alt={showtime.title + ' thumbnail'}
+          className="showtime-thumbnail"
+          style={{
+            width: '120px',
+            height: '120px',
+            float: 'right',
+            border: '1px solid',
+            margin: '.7em .5em 0 .5em',
+          }}
+        />
+      )}
       <p className="showtime-listing-details">
         {timeString} &middot;{' '}
         <span
@@ -56,6 +75,7 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           ? showtime.description.slice(0, 200) + '...'
           : showtime.description}
       </p>
+      <div style={{ clear: 'both' }} />
       {showPopup && cinema && typeof cinema.shortname === 'string' && (
         <div
           className="cinema-popup-overlay"
