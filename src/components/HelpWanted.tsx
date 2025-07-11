@@ -22,7 +22,7 @@ const HelpWanted: React.FC = () => (
       The idea is to create{' '}
       <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> for all
       the independent and arts cinemas in London. This is still at quite an
-      early stage, with 16 sites covered so far and another 16 on the TO DO
+      early stage, with 17 sites covered so far and another 15 on the TO DO
       list. It doesn't seem <em>too</em> difficult or massively time-consuming,
       maybe it takes an hour per website (depending on the site). If anybody's
       up for helping out, please submit a pull request to the CineScrapers
