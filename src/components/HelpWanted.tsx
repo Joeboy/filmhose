@@ -21,12 +21,11 @@ const HelpWanted: React.FC = () => (
       <a href="https://github.com/Joeboy/cinescrapers">CineScrapers</a> project.
       The idea is to create{' '}
       <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> for all
-      the independent and arts cinemas in London. This is still at quite an
-      early stage, with 17 sites covered so far and another 15 on the TO DO
-      list. It doesn't seem <em>too</em> difficult or massively time-consuming,
-      maybe it takes an hour per website (depending on the site). If anybody's
-      up for helping out, please submit a pull request to the CineScrapers
-      GitHub project.
+      the independent and arts cinemas in London. So far there are 18 sites
+      covered, and another 14 on the TO DO list. It doesn't seem <em>too</em>{' '}
+      difficult or massively time-consuming, maybe it takes an hour per website
+      (depending on the site). If anybody's up for helping out, please submit a
+      pull request to the CineScrapers GitHub project.
     </p>
     <h4>Other Data Sources</h4>
     <p>
