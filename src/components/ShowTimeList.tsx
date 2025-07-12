@@ -1,7 +1,8 @@
-import React from 'react';
 import { DateTime } from 'luxon';
-import ShowTimeItem, { type ShowTime } from './ShowTimeItem';
+import React from 'react';
 import { formatDateLabel } from '../formatDateLabel';
+import type { ShowTime } from './Types';
+import ShowTimeItem from './ShowTimeItem';
 import './ShowTimeList.css';
 
 interface ShowTimeListProps {

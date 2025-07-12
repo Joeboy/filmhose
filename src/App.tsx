@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
-import './App.css';
 import type { FC } from 'react';
-import { type ShowTime } from './components/ShowTimeItem';
-import Calendar from './components/Calendar';
-import ShowTimeList from './components/ShowTimeList';
-import { toNaiveDateString } from './toNaiveDateString';
+import { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
 import About from './components/About';
-import HelpWanted from './components/HelpWanted';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
-import { CinemaContext, type Cinema } from './components/CinemaContext';
-import CinemasList from './components/CinemasList';
+import Calendar from './components/Calendar';
 import CinemaDetail from './components/CinemaDetail';
+import CinemasList from './components/CinemasList';
+import HelpWanted from './components/HelpWanted';
+import ShowTimeList from './components/ShowTimeList';
+import { type Cinema, type ShowTime, CinemaContext } from './components/Types';
+import { toNaiveDateString } from './toNaiveDateString';
 
 const App: FC = () => {
+  const [rawShowtimes, setRawShowtimes] = useState<ShowTime[]>([]);
   const [showtimes, setShowtimes] = useState<ShowTime[]>([]);
-  const [cinemas, setCinemas] = useState<Record<string, Cinema>>({});
+  const [cinemas, setCinemas] = useState<Cinema[]>([]);
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date())
   );
@@ -27,34 +27,42 @@ const App: FC = () => {
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
       .then((res) => res.json())
       .then((data) => {
-        setShowtimes(data as ShowTime[]);
+        setRawShowtimes(data as ShowTime[]);
         setLoadingShowtimes(false);
       });
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
       .then((res) => res.json())
       .then((cinemaData) => {
-        if (Array.isArray(cinemaData)) {
-          const mapping: Record<string, Cinema> = {};
-          for (const c of cinemaData) {
-            if (c.shortname) {
-              mapping[c.shortname] = c;
-            }
-          }
-          setCinemas(mapping);
-        } else {
-          setCinemas({});
-        }
+        setCinemas(cinemaData as Cinema[]);
       });
   }, []);
+  useEffect(() => {
+    if (rawShowtimes.length && cinemas.length) {
+      const cinemaMap: Record<string, Cinema> = {};
+      for (const c of cinemas) {
+        if (c.shortcode) {
+          cinemaMap[c.shortcode] = c;
+        }
+      }
+      setShowtimes(
+        rawShowtimes.map((showtime) => ({
+          ...showtime,
+          cinema: cinemaMap[showtime.cinema_shortcode],
+        }))
+      );
+    }
+  }, [rawShowtimes, cinemas]);
 
   // Get current time in London and subtract 1 hour
   const nowLondon = DateTime.now().setZone('Europe/London');
   const cutoff = nowLondon.minus({ minutes: 30 });
 
   const upcomingShowtimes = showtimes
-    .map((show) => ({
-      ...show,
-      datetimeObj: DateTime.fromISO(show.datetime, { zone: 'Europe/London' }),
+    .map((showtime) => ({
+      ...showtime,
+      datetimeObj: DateTime.fromISO(showtime.datetime, {
+        zone: 'Europe/London',
+      }),
     }))
     .filter(({ datetimeObj }) => {
       const key = toNaiveDateString(datetimeObj.toJSDate());

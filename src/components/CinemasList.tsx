@@ -1,18 +1,15 @@
 import { useContext } from 'react';
-import { CinemaContext } from './CinemaContext';
 import { Link } from 'react-router-dom';
+import { CinemaContext } from './Types';
 
 const CinemasList = () => {
   const cinemas = useContext(CinemaContext);
-  const cinemaArr = Object.values(cinemas);
   return (
     <div className="cinemas-list">
       <h1>Cinemas</h1>
-      <p>
-        This is the list of cinema websites I'm getting data for:
-      </p>
+      <p>This is the list of cinema websites I'm getting data for:</p>
       <ul>
-        {cinemaArr.map((cinema) => (
+        {cinemas.map((cinema) => (
           <li key={cinema.shortname}>
             <Link to={`/cinemas/${cinema.shortname}`}>{cinema.name}</Link>
           </li>

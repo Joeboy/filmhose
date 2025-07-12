@@ -1,22 +1,8 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import './ShowTimeItem.css';
-import { useContext, useState } from 'react';
-import { CinemaContext } from './CinemaContext';
+import type { ShowTime } from './Types';
 import CinemaDetail from './CinemaDetail';
-
-export interface ShowTime {
-  id: string;
-  cinema_shortname: string;
-  cinema_name: string;
-  title: string;
-  link: string;
-  datetime: string;
-  description: string;
-  image_src: string;
-  thumbnail: string;
-  last_updated: string;
-  scraper: string;
-}
 
 interface Props {
   showtime: ShowTime;
@@ -24,8 +10,7 @@ interface Props {
 
 const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const cinemas = useContext(CinemaContext);
-  const cinema = cinemas[showtime.cinema_shortname];
+  const cinema = showtime.cinema;
   const timeString = new Date(showtime.datetime).toLocaleTimeString([], {
     hour: 'numeric',
     minute: '2-digit',
@@ -62,7 +47,7 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           }}
           onClick={() => cinema && setShowPopup(true)}
         >
-          {showtime.cinema_name}
+          {cinema ? cinema.name : 'Unknown'}
         </span>
       </p>
       <p className="showtime-listing-description">
