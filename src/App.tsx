@@ -10,13 +10,19 @@ import CinemaDetail from './components/CinemaDetail';
 import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
 import ShowTimeList from './components/ShowTimeList';
-import { type Cinema, type ShowTime, CinemaContext } from './components/Types';
+import {
+  type Cinema,
+  type ShowTime,
+  CinemasByShortcodeContext,
+} from './components/Types';
 import { toNaiveDateString } from './toNaiveDateString';
 
 const App: FC = () => {
   const [rawShowtimes, setRawShowtimes] = useState<ShowTime[]>([]);
   const [showtimes, setShowtimes] = useState<ShowTime[]>([]);
-  const [cinemas, setCinemas] = useState<Cinema[]>([]);
+  const [cinemasByShortcode, setCinemasByShortcode] = useState<
+    Record<string, Cinema>
+  >({});
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date())
   );
@@ -33,25 +39,25 @@ const App: FC = () => {
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
       .then((res) => res.json())
       .then((cinemaData) => {
-        setCinemas(cinemaData as Cinema[]);
+        const cinemaMap: Record<string, Cinema> = {};
+        for (const c of cinemaData as Cinema[]) {
+          if (c.shortcode) {
+            cinemaMap[c.shortcode] = c;
+          }
+        }
+        setCinemasByShortcode(cinemaMap);
       });
   }, []);
   useEffect(() => {
-    if (rawShowtimes.length && cinemas.length) {
-      const cinemaMap: Record<string, Cinema> = {};
-      for (const c of cinemas) {
-        if (c.shortcode) {
-          cinemaMap[c.shortcode] = c;
-        }
-      }
+    if (rawShowtimes.length && Object.keys(cinemasByShortcode).length) {
       setShowtimes(
         rawShowtimes.map((showtime) => ({
           ...showtime,
-          cinema: cinemaMap[showtime.cinema_shortcode],
+          cinema: cinemasByShortcode[showtime.cinema_shortcode],
         }))
       );
     }
-  }, [rawShowtimes, cinemas]);
+  }, [rawShowtimes, cinemasByShortcode]);
 
   // Get current time in London and subtract 1 hour
   const nowLondon = DateTime.now().setZone('Europe/London');
@@ -74,7 +80,7 @@ const App: FC = () => {
       <div>
         <AppHeader />
         <div className="container">
-          <CinemaContext.Provider value={cinemas}>
+          <CinemasByShortcodeContext.Provider value={cinemasByShortcode}>
             <Routes>
               <Route
                 path="/"
@@ -97,7 +103,7 @@ const App: FC = () => {
               <Route path="/cinemas" element={<CinemasList />} />
               <Route path="/cinemas/:shortname" element={<CinemaDetail />} />
             </Routes>
-          </CinemaContext.Provider>
+          </CinemasByShortcodeContext.Provider>
         </div>
       </div>
     </Router>

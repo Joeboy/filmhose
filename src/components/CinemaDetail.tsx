@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { CinemaContext } from './Types';
+import { CinemasByShortcodeContext } from './Types';
 
 interface CinemaDetailProps {
   shortname?: string;
@@ -9,7 +9,8 @@ interface CinemaDetailProps {
 const CinemaDetail = (props: CinemaDetailProps) => {
   const params = useParams<{ shortname: string }>();
   const shortname = props.shortname || params.shortname;
-  const cinemas = useContext(CinemaContext);
+  const cinemasByShortcode = useContext(CinemasByShortcodeContext);
+  const cinemas = Object.values(cinemasByShortcode);
 
   const cinema = cinemas.find((c) => c.shortname === shortname);
   if (!cinema) {

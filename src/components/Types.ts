@@ -24,4 +24,7 @@ export interface ShowTime {
   last_updated: string;
   scraper: string;
 }
-export const CinemaContext = createContext<Cinema[]>([]);
+
+export const CinemasByShortcodeContext = createContext<Record<string, Cinema>>(
+  {}
+);

@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CinemaContext } from './Types';
+import { CinemasByShortcodeContext } from './Types';
 
 const CinemasList = () => {
-  const cinemas = useContext(CinemaContext);
+  const cinemasByShortcode = useContext(CinemasByShortcodeContext);
+  const cinemas = Object.values(cinemasByShortcode);
   return (
     <div className="cinemas-list">
       <h1>Cinemas</h1>
