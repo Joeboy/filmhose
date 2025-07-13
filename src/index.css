@@ -86,9 +86,12 @@ ul.showtime-list {
   margin: 0;
 }
 
+
 .search-panel-options {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+  padding: .5em
 }
 
 .cinema-filter-group {
