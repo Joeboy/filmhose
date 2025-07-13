@@ -5,10 +5,10 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import About from './components/About';
 import AppHeader from './components/AppHeader';
-import Calendar from './components/Calendar';
 import CinemaDetail from './components/CinemaDetail';
 import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
+import SearchPanel from './components/SearchPanel';
 import ShowTimeList from './components/ShowTimeList';
 import {
   type Cinema,
@@ -27,6 +27,7 @@ const App: FC = () => {
     toNaiveDateString(new Date())
   );
   const [loadingShowtimes, setLoadingShowtimes] = useState(true);
+  const [excludeManyShowings, setExcludeManyShowings] = useState(false);
 
   useEffect(() => {
     setLoadingShowtimes(true);
@@ -59,11 +60,25 @@ const App: FC = () => {
     }
   }, [rawShowtimes, cinemasByShortcode]);
 
+  // Filter out films with more than 10 showings if excludeManyShowings is true
+  let filteredShowtimes: ShowTime[];
+  if (excludeManyShowings) {
+    const titleCounts: Record<string, number> = {};
+    for (const show of showtimes) {
+      titleCounts[show.title] = (titleCounts[show.title] || 0) + 1;
+    }
+    filteredShowtimes = showtimes.filter(
+      (show) => titleCounts[show.title] <= 8
+    );
+  } else {
+    filteredShowtimes = [...showtimes];
+  }
+
+  // Filter by date
   // Get current time in London and subtract 1 hour
   const nowLondon = DateTime.now().setZone('Europe/London');
   const cutoff = nowLondon.minus({ minutes: 30 });
-
-  const upcomingShowtimes = showtimes
+  filteredShowtimes = filteredShowtimes
     .map((showtime) => ({
       ...showtime,
       datetimeObj: DateTime.fromISO(showtime.datetime, {
@@ -75,6 +90,7 @@ const App: FC = () => {
       return key === selectedDate && datetimeObj > cutoff;
     })
     .sort((a, b) => a.datetimeObj.toMillis() - b.datetimeObj.toMillis());
+
   return (
     <Router>
       <div>
@@ -86,12 +102,14 @@ const App: FC = () => {
                 path="/"
                 element={
                   <>
-                    <Calendar
+                    <SearchPanel
                       selectedDate={selectedDate}
                       onSelectDate={setSelectedDate}
+                      excludeManyShowings={excludeManyShowings}
+                      setExcludeManyShowings={setExcludeManyShowings}
                     />
                     <ShowTimeList
-                      showtimes={upcomingShowtimes}
+                      showtimes={filteredShowtimes}
                       date={new Date(selectedDate)}
                       loading={loadingShowtimes}
                     />
