@@ -28,6 +28,7 @@ const App: FC = () => {
   );
   const [loadingShowtimes, setLoadingShowtimes] = useState(true);
   const [excludeManyShowings, setExcludeManyShowings] = useState(false);
+  const [selectedCinemas, setSelectedCinemas] = useState<string[]>([]);
 
   useEffect(() => {
     setLoadingShowtimes(true);
@@ -74,6 +75,13 @@ const App: FC = () => {
     filteredShowtimes = [...showtimes];
   }
 
+  // Filter by selected cinemas if any are selected
+  if (selectedCinemas.length > 0) {
+    filteredShowtimes = filteredShowtimes.filter((show) =>
+      selectedCinemas.includes(show.cinema_shortcode)
+    );
+  }
+
   // Filter by date
   // Get current time in London and subtract 1 hour
   const nowLondon = DateTime.now().setZone('Europe/London');
@@ -107,6 +115,8 @@ const App: FC = () => {
                       onSelectDate={setSelectedDate}
                       excludeManyShowings={excludeManyShowings}
                       setExcludeManyShowings={setExcludeManyShowings}
+                      selectedCinemas={selectedCinemas}
+                      setSelectedCinemas={setSelectedCinemas}
                     />
                     <ShowTimeList
                       showtimes={filteredShowtimes}
