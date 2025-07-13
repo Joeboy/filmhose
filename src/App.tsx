@@ -69,7 +69,7 @@ const App: FC = () => {
       titleCounts[show.title] = (titleCounts[show.title] || 0) + 1;
     }
     filteredShowtimes = showtimes.filter(
-      (show) => titleCounts[show.title] <= 8
+      (show) => titleCounts[show.title] <= 10
     );
   } else {
     filteredShowtimes = [...showtimes];

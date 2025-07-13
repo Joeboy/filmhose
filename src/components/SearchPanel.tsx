@@ -35,7 +35,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
   return (
     <div className="search-panel">
       <Calendar selectedDate={selectedDate} onSelectDate={onSelectDate} />
-      <div style={{ marginTop: '1em' }}>
+      <div className="search-panel-options">
         {/* <strong>Filter options:</strong> */}
         <div>
           <label>
@@ -47,16 +47,9 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
             Exclude films with a lot of showings
           </label>
         </div>
-        <div style={{ marginTop: '1em' }}>
+        <div className="cinema-filter-group">
           <strong>Filter by cinema:</strong>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.25em',
-              marginTop: '0.5em',
-            }}
-          >
+          <div className="cinema-checkbox-list">
             {cinemas.map((cinema) => (
               <label key={cinema.shortcode}>
                 <input
