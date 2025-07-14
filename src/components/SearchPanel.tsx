@@ -74,7 +74,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
                 checked={excludeManyShowings}
                 onChange={(e) => setExcludeManyShowings(e.target.checked)}
               />{' '}
-              Exclude films with a lot of showings
+              Exclude films with a lot of upcoming showings
             </label>
           </div>
           <div className="cinema-filter-group">
