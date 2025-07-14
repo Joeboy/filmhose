@@ -16,6 +16,7 @@ export interface ShowTime {
   cinema_shortcode: string;
   cinema?: Cinema;
   title: string;
+  norm_title: string;
   link: string;
   datetime: string;
   description: string;

@@ -66,10 +66,10 @@ const App: FC = () => {
   if (excludeManyShowings) {
     const titleCounts: Record<string, number> = {};
     for (const show of showtimes) {
-      titleCounts[show.title] = (titleCounts[show.title] || 0) + 1;
+      titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
     }
     filteredShowtimes = showtimes.filter(
-      (show) => titleCounts[show.title] <= 10
+      (show) => titleCounts[show.norm_title] <= 10
     );
   } else {
     filteredShowtimes = [...showtimes];
