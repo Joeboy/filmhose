@@ -10,6 +10,7 @@ import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
 import SearchPanel from './components/SearchPanel';
 import ShowTimeList from './components/ShowTimeList';
+import Titles from './components/Titles';
 import {
   type Cinema,
   type ShowTime,
@@ -130,6 +131,7 @@ const App: FC = () => {
               <Route path="/help" element={<HelpWanted />} />
               <Route path="/cinemas" element={<CinemasList />} />
               <Route path="/cinemas/:shortname" element={<CinemaDetail />} />
+              <Route path="/titles" element={<Titles showtimes={showtimes} />} />
             </Routes>
           </CinemasByShortcodeContext.Provider>
         </div>
