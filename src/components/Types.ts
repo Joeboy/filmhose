@@ -1,3 +1,4 @@
+import type { DateTime } from 'luxon';
 import { createContext } from 'react';
 
 export interface Cinema {
@@ -19,6 +20,7 @@ export interface ShowTime {
   norm_title: string;
   link: string;
   datetime: string;
+  datetimeObj?: DateTime;
   description: string;
   image_src: string;
   thumbnail: string;

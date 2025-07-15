@@ -52,28 +52,33 @@ const App: FC = () => {
   }, []);
   useEffect(() => {
     if (rawShowtimes.length && Object.keys(cinemasByShortcode).length) {
-      setShowtimes(
-        rawShowtimes.map((showtime) => ({
+      // Update each showtime object with cinema details and DateTime object
+      const nowLondon = DateTime.now().setZone('Europe/London');
+      const cutoff = nowLondon.minus({ minutes: 30 });
+      const processedShowtimes = rawShowtimes
+        .map((showtime) => ({
           ...showtime,
           cinema: cinemasByShortcode[showtime.cinema_shortcode],
+          datetimeObj: DateTime.fromISO(showtime.datetime, {
+            zone: 'Europe/London',
+          }),
         }))
-      );
+        // Filter out past showtimes
+        .filter(({ datetimeObj }) => datetimeObj && datetimeObj > cutoff)
+        .sort(
+          (a, b) =>
+            (a.datetimeObj?.toMillis() || 0) - (b.datetimeObj?.toMillis() || 0)
+        );
+      setShowtimes(processedShowtimes);
     }
   }, [rawShowtimes, cinemasByShortcode]);
 
-  // Filter out films with more than 10 showings if excludeManyShowings is true
-  let filteredShowtimes: ShowTime[];
-  if (excludeManyShowings) {
-    const titleCounts: Record<string, number> = {};
-    for (const show of showtimes) {
-      titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
-    }
-    filteredShowtimes = showtimes.filter(
-      (show) => titleCounts[show.norm_title] <= 10
-    );
-  } else {
-    filteredShowtimes = [...showtimes];
-  }
+  // Filter by selected date
+  let filteredShowtimes: ShowTime[] = showtimes.filter(({ datetimeObj }) => {
+    if (!datetimeObj) return false;
+    const key = toNaiveDateString(datetimeObj.toJSDate());
+    return key === selectedDate;
+  });
 
   // Filter by selected cinemas if any are selected
   if (selectedCinemas.length > 0) {
@@ -82,22 +87,16 @@ const App: FC = () => {
     );
   }
 
-  // Filter by date
-  // Get current time in London and subtract 1 hour
-  const nowLondon = DateTime.now().setZone('Europe/London');
-  const cutoff = nowLondon.minus({ minutes: 30 });
-  filteredShowtimes = filteredShowtimes
-    .map((showtime) => ({
-      ...showtime,
-      datetimeObj: DateTime.fromISO(showtime.datetime, {
-        zone: 'Europe/London',
-      }),
-    }))
-    .filter(({ datetimeObj }) => {
-      const key = toNaiveDateString(datetimeObj.toJSDate());
-      return key === selectedDate && datetimeObj > cutoff;
-    })
-    .sort((a, b) => a.datetimeObj.toMillis() - b.datetimeObj.toMillis());
+  // Filter out films with more than 10 showings if excludeManyShowings is true
+  if (excludeManyShowings) {
+    const titleCounts: Record<string, number> = {};
+    for (const show of filteredShowtimes) {
+      titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
+    }
+    filteredShowtimes = filteredShowtimes.filter(
+      (show) => titleCounts[show.norm_title] <= 10
+    );
+  }
 
   return (
     <Router>
