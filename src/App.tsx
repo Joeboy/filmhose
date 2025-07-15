@@ -73,13 +73,7 @@ const App: FC = () => {
     }
   }, [rawShowtimes, cinemasByShortcode]);
 
-  // Filter by selected date
-  let filteredShowtimes: ShowTime[] = showtimes.filter(({ datetimeObj }) => {
-    if (!datetimeObj) return false;
-    const key = toNaiveDateString(datetimeObj.toJSDate());
-    return key === selectedDate;
-  });
-
+  let filteredShowtimes = showtimes;
   // Filter by selected cinemas if any are selected
   if (selectedCinemas.length > 0) {
     filteredShowtimes = filteredShowtimes.filter((show) =>
@@ -97,6 +91,13 @@ const App: FC = () => {
       (show) => titleCounts[show.norm_title] <= 10
     );
   }
+
+  // Filter by selected date
+  filteredShowtimes = filteredShowtimes.filter(({ datetimeObj }) => {
+    if (!datetimeObj) return false;
+    const key = toNaiveDateString(datetimeObj.toJSDate());
+    return key === selectedDate;
+  });
 
   return (
     <Router>
