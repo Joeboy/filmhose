@@ -4,20 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 import { formatDateLabel } from '../formatDateLabel';
 import ShowTimeItem from './ShowTimeItem';
 import './ShowTimeList.css';
-import { CinemasByShortcodeContext, type ShowTime } from './Types';
+import { CinemasByShortcodeContext, LoadingShowtimesContext, type ShowTime } from './Types';
 
 interface ShowTimeListProps {
   showtimes: ShowTime[];
   date: Date;
-  loading?: boolean;
 }
 
 const ShowTimeList: React.FC<ShowTimeListProps> = ({
   showtimes,
   date,
-  loading,
 }) => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
+  const { loadingShowtimes } = useContext(LoadingShowtimesContext);
 
   const [searchParams] = useSearchParams();
   const cinemas_param = searchParams.get('cinemas');
@@ -26,7 +25,7 @@ const ShowTimeList: React.FC<ShowTimeListProps> = ({
     : [];
 
   let emptyMsg = 'Could not find any matching showtimes.';
-  if (!loading && showtimes.length === 0) {
+  if (!loadingShowtimes && showtimes.length === 0) {
     const nowLondon = DateTime.now().setZone('Europe/London');
     const isToday =
       nowLondon.toISODate() ===
@@ -61,7 +60,7 @@ const ShowTimeList: React.FC<ShowTimeListProps> = ({
           {selectedCinemas.map((cinema) => cinema.name).join(', ')}
         </p>
       )}
-      {loading ? (
+      {loadingShowtimes ? (
         <p className="showtime-list-loading">Loading...</p>
       ) : filteredShowtimes.length === 0 ? (
         <p className="showtime-list-empty">{emptyMsg}</p>

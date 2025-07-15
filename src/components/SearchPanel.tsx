@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
 import Calendar from './Calendar';
 import type { Cinema } from './Types';
-import { CinemasByShortcodeContext } from './Types';
+import {
+  CinemasByShortcodeContext,
+  SelectedCinemasContext,
+  SelectedDateContext,
+  ExcludeManyShowingsContext,
+} from './Types';
 
-interface SearchPanelProps {
-  selectedDate: string;
-  onSelectDate: (date: string) => void;
-  excludeManyShowings: boolean;
-  setExcludeManyShowings: (value: boolean) => void;
-  selectedCinemas: string[]; // array of cinema shortcodes
-  setSelectedCinemas: (shortcodes: string[]) => void;
-}
+interface SearchPanelProps {}
 
-const SearchPanel: React.FC<SearchPanelProps> = ({
-  selectedDate,
-  onSelectDate,
-  excludeManyShowings,
-  setExcludeManyShowings,
-  selectedCinemas,
-  setSelectedCinemas,
-}) => {
+const SearchPanel: React.FC<SearchPanelProps> = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
+  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
+  const { excludeManyShowings, setExcludeManyShowings } = useContext(
+    ExcludeManyShowingsContext
+  );
   const cinemas: Cinema[] = Object.values(cinemasByShortcode);
+
+  // Get selected cinemas from context
+  const { selectedCinemas, setSelectedCinemas } = useContext(
+    SelectedCinemasContext
+  );
 
   // State for showing/hiding options
   const [showOptions, setShowOptions] = React.useState(false);
@@ -42,7 +42,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
 
   return (
     <div className="search-panel">
-      <Calendar selectedDate={selectedDate} onSelectDate={onSelectDate} />
+      <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
       <div
         className="search-panel-toggle-text"
         onClick={() => setShowOptions((v) => !v)}

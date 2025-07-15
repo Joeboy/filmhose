@@ -8,13 +8,17 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
-import SearchPanel from './components/SearchPanel';
-import ShowTimeList from './components/ShowTimeList';
+import Listings from './components/Listings';
 import Titles from './components/Titles';
 import {
   type Cinema,
   type ShowTime,
   CinemasByShortcodeContext,
+  SelectedCinemasContext,
+  LoadingShowtimesContext,
+  ShowtimesContext,
+  SelectedDateContext,
+  ExcludeManyShowingsContext,
 } from './components/Types';
 import { toNaiveDateString } from './toNaiveDateString';
 
@@ -74,65 +78,44 @@ const App: FC = () => {
     }
   }, [rawShowtimes, cinemasByShortcode]);
 
-  let filteredShowtimes = showtimes;
-  // Filter by selected cinemas if any are selected
-  if (selectedCinemas.length > 0) {
-    filteredShowtimes = filteredShowtimes.filter((show) =>
-      selectedCinemas.includes(show.cinema_shortcode)
-    );
-  }
-
-  // Filter out films with more than 10 showings if excludeManyShowings is true
-  if (excludeManyShowings) {
-    const titleCounts: Record<string, number> = {};
-    for (const show of filteredShowtimes) {
-      titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
-    }
-    filteredShowtimes = filteredShowtimes.filter(
-      (show) => titleCounts[show.norm_title] <= 10
-    );
-  }
-
-  // Filter by selected date
-  filteredShowtimes = filteredShowtimes.filter(({ datetimeObj }) => {
-    if (!datetimeObj) return false;
-    const key = toNaiveDateString(datetimeObj.toJSDate());
-    return key === selectedDate;
-  });
-
   return (
     <Router>
       <div>
         <AppHeader />
         <div className="container">
           <CinemasByShortcodeContext.Provider value={cinemasByShortcode}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <SearchPanel
-                      selectedDate={selectedDate}
-                      onSelectDate={setSelectedDate}
-                      excludeManyShowings={excludeManyShowings}
-                      setExcludeManyShowings={setExcludeManyShowings}
-                      selectedCinemas={selectedCinemas}
-                      setSelectedCinemas={setSelectedCinemas}
-                    />
-                    <ShowTimeList
-                      showtimes={filteredShowtimes}
-                      date={new Date(selectedDate)}
-                      loading={loadingShowtimes}
-                    />
-                  </>
-                }
-              />
-              <Route path="/about" element={<About />} />
-              <Route path="/help" element={<HelpWanted />} />
-              <Route path="/cinemas" element={<CinemasList />} />
-              <Route path="/cinemas/:shortname" element={<CinemaDetail />} />
-              <Route path="/titles" element={<Titles showtimes={showtimes} />} />
-            </Routes>
+            <SelectedCinemasContext.Provider
+              value={{ selectedCinemas, setSelectedCinemas }}
+            >
+              <LoadingShowtimesContext.Provider
+                value={{ loadingShowtimes, setLoadingShowtimes }}
+              >
+                <ShowtimesContext.Provider value={showtimes}>
+                  <SelectedDateContext.Provider
+                    value={{ selectedDate, setSelectedDate }}
+                  >
+                    <ExcludeManyShowingsContext.Provider
+                      value={{ excludeManyShowings, setExcludeManyShowings }}
+                    >
+                      <Routes>
+                        <Route path="/" element={<Listings />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/help" element={<HelpWanted />} />
+                        <Route path="/cinemas" element={<CinemasList />} />
+                        <Route
+                          path="/cinemas/:shortname"
+                          element={<CinemaDetail />}
+                        />
+                        <Route
+                          path="/titles"
+                          element={<Titles showtimes={showtimes} />}
+                        />
+                      </Routes>
+                    </ExcludeManyShowingsContext.Provider>
+                  </SelectedDateContext.Provider>
+                </ShowtimesContext.Provider>
+              </LoadingShowtimesContext.Provider>
+            </SelectedCinemasContext.Provider>
           </CinemasByShortcodeContext.Provider>
         </div>
       </div>
