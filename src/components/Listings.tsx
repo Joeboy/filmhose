@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import Calendar from './Calendar';
 import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
 import { toNaiveDateString } from '../toNaiveDateString';
@@ -13,7 +14,7 @@ const Listings: React.FC = () => {
   const location = useLocation();
   const showtimes = useContext(ShowtimesContext);
   const { searchSettings } = useContext(SearchSettingsContext);
-  const { selectedDate } = useContext(SelectedDateContext);
+  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
 
   // Set excludeManyShowings based on the route
   const shouldExcludeManyShowings = location.pathname === '/listings';
@@ -47,6 +48,7 @@ const Listings: React.FC = () => {
 
   return (
     <>
+      <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
       <SearchPanel />
       <ShowTimeList
         showtimes={filteredShowtimes}

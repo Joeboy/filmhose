@@ -1,17 +1,11 @@
 import React, { useContext } from 'react';
-import Calendar from './Calendar';
 import type { Cinema } from './Types';
-import {
-  CinemasByShortcodeContext,
-  SearchSettingsContext,
-  SelectedDateContext,
-} from './Types';
+import { CinemasByShortcodeContext, SearchSettingsContext } from './Types';
 
 interface SearchPanelProps {}
 
 const SearchPanel: React.FC<SearchPanelProps> = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
-  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
   const { searchSettings, setSearchSettings } = useContext(
     SearchSettingsContext,
   );
@@ -83,7 +77,6 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
 
   return (
     <div className="search-panel">
-      <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
       <div
         className="search-panel-toggle-text"
         onClick={() => setShowOptions((v) => !v)}
