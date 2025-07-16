@@ -7,7 +7,7 @@ const Home: React.FC = () => {
       <ul>
         <li>
           <Link to="/listings">
-            See listings by date, exluding films with lots of showings
+            See listings by date, excluding films with lots of showings
           </Link>
         </li>
         <li>
