@@ -44,12 +44,10 @@ const Listings: React.FC = () => {
     );
   }
 
-  // Filter by selected cinemas if any are selected
-  if (selectedCinemas.length > 0) {
-    filteredShowtimes = filteredShowtimes.filter((show) =>
-      selectedCinemas.includes(show.cinema_shortcode),
-    );
-  }
+  // Filter by selected cinemas - if none selected, show nothing
+  filteredShowtimes = filteredShowtimes.filter((show) =>
+    selectedCinemas.includes(show.cinema_shortcode),
+  );
 
   // Filter by selected date
   filteredShowtimes = filteredShowtimes.filter(({ datetimeObj }) => {

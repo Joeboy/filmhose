@@ -33,6 +33,7 @@ const App: FC = () => {
     toNaiveDateString(new Date()),
   );
   const [loadingShowtimes, setLoadingShowtimes] = useState(true);
+  const [hasInitializedCinemas, setHasInitializedCinemas] = useState(false);
   const [searchSettings, setSearchSettings] = useState<SearchSettings>({
     excludeManyShowings: false,
     selectedCinemas: [],
@@ -60,6 +61,18 @@ const App: FC = () => {
         setCinemasByShortcode(cinemaMap);
       });
   }, []);
+
+  // Set all cinemas as selected by default when cinemas are loaded (only once)
+  useEffect(() => {
+    if (Object.keys(cinemasByShortcode).length > 0 && !hasInitializedCinemas) {
+      setSearchSettings((prevSettings) => ({
+        ...prevSettings,
+        selectedCinemas: Object.keys(cinemasByShortcode),
+      }));
+      setHasInitializedCinemas(true);
+    }
+  }, [cinemasByShortcode, hasInitializedCinemas]);
+
   useEffect(() => {
     if (rawShowtimes.length && Object.keys(cinemasByShortcode).length) {
       // Update each showtime object with cinema details and DateTime object

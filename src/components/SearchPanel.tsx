@@ -20,6 +20,11 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
   );
   const cinemas: Cinema[] = Object.values(cinemasByShortcode);
 
+  // Sort cinemas alphabetically by shortname
+  const sortedCinemas = cinemas.sort((a, b) =>
+    a.shortname.localeCompare(b.shortname),
+  );
+
   const { selectedCinemas } = searchSettings;
 
   // Determine current excludeManyShowings state based on route
@@ -41,6 +46,21 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
         selectedCinemas: [...selectedCinemas, shortcode],
       });
     }
+  };
+
+  const handleSelectAll = () => {
+    const allCinemaShortcodes = sortedCinemas.map((cinema) => cinema.shortcode);
+    setSearchSettings({
+      ...searchSettings,
+      selectedCinemas: allCinemaShortcodes,
+    });
+  };
+
+  const handleSelectNone = () => {
+    setSearchSettings({
+      ...searchSettings,
+      selectedCinemas: [],
+    });
   };
 
   const toggleText = showOptions
@@ -94,8 +114,9 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
           </div>
           <div className="cinema-filter-group">
             <strong>Filter by cinema:</strong>
+
             <div className="cinema-checkbox-list">
-              {cinemas.map((cinema) => (
+              {sortedCinemas.map((cinema) => (
                 <label key={cinema.shortcode}>
                   <input
                     type="checkbox"
@@ -105,6 +126,22 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
                   {cinema.shortname}
                 </label>
               ))}
+            </div>
+            <div className="cinema-selection-buttons">
+              <button
+                type="button"
+                onClick={handleSelectAll}
+                className="cinema-selection-button"
+              >
+                Select All
+              </button>
+              <button
+                type="button"
+                onClick={handleSelectNone}
+                className="cinema-selection-button"
+              >
+                Select None
+              </button>
             </div>
           </div>
         </div>

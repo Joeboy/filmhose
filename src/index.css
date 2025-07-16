@@ -143,13 +143,41 @@ ul.showtime-list {
   line-height: 1.4;
 }
 
-/* .home-nav-list a {
-  display: block;
-  padding: 0.5rem 0;
-} */
 
 @media (max-width: 480px) {
   .home-nav-list {
     padding-left: 1.5rem;
   }
+}
+
+/* Cinema selection buttons */
+.cinema-selection-buttons {
+  margin: 0.5rem 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cinema-selection-button {
+  width: 5rem;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #495057;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cinema-selection-button:hover {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+  border-color: #adb5bd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.cinema-selection-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
