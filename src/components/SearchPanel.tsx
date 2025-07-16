@@ -3,9 +3,8 @@ import Calendar from './Calendar';
 import type { Cinema } from './Types';
 import {
   CinemasByShortcodeContext,
-  SelectedCinemasContext,
+  SearchSettingsContext,
   SelectedDateContext,
-  ExcludeManyShowingsContext,
 } from './Types';
 
 interface SearchPanelProps {}
@@ -13,15 +12,12 @@ interface SearchPanelProps {}
 const SearchPanel: React.FC<SearchPanelProps> = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
-  const { excludeManyShowings, setExcludeManyShowings } = useContext(
-    ExcludeManyShowingsContext
+  const { searchSettings, setSearchSettings } = useContext(
+    SearchSettingsContext,
   );
   const cinemas: Cinema[] = Object.values(cinemasByShortcode);
 
-  // Get selected cinemas from context
-  const { selectedCinemas, setSelectedCinemas } = useContext(
-    SelectedCinemasContext
-  );
+  const { selectedCinemas, excludeManyShowings } = searchSettings;
 
   // State for showing/hiding options
   const [showOptions, setShowOptions] = React.useState(false);
@@ -29,9 +25,15 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
   // Handler for toggling a cinema checkbox
   const handleCinemaToggle = (shortcode: string) => {
     if (selectedCinemas.includes(shortcode)) {
-      setSelectedCinemas(selectedCinemas.filter((c) => c !== shortcode));
+      setSearchSettings({
+        ...searchSettings,
+        selectedCinemas: selectedCinemas.filter((c) => c !== shortcode),
+      });
     } else {
-      setSelectedCinemas([...selectedCinemas, shortcode]);
+      setSearchSettings({
+        ...searchSettings,
+        selectedCinemas: [...selectedCinemas, shortcode],
+      });
     }
   };
 
@@ -72,7 +74,12 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
               <input
                 type="checkbox"
                 checked={excludeManyShowings}
-                onChange={(e) => setExcludeManyShowings(e.target.checked)}
+                onChange={(e) =>
+                  setSearchSettings({
+                    ...searchSettings,
+                    excludeManyShowings: e.target.checked,
+                  })
+                }
               />{' '}
               Exclude films with a lot of upcoming showings
             </label>

@@ -28,21 +28,27 @@ export interface ShowTime {
   scraper: string;
 }
 
-export const CinemasByShortcodeContext = createContext<Record<string, Cinema>>(
-  {}
-);
-
-export interface SelectedCinemasContextType {
+export interface SearchSettings {
   selectedCinemas: string[];
-  setSelectedCinemas: (shortcodes: string[]) => void;
+  excludeManyShowings: boolean;
 }
 
-export const SelectedCinemasContext = createContext<SelectedCinemasContextType>(
-  {
-    selectedCinemas: [],
-    setSelectedCinemas: () => {},
-  }
+export const CinemasByShortcodeContext = createContext<Record<string, Cinema>>(
+  {},
 );
+
+export interface SearchSettingsContextType {
+  searchSettings: SearchSettings;
+  setSearchSettings: (settings: SearchSettings) => void;
+}
+
+export const SearchSettingsContext = createContext<SearchSettingsContextType>({
+  searchSettings: {
+    selectedCinemas: [],
+    excludeManyShowings: false,
+  },
+  setSearchSettings: () => {},
+});
 
 export interface LoadingShowtimesContextType {
   loadingShowtimes: boolean;
@@ -66,14 +72,3 @@ export const SelectedDateContext = createContext<SelectedDateContextType>({
   selectedDate: '',
   setSelectedDate: () => {},
 });
-
-export interface ExcludeManyShowingsContextType {
-  excludeManyShowings: boolean;
-  setExcludeManyShowings: (value: boolean) => void;
-}
-
-export const ExcludeManyShowingsContext =
-  createContext<ExcludeManyShowingsContextType>({
-    excludeManyShowings: false,
-    setExcludeManyShowings: () => {},
-  });

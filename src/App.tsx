@@ -13,12 +13,12 @@ import Titles from './components/Titles';
 import {
   type Cinema,
   type ShowTime,
+  type SearchSettings,
   CinemasByShortcodeContext,
-  SelectedCinemasContext,
+  SearchSettingsContext,
   LoadingShowtimesContext,
   ShowtimesContext,
   SelectedDateContext,
-  ExcludeManyShowingsContext,
 } from './components/Types';
 import { toNaiveDateString } from './toNaiveDateString';
 
@@ -29,12 +29,16 @@ const App: FC = () => {
     Record<string, Cinema>
   >({});
   const [selectedDate, setSelectedDate] = useState(() =>
-    toNaiveDateString(new Date())
+    toNaiveDateString(new Date()),
   );
   const [loadingShowtimes, setLoadingShowtimes] = useState(true);
-  const [excludeManyShowings, setExcludeManyShowings] = useState(false);
-  const [selectedCinemas, setSelectedCinemas] = useState<string[]>([]);
+  const [searchSettings, setSearchSettings] = useState<SearchSettings>({
+    excludeManyShowings: false,
+    selectedCinemas: [],
+  });
 
+  // These useEffects fetch the showtime and cinema data and fix it up so we
+  // can use it easily
   useEffect(() => {
     setLoadingShowtimes(true);
     fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
@@ -72,7 +76,7 @@ const App: FC = () => {
         .filter(({ datetimeObj }) => datetimeObj && datetimeObj > cutoff)
         .sort(
           (a, b) =>
-            (a.datetimeObj?.toMillis() || 0) - (b.datetimeObj?.toMillis() || 0)
+            (a.datetimeObj?.toMillis() || 0) - (b.datetimeObj?.toMillis() || 0),
         );
       setShowtimes(processedShowtimes);
     }
@@ -84,8 +88,11 @@ const App: FC = () => {
         <AppHeader />
         <div className="container">
           <CinemasByShortcodeContext.Provider value={cinemasByShortcode}>
-            <SelectedCinemasContext.Provider
-              value={{ selectedCinemas, setSelectedCinemas }}
+            <SearchSettingsContext.Provider
+              value={{
+                searchSettings,
+                setSearchSettings,
+              }}
             >
               <LoadingShowtimesContext.Provider
                 value={{ loadingShowtimes, setLoadingShowtimes }}
@@ -94,28 +101,24 @@ const App: FC = () => {
                   <SelectedDateContext.Provider
                     value={{ selectedDate, setSelectedDate }}
                   >
-                    <ExcludeManyShowingsContext.Provider
-                      value={{ excludeManyShowings, setExcludeManyShowings }}
-                    >
-                      <Routes>
-                        <Route path="/" element={<Listings />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/help" element={<HelpWanted />} />
-                        <Route path="/cinemas" element={<CinemasList />} />
-                        <Route
-                          path="/cinemas/:shortname"
-                          element={<CinemaDetail />}
-                        />
-                        <Route
-                          path="/titles"
-                          element={<Titles showtimes={showtimes} />}
-                        />
-                      </Routes>
-                    </ExcludeManyShowingsContext.Provider>
+                    <Routes>
+                      <Route path="/" element={<Listings />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/help" element={<HelpWanted />} />
+                      <Route path="/cinemas" element={<CinemasList />} />
+                      <Route
+                        path="/cinemas/:shortname"
+                        element={<CinemaDetail />}
+                      />
+                      <Route
+                        path="/titles"
+                        element={<Titles showtimes={showtimes} />}
+                      />
+                    </Routes>
                   </SelectedDateContext.Provider>
                 </ShowtimesContext.Provider>
               </LoadingShowtimesContext.Provider>
-            </SelectedCinemasContext.Provider>
+            </SearchSettingsContext.Provider>
           </CinemasByShortcodeContext.Provider>
         </div>
       </div>

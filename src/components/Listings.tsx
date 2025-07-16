@@ -4,18 +4,16 @@ import ShowTimeList from './ShowTimeList';
 import { toNaiveDateString } from '../toNaiveDateString';
 import {
   ShowtimesContext,
-  SelectedCinemasContext,
+  SearchSettingsContext,
   SelectedDateContext,
-  ExcludeManyShowingsContext,
 } from './Types';
 
-interface ListingsProps {}
-
-const Listings: React.FC<ListingsProps> = () => {
+const Listings: React.FC = () => {
   const showtimes = useContext(ShowtimesContext);
-  const { selectedCinemas } = useContext(SelectedCinemasContext);
+  const { searchSettings } = useContext(SearchSettingsContext);
   const { selectedDate } = useContext(SelectedDateContext);
-  const { excludeManyShowings } = useContext(ExcludeManyShowingsContext);
+
+  const { selectedCinemas, excludeManyShowings } = searchSettings;
 
   let filteredShowtimes = showtimes;
 
@@ -26,14 +24,14 @@ const Listings: React.FC<ListingsProps> = () => {
       titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
     }
     filteredShowtimes = filteredShowtimes.filter(
-      (show) => titleCounts[show.norm_title] <= 10
+      (show) => titleCounts[show.norm_title] <= 10,
     );
   }
 
   // Filter by selected cinemas if any are selected
   if (selectedCinemas.length > 0) {
     filteredShowtimes = filteredShowtimes.filter((show) =>
-      selectedCinemas.includes(show.cinema_shortcode)
+      selectedCinemas.includes(show.cinema_shortcode),
     );
   }
 
