@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Home: React.FC = () => {
   return (
     <div>
-      <ul>
+      <ul className="home-nav-list">
         <li>
           <Link to="/listings">
             See listings by date, excluding films with lots of showings
