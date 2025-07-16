@@ -64,9 +64,33 @@ const App: FC = () => {
   // Set all cinemas as selected by default when cinemas are loaded (only once)
   useEffect(() => {
     if (Object.keys(cinemasByShortcode).length > 0 && !hasInitializedCinemas) {
+      // Check if there are saved cinema settings in cookies
+      const getCookieValue = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(';').shift();
+        return null;
+      };
+
+      const savedCinemas = getCookieValue('selectedCinemas');
+      console.log(savedCinemas);
+      let initialSelectedCinemas: string[];
+
+      if (savedCinemas && savedCinemas.trim() !== '') {
+        // Split concatenated shortcodes into 2-character chunks
+        const cinemaShortcodes = savedCinemas.match(/.{1,2}/g) || [];
+        // Filter to only include valid cinema shortcodes that exist
+        initialSelectedCinemas = cinemaShortcodes.filter((shortcode) =>
+          Object.keys(cinemasByShortcode).includes(shortcode),
+        );
+      } else {
+        // Default to all cinemas if no saved settings
+        initialSelectedCinemas = Object.keys(cinemasByShortcode);
+      }
+
       setSearchSettings((prevSettings) => ({
         ...prevSettings,
-        selectedCinemas: Object.keys(cinemasByShortcode),
+        selectedCinemas: initialSelectedCinemas,
       }));
       setHasInitializedCinemas(true);
     }

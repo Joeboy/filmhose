@@ -57,6 +57,24 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
     });
   };
 
+  const handleSaveCinemaSettings = () => {
+    const confirmed = window.confirm(
+      'Do you want to save your cinema selection? ' +
+        'This will set a cookie on your device, which will only be used ' +
+        'to store your preferences for future visits.',
+    );
+
+    if (confirmed) {
+      const selectedCinemaString = selectedCinemas.join('');
+      // Set cookie with 1 year expiration
+      const expirationDate = new Date();
+      expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+      document.cookie = `selectedCinemas=${selectedCinemaString}; expires=${expirationDate.toUTCString()}; path=/`;
+
+      alert('Cinema settings saved successfully!');
+    }
+  };
+
   const toggleText = showOptions
     ? 'Hide search options'
     : 'Show search options';
@@ -118,6 +136,18 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
                 className="cinema-selection-button"
               >
                 Select None
+              </button>
+              <button
+                type="button"
+                onClick={handleSaveCinemaSettings}
+                className="cinema-selection-button"
+                style={{
+                  backgroundColor: '#e3f2fd',
+                  borderColor: '#1976d2',
+                  color: '#1976d2',
+                }}
+              >
+                Save Cinema Filter
               </button>
             </div>
           </div>
