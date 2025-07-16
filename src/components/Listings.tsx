@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
@@ -12,29 +12,18 @@ import {
 const Listings: React.FC = () => {
   const location = useLocation();
   const showtimes = useContext(ShowtimesContext);
-  const { searchSettings, setSearchSettings } = useContext(
-    SearchSettingsContext,
-  );
+  const { searchSettings } = useContext(SearchSettingsContext);
   const { selectedDate } = useContext(SelectedDateContext);
 
   // Set excludeManyShowings based on the route
   const shouldExcludeManyShowings = location.pathname === '/listings';
 
-  useEffect(() => {
-    if (searchSettings.excludeManyShowings !== shouldExcludeManyShowings) {
-      setSearchSettings({
-        ...searchSettings,
-        excludeManyShowings: shouldExcludeManyShowings,
-      });
-    }
-  }, [shouldExcludeManyShowings, searchSettings, setSearchSettings]);
-
-  const { selectedCinemas, excludeManyShowings } = searchSettings;
+  const { selectedCinemas } = searchSettings;
 
   let filteredShowtimes = showtimes;
 
-  // Filter out films with more than 10 showings if excludeManyShowings is true
-  if (excludeManyShowings) {
+  // Filter out films with more than 10 showings if this is the /listings route
+  if (shouldExcludeManyShowings) {
     const titleCounts: Record<string, number> = {};
     for (const show of filteredShowtimes) {
       titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;

@@ -35,7 +35,6 @@ const App: FC = () => {
   const [loadingShowtimes, setLoadingShowtimes] = useState(true);
   const [hasInitializedCinemas, setHasInitializedCinemas] = useState(false);
   const [searchSettings, setSearchSettings] = useState<SearchSettings>({
-    excludeManyShowings: false,
     selectedCinemas: [],
   });
 
@@ -126,10 +125,7 @@ const App: FC = () => {
                         path="/cinemas/:shortname"
                         element={<CinemaDetail />}
                       />
-                      <Route
-                        path="/titles"
-                        element={<Titles showtimes={showtimes} />}
-                      />
+                      <Route path="/titles" element={<Titles />} />
                     </Routes>
                   </SelectedDateContext.Provider>
                 </ShowtimesContext.Provider>

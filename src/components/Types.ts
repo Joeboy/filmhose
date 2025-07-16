@@ -30,7 +30,6 @@ export interface ShowTime {
 
 export interface SearchSettings {
   selectedCinemas: string[];
-  excludeManyShowings: boolean;
 }
 
 export const CinemasByShortcodeContext = createContext<Record<string, Cinema>>(
@@ -45,7 +44,6 @@ export interface SearchSettingsContextType {
 export const SearchSettingsContext = createContext<SearchSettingsContextType>({
   searchSettings: {
     selectedCinemas: [],
-    excludeManyShowings: false,
   },
   setSearchSettings: () => {},
 });

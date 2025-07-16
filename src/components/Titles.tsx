@@ -1,19 +1,41 @@
-import React, { useState, useMemo } from 'react';
-import { type ShowTime } from './Types';
+import React, { useState, useMemo, useContext } from 'react';
+import SearchPanel from './SearchPanel';
+import {
+  type ShowTime,
+  ShowtimesContext,
+  SearchSettingsContext,
+} from './Types';
 
-interface TitlesProps {
-  showtimes: ShowTime[];
-}
-
-const Titles: React.FC<TitlesProps> = ({ showtimes }) => {
+const Titles: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedTitles, setExpandedTitles] = useState<Set<string>>(new Set());
 
-  // Group showtimes by title and filter by search term
+  // Get data from contexts
+  const showtimes = useContext(ShowtimesContext);
+  const { searchSettings } = useContext(SearchSettingsContext);
+
+  // Apply filters to showtimes
+  const filteredShowtimes = useMemo(() => {
+    // Safety check: return empty array if showtimes is not loaded yet
+    if (!showtimes || showtimes.length === 0) {
+      return [];
+    }
+
+    let filtered = showtimes;
+
+    // Filter by selected cinemas
+    filtered = filtered.filter((show) =>
+      searchSettings.selectedCinemas.includes(show.cinema_shortcode),
+    );
+
+    return filtered;
+  }, [showtimes, searchSettings]);
+
+  // Group filtered showtimes by title and filter by search term
   const groupedTitles = useMemo(() => {
     const groups: Record<string, ShowTime[]> = {};
 
-    showtimes.forEach((showtime) => {
+    filteredShowtimes.forEach((showtime) => {
       const title = showtime.title;
       if (!groups[title]) {
         groups[title] = [];
@@ -46,7 +68,7 @@ const Titles: React.FC<TitlesProps> = ({ showtimes }) => {
       title,
       showtimes: groups[title],
     }));
-  }, [showtimes, searchTerm]);
+  }, [filteredShowtimes, searchTerm]);
 
   const toggleTitle = (title: string) => {
     const newExpanded = new Set(expandedTitles);
@@ -62,7 +84,10 @@ const Titles: React.FC<TitlesProps> = ({ showtimes }) => {
     <div>
       <h1>Film Titles</h1>
 
-      {/* Search box */}
+      {/* Search Panel */}
+      <SearchPanel />
+
+      {/* Title search box */}
       <div style={{ marginBottom: '2em' }}>
         <input
           type="text"

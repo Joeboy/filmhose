@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import Calendar from './Calendar';
 import type { Cinema } from './Types';
 import {
@@ -11,8 +10,6 @@ import {
 interface SearchPanelProps {}
 
 const SearchPanel: React.FC<SearchPanelProps> = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
   const { searchSettings, setSearchSettings } = useContext(
@@ -26,9 +23,6 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
   );
 
   const { selectedCinemas } = searchSettings;
-
-  // Determine current excludeManyShowings state based on route
-  const excludeManyShowings = location.pathname === '/listings';
 
   // State for showing/hiding options
   const [showOptions, setShowOptions] = React.useState(false);
@@ -95,23 +89,6 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
       </div>
       {showOptions && (
         <div className="search-panel-options">
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={excludeManyShowings}
-                onChange={(e) => {
-                  // Navigate to appropriate route based on checkbox state
-                  if (e.target.checked) {
-                    navigate('/listings');
-                  } else {
-                    navigate('/hosepipe');
-                  }
-                }}
-              />{' '}
-              Exclude films with a lot of upcoming showings
-            </label>
-          </div>
           <div className="cinema-filter-group">
             <strong>Filter by cinema:</strong>
 
