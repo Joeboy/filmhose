@@ -9,7 +9,11 @@ const AppHeader: React.FC = () => (
         <img
           src="/logo.svg"
           alt="FilmHose masthead"
-          style={{ margin: '0.25rem 1rem 0.25rem 0rem', float: 'left', height: '3.5rem' }}
+          style={{
+            margin: '0.25rem 1rem 0.25rem 0rem',
+            float: 'left',
+            height: '3.5rem',
+          }}
         />
         <h1>
           <Link to="/">FilmHose</Link>
@@ -19,8 +23,8 @@ const AppHeader: React.FC = () => (
     </div>
     <div className="container">
       <nav>
-        <Link to="/">Home</Link> | <Link to="/cinemas">Cinemas</Link> |{' '}
-        <Link to="/about">About</Link> | <Link to="/help">Help wanted</Link>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> |{' '}
+        <Link to="/help">Help wanted</Link>
       </nav>
     </div>
   </div>

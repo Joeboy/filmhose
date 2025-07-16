@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
 import { toNaiveDateString } from '../toNaiveDateString';
@@ -9,9 +10,24 @@ import {
 } from './Types';
 
 const Listings: React.FC = () => {
+  const location = useLocation();
   const showtimes = useContext(ShowtimesContext);
-  const { searchSettings } = useContext(SearchSettingsContext);
+  const { searchSettings, setSearchSettings } = useContext(
+    SearchSettingsContext,
+  );
   const { selectedDate } = useContext(SelectedDateContext);
+
+  // Set excludeManyShowings based on the route
+  const shouldExcludeManyShowings = location.pathname === '/listings';
+
+  useEffect(() => {
+    if (searchSettings.excludeManyShowings !== shouldExcludeManyShowings) {
+      setSearchSettings({
+        ...searchSettings,
+        excludeManyShowings: shouldExcludeManyShowings,
+      });
+    }
+  }, [shouldExcludeManyShowings, searchSettings, setSearchSettings]);
 
   const { selectedCinemas, excludeManyShowings } = searchSettings;
 

@@ -8,6 +8,7 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
+import Home from './components/Home';
 import Listings from './components/Listings';
 import Titles from './components/Titles';
 import {
@@ -102,7 +103,9 @@ const App: FC = () => {
                     value={{ selectedDate, setSelectedDate }}
                   >
                     <Routes>
-                      <Route path="/" element={<Listings />} />
+                      <Route path="/" element={<Home />} />
+                      <Route path="/listings" element={<Listings />} />
+                      <Route path="/hosepipe" element={<Listings />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/help" element={<HelpWanted />} />
                       <Route path="/cinemas" element={<CinemasList />} />
