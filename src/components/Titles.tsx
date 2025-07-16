@@ -145,12 +145,6 @@ const Titles: React.FC<TitlesProps> = ({ showtimes }) => {
                           href={showtime.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{
-                            fontFamily: 'monospace',
-                            fontSize: '0.8rem',
-                            textDecoration: 'none',
-                            color: '#244ba1',
-                          }}
                         >
                           {showtime.datetimeObj?.toFormat('EEE d MMM') ||
                             'Date unavailable'}{' '}
