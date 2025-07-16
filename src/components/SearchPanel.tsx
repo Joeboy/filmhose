@@ -66,10 +66,11 @@ const SearchPanel: React.FC<SearchPanelProps> = () => {
 
     if (confirmed) {
       const selectedCinemaString = selectedCinemas.join('');
+      const cookieData = JSON.stringify({ cinemas: selectedCinemaString });
       // Set cookie with 1 year expiration
       const expirationDate = new Date();
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
-      document.cookie = `selectedCinemas=${selectedCinemaString}; expires=${expirationDate.toUTCString()}; path=/`;
+      document.cookie = `selectedCinemas=${encodeURIComponent(cookieData)}; expires=${expirationDate.toUTCString()}; path=/`;
 
       alert('Cinema settings saved successfully!');
     }

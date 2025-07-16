@@ -77,12 +77,21 @@ const App: FC = () => {
       let initialSelectedCinemas: string[];
 
       if (savedCinemas && savedCinemas.trim() !== '') {
-        // Split concatenated shortcodes into 2-character chunks
-        const cinemaShortcodes = savedCinemas.match(/.{1,2}/g) || [];
-        // Filter to only include valid cinema shortcodes that exist
-        initialSelectedCinemas = cinemaShortcodes.filter((shortcode) =>
-          Object.keys(cinemasByShortcode).includes(shortcode),
-        );
+        try {
+          const cookieData = JSON.parse(decodeURIComponent(savedCinemas));
+          if (cookieData.cinemas) {
+            const cinemaShortcodes = cookieData.cinemas.match(/.{1,2}/g) || [];
+            // Filter to only include valid cinema shortcodes that exist
+            initialSelectedCinemas = cinemaShortcodes.filter(
+              (shortcode: string) =>
+                Object.keys(cinemasByShortcode).includes(shortcode),
+            );
+          } else {
+            initialSelectedCinemas = Object.keys(cinemasByShortcode);
+          }
+        } catch (error) {
+          initialSelectedCinemas = Object.keys(cinemasByShortcode);
+        }
       } else {
         // Default to all cinemas if no saved settings
         initialSelectedCinemas = Object.keys(cinemasByShortcode);
