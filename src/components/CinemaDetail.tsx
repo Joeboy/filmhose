@@ -20,7 +20,9 @@ const CinemaDetail = (props: CinemaDetailProps) => {
   return (
     <div className="cinema-detail">
       <h1>{cinema.name}</h1>
-      <p><a href={`/?cinemas=${cinema.shortcode}`}>What's on</a></p>
+      <p>
+        <a href={`/listings/${cinema.shortcode}`}>What's on</a>
+      </p>
       {cinema.url && (
         <p>
           Website:{' '}
