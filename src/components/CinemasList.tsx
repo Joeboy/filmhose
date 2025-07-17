@@ -4,7 +4,9 @@ import { CinemasByShortcodeContext } from './Types';
 
 const CinemasList = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
-  const cinemas = Object.values(cinemasByShortcode);
+  const cinemas = Object.values(cinemasByShortcode).sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
   return (
     <div className="cinemas-list">
       <h1>Cinemas</h1>
@@ -46,7 +48,7 @@ const CinemasList = () => {
         <li>Throwley Yard</li>
         <li>David Lean Cinema</li>
         <li>Chiswick Cinema</li>
-        <li>Cinema Museum, Kenninton</li>
+        <li>Cinema Museum, Kennington</li>
         <li>Theatreship, Canary Wharf</li>
         <li>Whirled Cinema</li>
         <li>Sands Films</li>
