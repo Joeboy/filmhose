@@ -73,7 +73,6 @@ const App: FC = () => {
       };
 
       const savedCinemas = getCookieValue('selectedCinemas');
-      console.log(savedCinemas);
       let initialSelectedCinemas: string[];
 
       if (savedCinemas && savedCinemas.trim() !== '') {

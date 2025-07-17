@@ -30,7 +30,8 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
             src={
               import.meta.env.VITE_CINESCRAPERS_HOST +
               '/thumbnails/' +
-              showtime.thumbnail
+              showtime.thumbnail +
+              '.jpg'
             }
             alt={showtime.title + ' thumbnail'}
             className="showtime-thumbnail"
