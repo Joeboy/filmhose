@@ -17,6 +17,23 @@ const CinemasList = () => {
         ))}
       </ul>
       <p>&nbsp;</p>
+
+      <p>And here they are on a map:</p>
+      <div className="cinema-map" style={{ marginBottom: '2rem' }}>
+        <h2>Cinema Locations</h2>
+        <iframe
+          src="/cinema_map.html"
+          width="100%"
+          height="400px"
+          style={{
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          }}
+          title="Cinema Locations Map"
+        />
+      </div>
+
       <p>And this is what's on the TO DO list:</p>
 
       <ul>

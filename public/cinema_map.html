@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a0b178591ae31ec56ef7ae9ef51569e4 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a0b178591ae31ec56ef7ae9ef51569e4" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a0b178591ae31ec56ef7ae9ef51569e4 = L.map(
+                "map_a0b178591ae31ec56ef7ae9ef51569e4",
+                {
+                    center: [51.532606261524144, -0.01839583087926354],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_6422fd7b4ad4883217e0c5c2b0601e15 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_6422fd7b4ad4883217e0c5c2b0601e15.addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var marker_5afbe80e7261a6483f557c7a3d2d4ff6 = L.marker(
+                [51.506154115221044, -0.13116586768030816],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_9958e421d9d1596a97225356f94181e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a7cd1546235ceb775d9d22e3400c3c9d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9e5fc4b04af6d20e7bdb86f5c790e5ae = $(`<div id="html_9e5fc4b04af6d20e7bdb86f5c790e5ae" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Instutute of Contemporary Arts</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> The Mall, London SW1Y 5AH</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> +44 20 7930 3647</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/ICA" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.ica.art" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_a7cd1546235ceb775d9d22e3400c3c9d.setContent(html_9e5fc4b04af6d20e7bdb86f5c790e5ae);
+            
+        
+
+        marker_5afbe80e7261a6483f557c7a3d2d4ff6.bindPopup(popup_a7cd1546235ceb775d9d22e3400c3c9d)
+        ;
+
+        
+    
+    
+            marker_5afbe80e7261a6483f557c7a3d2d4ff6.bindTooltip(
+                `<div>
+                     Instutute of Contemporary Arts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5afbe80e7261a6483f557c7a3d2d4ff6.setIcon(icon_9958e421d9d1596a97225356f94181e8);
+            
+    
+            var marker_989dae9798552601d0ce74e37d85b39a = L.marker(
+                [51.506154115221044, -0.13116586768030816],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_0a5b11e21c2d78159229489a7e0f19bf = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eICA\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_989dae9798552601d0ce74e37d85b39a.setIcon(div_icon_0a5b11e21c2d78159229489a7e0f19bf);
+            
+    
+            var marker_406248f57a5a570fe0d421c35b28bdf0 = L.marker(
+                [51.511485765578385, -0.13019780279715246],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_612f6299d1e1263ab1bf2fe2c17e2204 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a0a5972563d3ce504e8b871638ac1296 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8e814add25eddeda49bf518afea84287 = $(`<div id="html_8e814add25eddeda49bf518afea84287" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Prince Charles Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 7 Leicester Place, London WC2H 7BY</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> +44 20 7494 3654</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Prince Charles" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://princecharlescinema.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_a0a5972563d3ce504e8b871638ac1296.setContent(html_8e814add25eddeda49bf518afea84287);
+            
+        
+
+        marker_406248f57a5a570fe0d421c35b28bdf0.bindPopup(popup_a0a5972563d3ce504e8b871638ac1296)
+        ;
+
+        
+    
+    
+            marker_406248f57a5a570fe0d421c35b28bdf0.bindTooltip(
+                `<div>
+                     Prince Charles Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_406248f57a5a570fe0d421c35b28bdf0.setIcon(icon_612f6299d1e1263ab1bf2fe2c17e2204);
+            
+    
+            var marker_6d096257ef58120e074d4123070e5c74 = L.marker(
+                [51.511485765578385, -0.13019780279715246],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_dab522f0acf9d6c32ffa5f00136eae39 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003ePrince Charles\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_6d096257ef58120e074d4123070e5c74.setIcon(div_icon_dab522f0acf9d6c32ffa5f00136eae39);
+            
+    
+            var marker_c9ad42e9540d59ecc3022537c1a2169f = L.marker(
+                [51.523762417199556, -0.07207958947406425],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_c699decbb05c7446218b8662646469c9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a56c7866e02b879d546a5216724a299 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ef2d396d4c659e8e82cd61f14cc7b7e4 = $(`<div id="html_ef2d396d4c659e8e82cd61f14cc7b7e4" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Close-Up Film Centre</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 97 Sclater Street, London E1 6HR</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> +44 20 3784 7970</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Close-Up" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.closeupfilmcentre.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_8a56c7866e02b879d546a5216724a299.setContent(html_ef2d396d4c659e8e82cd61f14cc7b7e4);
+            
+        
+
+        marker_c9ad42e9540d59ecc3022537c1a2169f.bindPopup(popup_8a56c7866e02b879d546a5216724a299)
+        ;
+
+        
+    
+    
+            marker_c9ad42e9540d59ecc3022537c1a2169f.bindTooltip(
+                `<div>
+                     Close-Up Film Centre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9ad42e9540d59ecc3022537c1a2169f.setIcon(icon_c699decbb05c7446218b8662646469c9);
+            
+    
+            var marker_87437f841e4041e30da3164ff9d5abd1 = L.marker(
+                [51.523762417199556, -0.07207958947406425],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_17e0a8aaa2a7d506efac1ae4d7d63f00 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eClose-Up\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_87437f841e4041e30da3164ff9d5abd1.setIcon(div_icon_17e0a8aaa2a7d506efac1ae4d7d63f00);
+            
+    
+            var marker_f023826caa057d96d4d312d5201112c3 = L.marker(
+                [51.507097434312634, -0.11512247413491837],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_1f9feab5d8e7cb43204e1dd57961e2d8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_aa221d8d701275d03885f0ba4f8c09b2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c050d43f6a8b82ab7cdc8f892e605271 = $(`<div id="html_c050d43f6a8b82ab7cdc8f892e605271" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">British Film Institute</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> Belvedere Road, London SE1 8XT</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> +44 20 7928 3232</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/BFI" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.bfi.org.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_aa221d8d701275d03885f0ba4f8c09b2.setContent(html_c050d43f6a8b82ab7cdc8f892e605271);
+            
+        
+
+        marker_f023826caa057d96d4d312d5201112c3.bindPopup(popup_aa221d8d701275d03885f0ba4f8c09b2)
+        ;
+
+        
+    
+    
+            marker_f023826caa057d96d4d312d5201112c3.bindTooltip(
+                `<div>
+                     British Film Institute
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f023826caa057d96d4d312d5201112c3.setIcon(icon_1f9feab5d8e7cb43204e1dd57961e2d8);
+            
+    
+            var marker_47ee578ae842e7a2433581b9454e2ca3 = L.marker(
+                [51.507097434312634, -0.11512247413491837],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_02e46d8a9127b7b962c36100260e6f9b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eBFI\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_47ee578ae842e7a2433581b9454e2ca3.setIcon(div_icon_02e46d8a9127b7b962c36100260e6f9b);
+            
+    
+            var marker_c078cf339546ed6556f5f81f59a1638a = L.marker(
+                [51.52108106753565, -0.09301942257770801],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_0752c387d78a341252def7f6b7f702bd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_192e1b0863588599d07bab19d1e85e97 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_91e98f86b1203c74514e0802c135cf63 = $(`<div id="html_91e98f86b1203c74514e0802c135cf63" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Barbican Cinemas</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> Beech St, Barbican, London EC1Y 8AA</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 02078702500</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Barbican" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.barbican.org.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_192e1b0863588599d07bab19d1e85e97.setContent(html_91e98f86b1203c74514e0802c135cf63);
+            
+        
+
+        marker_c078cf339546ed6556f5f81f59a1638a.bindPopup(popup_192e1b0863588599d07bab19d1e85e97)
+        ;
+
+        
+    
+    
+            marker_c078cf339546ed6556f5f81f59a1638a.bindTooltip(
+                `<div>
+                     Barbican Cinemas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c078cf339546ed6556f5f81f59a1638a.setIcon(icon_0752c387d78a341252def7f6b7f702bd);
+            
+    
+            var marker_b30ae97cb420de91894da0886cc617a0 = L.marker(
+                [51.52108106753565, -0.09301942257770801],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_489261040c90bc577f363e3e858a4037 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eBarbican\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_b30ae97cb420de91894da0886cc617a0.setIcon(div_icon_489261040c90bc577f363e3e858a4037);
+            
+    
+            var marker_d48f271f07859948748f8f23b658fe54 = L.marker(
+                [51.55145284798294, -0.0433266894724083],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_e2758f1e841f460ee6b14abf4fc68998 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3fdea37820f9cbdec018cfa53b644c39 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f3827dbac19c9ec01281e52a8a043649 = $(`<div id="html_f3827dbac19c9ec01281e52a8a043649" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Castle Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> The Castle Cinema, First floor, 64 - 66 Brooksby's Walk, London, E9 6DA</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> N/A</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Castle" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://thecastlecinema.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_3fdea37820f9cbdec018cfa53b644c39.setContent(html_f3827dbac19c9ec01281e52a8a043649);
+            
+        
+
+        marker_d48f271f07859948748f8f23b658fe54.bindPopup(popup_3fdea37820f9cbdec018cfa53b644c39)
+        ;
+
+        
+    
+    
+            marker_d48f271f07859948748f8f23b658fe54.bindTooltip(
+                `<div>
+                     Castle Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d48f271f07859948748f8f23b658fe54.setIcon(icon_e2758f1e841f460ee6b14abf4fc68998);
+            
+    
+            var marker_f73402528fac58afb302b80cdd8e695e = L.marker(
+                [51.55145284798294, -0.0433266894724083],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_8897ff9ac07dc8b6c5fefde7c094eff3 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eCastle\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_f73402528fac58afb302b80cdd8e695e.setIcon(div_icon_8897ff9ac07dc8b6c5fefde7c094eff3);
+            
+    
+            var marker_17ebe22639b66c77717fdf802a138645 = L.marker(
+                [51.47076749886545, -0.06826471346352408],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_7180b57a7754749a546a59d86951f4e2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a0ee97a43e72985d1a588a68410eed0c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b0d0f15fe1c23ee2cf9b109b577e1bf7 = $(`<div id="html_b0d0f15fe1c23ee2cf9b109b577e1bf7" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Peckhamplex</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> Peckhamplex, 95a Rye Lane, Peckham</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 0844 567 2742</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Peckhamplex" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://peckhamplex.london" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_a0ee97a43e72985d1a588a68410eed0c.setContent(html_b0d0f15fe1c23ee2cf9b109b577e1bf7);
+            
+        
+
+        marker_17ebe22639b66c77717fdf802a138645.bindPopup(popup_a0ee97a43e72985d1a588a68410eed0c)
+        ;
+
+        
+    
+    
+            marker_17ebe22639b66c77717fdf802a138645.bindTooltip(
+                `<div>
+                     Peckhamplex
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17ebe22639b66c77717fdf802a138645.setIcon(icon_7180b57a7754749a546a59d86951f4e2);
+            
+    
+            var marker_ca43ec536adea77b323f0f10629a6a4b = L.marker(
+                [51.47076749886545, -0.06826471346352408],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_0528d655f2bba34d182cbfd25a73b708 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003ePeckhamplex\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_ca43ec536adea77b323f0f10629a6a4b.setIcon(div_icon_0528d655f2bba34d182cbfd25a73b708);
+            
+    
+            var marker_88a624761b0d55c202a1ebf82f8a0c8a = L.marker(
+                [51.52127054892805, -0.05122929131953246],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_482d5c1acb2ebd41a1a74a63332e3b2a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9a434ded121e1d0b2d24c2d788c346e1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f48d0ea3fcc0b223905acde1aa7cb302 = $(`<div id="html_f48d0ea3fcc0b223905acde1aa7cb302" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Genesis Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 93-95 Mile End Road, Whitechapel, London E1 4UJ</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 02077802000</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Genesis" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.genesiscinema.co.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_9a434ded121e1d0b2d24c2d788c346e1.setContent(html_f48d0ea3fcc0b223905acde1aa7cb302);
+            
+        
+
+        marker_88a624761b0d55c202a1ebf82f8a0c8a.bindPopup(popup_9a434ded121e1d0b2d24c2d788c346e1)
+        ;
+
+        
+    
+    
+            marker_88a624761b0d55c202a1ebf82f8a0c8a.bindTooltip(
+                `<div>
+                     The Genesis Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_88a624761b0d55c202a1ebf82f8a0c8a.setIcon(icon_482d5c1acb2ebd41a1a74a63332e3b2a);
+            
+    
+            var marker_99ebabfd9157b74effce70e800fa0095 = L.marker(
+                [51.52127054892805, -0.05122929131953246],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_69d5c5a4928248c53e92cdef78d1f1d1 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eGenesis\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_99ebabfd9157b74effce70e800fa0095.setIcon(div_icon_69d5c5a4928248c53e92cdef78d1f1d1);
+            
+    
+            var marker_5b0763b033d06ad704617acce8fbbb32 = L.marker(
+                [51.54976663799529, -0.07543067228704134],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_383aff5bfbbdee875c02ce13a3109fb8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_800aaa474c2f92d1e2c9ab3f209270e8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c5257124c3b21ad468618fac91d8ddf8 = $(`<div id="html_c5257124c3b21ad468618fac91d8ddf8" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Rio</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 107 Kingsland High Street, London, E8 2PB</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 72241 9410</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Rio" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://riocinema.org.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_800aaa474c2f92d1e2c9ab3f209270e8.setContent(html_c5257124c3b21ad468618fac91d8ddf8);
+            
+        
+
+        marker_5b0763b033d06ad704617acce8fbbb32.bindPopup(popup_800aaa474c2f92d1e2c9ab3f209270e8)
+        ;
+
+        
+    
+    
+            marker_5b0763b033d06ad704617acce8fbbb32.bindTooltip(
+                `<div>
+                     The Rio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5b0763b033d06ad704617acce8fbbb32.setIcon(icon_383aff5bfbbdee875c02ce13a3109fb8);
+            
+    
+            var marker_e77bc76129891b6a360898f56259d9fc = L.marker(
+                [51.54976663799529, -0.07543067228704134],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_c173e460d81418da8fd7ace45ed19542 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eRio\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e77bc76129891b6a360898f56259d9fc.setIcon(div_icon_c173e460d81418da8fd7ace45ed19542);
+            
+    
+            var marker_0cd1b951eca92c8214d02ca7b3ed86db = L.marker(
+                [51.59444502418284, -0.12063063244773663],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_64380dcdc76f1c0385bcffb81073c710 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c42e9f3bd922f6839bca688e20e6105f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9606d9dd6d35692dbdcf727579db0346 = $(`<div id="html_9606d9dd6d35692dbdcf727579db0346" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">ArtHouse Crouch End</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 159A Tottenham Lane, London, N8 9BT</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> +44 020 8245 3099</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/ArtHouse" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.arthousecrouchend.co.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_c42e9f3bd922f6839bca688e20e6105f.setContent(html_9606d9dd6d35692dbdcf727579db0346);
+            
+        
+
+        marker_0cd1b951eca92c8214d02ca7b3ed86db.bindPopup(popup_c42e9f3bd922f6839bca688e20e6105f)
+        ;
+
+        
+    
+    
+            marker_0cd1b951eca92c8214d02ca7b3ed86db.bindTooltip(
+                `<div>
+                     ArtHouse Crouch End
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0cd1b951eca92c8214d02ca7b3ed86db.setIcon(icon_64380dcdc76f1c0385bcffb81073c710);
+            
+    
+            var marker_55599585cd0cf93d71a119ae5436eb0a = L.marker(
+                [51.59444502418284, -0.12063063244773663],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_1d446d1a3ae621dc3917ce6790133f36 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eArtHouse\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_55599585cd0cf93d71a119ae5436eb0a.setIcon(div_icon_1d446d1a3ae621dc3917ce6790133f36);
+            
+    
+            var marker_da6642c03c0edf8752cd1b9b7bafae49 = L.marker(
+                [51.497788853639946, -0.08073756064057352],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_c2504fc87d4c864807c3b52d43616e9e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9ea44a991346f499de1577df1b34cb1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_eaa248c717d0f372f6c834c41e74171d = $(`<div id="html_eaa248c717d0f372f6c834c41e74171d" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Arzner</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 10 Bermondsey Square, London, SE1 3UN</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 4578 1478</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Arzner" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://thearzner.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_b9ea44a991346f499de1577df1b34cb1.setContent(html_eaa248c717d0f372f6c834c41e74171d);
+            
+        
+
+        marker_da6642c03c0edf8752cd1b9b7bafae49.bindPopup(popup_b9ea44a991346f499de1577df1b34cb1)
+        ;
+
+        
+    
+    
+            marker_da6642c03c0edf8752cd1b9b7bafae49.bindTooltip(
+                `<div>
+                     The Arzner
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da6642c03c0edf8752cd1b9b7bafae49.setIcon(icon_c2504fc87d4c864807c3b52d43616e9e);
+            
+    
+            var marker_7b9c3587c55d8924f45142e7477b3350 = L.marker(
+                [51.497788853639946, -0.08073756064057352],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_30e0636fd9cfd8239a06e96270ced992 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eArzner\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_7b9c3587c55d8924f45142e7477b3350.setIcon(div_icon_30e0636fd9cfd8239a06e96270ced992);
+            
+    
+            var marker_3eef34cef3afe0c9991ca6ef5efbfa9b = L.marker(
+                [51.53777304843504, -0.22248534529803407],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_c76f11e1d4c0b8c6e9846756e6b407cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d36cc57868f3abe095ea9095d96d93f8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3dd0e2b909f356fbac1840d1a84f855e = $(`<div id="html_3dd0e2b909f356fbac1840d1a84f855e" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Lexi Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 194b Chamberlayne Rd, London NW10 3JU</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 3011 5523</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Lexi" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://thelexicinema.co.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_d36cc57868f3abe095ea9095d96d93f8.setContent(html_3dd0e2b909f356fbac1840d1a84f855e);
+            
+        
+
+        marker_3eef34cef3afe0c9991ca6ef5efbfa9b.bindPopup(popup_d36cc57868f3abe095ea9095d96d93f8)
+        ;
+
+        
+    
+    
+            marker_3eef34cef3afe0c9991ca6ef5efbfa9b.bindTooltip(
+                `<div>
+                     The Lexi Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3eef34cef3afe0c9991ca6ef5efbfa9b.setIcon(icon_c76f11e1d4c0b8c6e9846756e6b407cc);
+            
+    
+            var marker_fb2ccf29ea583420e626c7304b5a7d44 = L.marker(
+                [51.53777304843504, -0.22248534529803407],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_8e971a764c3a50f7813b50830e905a95 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eLexi\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_fb2ccf29ea583420e626c7304b5a7d44.setIcon(div_icon_8e971a764c3a50f7813b50830e905a95);
+            
+    
+            var marker_328ec4cad559b5e9b359eaf2aa240e14 = L.marker(
+                [51.516332157119685, -0.12136928947451223],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_0a5073b27499e10c679239ecff1ab6ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_155b00b39ca7b44f82c79ae20e18e3d9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ac28deeacfde484d0e81870ebec6e356 = $(`<div id="html_ac28deeacfde484d0e81870ebec6e356" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Garden Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 39-41 Parker Street London WC2B 5PQ</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> Tel: 020 3369 5000</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Garden Cinema" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.thegardencinema.co.uk" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_155b00b39ca7b44f82c79ae20e18e3d9.setContent(html_ac28deeacfde484d0e81870ebec6e356);
+            
+        
+
+        marker_328ec4cad559b5e9b359eaf2aa240e14.bindPopup(popup_155b00b39ca7b44f82c79ae20e18e3d9)
+        ;
+
+        
+    
+    
+            marker_328ec4cad559b5e9b359eaf2aa240e14.bindTooltip(
+                `<div>
+                     The Garden Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_328ec4cad559b5e9b359eaf2aa240e14.setIcon(icon_0a5073b27499e10c679239ecff1ab6ab);
+            
+    
+            var marker_8e7291491b776645b4d2f0291918f28a = L.marker(
+                [51.516332157119685, -0.12136928947451223],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_d517656afae4dc9f076f538c487bf80b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eGarden Cinema\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_8e7291491b776645b4d2f0291918f28a.setIcon(div_icon_d517656afae4dc9f076f538c487bf80b);
+            
+    
+            var marker_7d4455508e636c99b48b618e1e8a7455 = L.marker(
+                [51.52455234066665, -0.07328263364923412],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_e71597f1436957eb460a399c67ed2743 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9416ba68eb0445e834603e62701891aa = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c8128f5ec72bca0e99c934e69d6fdaa4 = $(`<div id="html_c8128f5ec72bca0e99c934e69d6fdaa4" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Rich Mix</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 35-47 Bethnal Green Road, London, E1 6LA</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 7613 7498</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Rich Mix" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://richmix.org.uk/whats-on/cinema/" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_9416ba68eb0445e834603e62701891aa.setContent(html_c8128f5ec72bca0e99c934e69d6fdaa4);
+            
+        
+
+        marker_7d4455508e636c99b48b618e1e8a7455.bindPopup(popup_9416ba68eb0445e834603e62701891aa)
+        ;
+
+        
+    
+    
+            marker_7d4455508e636c99b48b618e1e8a7455.bindTooltip(
+                `<div>
+                     Rich Mix
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7d4455508e636c99b48b618e1e8a7455.setIcon(icon_e71597f1436957eb460a399c67ed2743);
+            
+    
+            var marker_1752636713b467e185f12b8c01741b94 = L.marker(
+                [51.52455234066665, -0.07328263364923412],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_56df87b179ea6d69cc3f2407582c712d = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eRich Mix\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_1752636713b467e185f12b8c01741b94.setIcon(div_icon_56df87b179ea6d69cc3f2407582c712d);
+            
+    
+            var marker_0a0cb1fed2e6ea3179a2bfb2c2bad059 = L.marker(
+                [51.52427021567371, -0.12309736063900109],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_ea11196a95c8102c7d0688648c16808c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_54954749f707a3a98d0b24b4b4f9060e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d9f872746f1cd8f01c67c5b602ad24b1 = $(`<div id="html_d9f872746f1cd8f01c67c5b602ad24b1" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Bertha DocHouse</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> Curzon Bloomsbury, The Brunswick, London, WC1N 1AW</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 02076129351</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Bertha DocHouse" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://dochouse.org" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_54954749f707a3a98d0b24b4b4f9060e.setContent(html_d9f872746f1cd8f01c67c5b602ad24b1);
+            
+        
+
+        marker_0a0cb1fed2e6ea3179a2bfb2c2bad059.bindPopup(popup_54954749f707a3a98d0b24b4b4f9060e)
+        ;
+
+        
+    
+    
+            marker_0a0cb1fed2e6ea3179a2bfb2c2bad059.bindTooltip(
+                `<div>
+                     Bertha DocHouse
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a0cb1fed2e6ea3179a2bfb2c2bad059.setIcon(icon_ea11196a95c8102c7d0688648c16808c);
+            
+    
+            var marker_b71cfb313e44ec7d7a658d2d8ea30490 = L.marker(
+                [51.52427021567371, -0.12309736063900109],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_06a181d05b06d99d8fc90dc5d630833d = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eBertha DocHouse\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_b71cfb313e44ec7d7a658d2d8ea30490.setIcon(div_icon_06a181d05b06d99d8fc90dc5d630833d);
+            
+    
+            var marker_38515a2134f372617583b8ead43a1d22 = L.marker(
+                [51.54349322042213, -0.199918972287406],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_782f0803b84f0fc245985aceaaec5127 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee6f3b1a870083e38e4012a7e4034952 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d7005584884bdd3d40cfc45841f32c87 = $(`<div id="html_d7005584884bdd3d40cfc45841f32c87" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">The Kiln Theatre</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 269 Kilburn High Road, London, UK, NW6 7JR</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 7328 1000</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Kiln Theatre" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://kilntheatre.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_ee6f3b1a870083e38e4012a7e4034952.setContent(html_d7005584884bdd3d40cfc45841f32c87);
+            
+        
+
+        marker_38515a2134f372617583b8ead43a1d22.bindPopup(popup_ee6f3b1a870083e38e4012a7e4034952)
+        ;
+
+        
+    
+    
+            marker_38515a2134f372617583b8ead43a1d22.bindTooltip(
+                `<div>
+                     The Kiln Theatre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_38515a2134f372617583b8ead43a1d22.setIcon(icon_782f0803b84f0fc245985aceaaec5127);
+            
+    
+            var marker_e30da4cea9e34562f565f82dcd0ac8e8 = L.marker(
+                [51.54349322042213, -0.199918972287406],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_d6e60e57cace6cae67f8fa69a9792429 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eKiln Theatre\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e30da4cea9e34562f565f82dcd0ac8e8.setIcon(div_icon_d6e60e57cace6cae67f8fa69a9792429);
+            
+    
+            var marker_16257760c0ce2733edc819bec741969d = L.marker(
+                [51.57958814938073, 0.185693683539507],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_2ef45f8100949fed084070f25c4f3d0e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f8c9210d3804804319a497cc442ad16f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_16c07e5a5ee47eeefe97421b1e2361e2 = $(`<div id="html_16c07e5a5ee47eeefe97421b1e2361e2" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Lumiere Romford</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> Lumiere Romford, Level 3, The Mercury Shopping Centre, Mercury Gardens, Romford, RM1 3EE</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 0330 441 4580</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Lumiere Romford" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.lumiereromford.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_f8c9210d3804804319a497cc442ad16f.setContent(html_16c07e5a5ee47eeefe97421b1e2361e2);
+            
+        
+
+        marker_16257760c0ce2733edc819bec741969d.bindPopup(popup_f8c9210d3804804319a497cc442ad16f)
+        ;
+
+        
+    
+    
+            marker_16257760c0ce2733edc819bec741969d.bindTooltip(
+                `<div>
+                     Lumiere Romford
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_16257760c0ce2733edc819bec741969d.setIcon(icon_2ef45f8100949fed084070f25c4f3d0e);
+            
+    
+            var marker_2a787baf4f9a18e67628560b7e68ed33 = L.marker(
+                [51.57958814938073, 0.185693683539507],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_c042aa5336094aaa57f463148cf6ca9d = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eLumiere Romford\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_2a787baf4f9a18e67628560b7e68ed33.setIcon(div_icon_c042aa5336094aaa57f463148cf6ca9d);
+            
+    
+            var marker_f8214bd68183111cba2e0d71b611194c = L.marker(
+                [51.5169546084828, -0.14282968762920947],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var icon_e12bb8706b7a9ea6883c1932aa8344d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "film",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9833e4d9e8bff800575ea1bc5acff6d4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f18f2edad77eee5c0cad6627554f59a3 = $(`<div id="html_f18f2edad77eee5c0cad6627554f59a3" style="width: 100.0%; height: 100.0%;">         <div style="width: 300px; font-family: Arial, sans-serif;">             <h3 style="margin: 0 0 10px 0; color: #333;">Regent Street Cinema</h3>             <p style="margin: 5px 0;"><strong>Address:</strong> 307 Regent Street, London, W1B 2HW</p>             <p style="margin: 5px 0;"><strong>Phone:</strong> 020 7911 5050</p>             <div style="margin: 10px 0;">                 <a href="/cinemas/Regent Street" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">                    View Cinema Details                 </a>                 <a href="https://www.regentstreetcinema.com" target="_blank"                     style="display: inline-block; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">                    Official Website                 </a>             </div>         </div>         </div>`)[0];
+                popup_9833e4d9e8bff800575ea1bc5acff6d4.setContent(html_f18f2edad77eee5c0cad6627554f59a3);
+            
+        
+
+        marker_f8214bd68183111cba2e0d71b611194c.bindPopup(popup_9833e4d9e8bff800575ea1bc5acff6d4)
+        ;
+
+        
+    
+    
+            marker_f8214bd68183111cba2e0d71b611194c.bindTooltip(
+                `<div>
+                     Regent Street Cinema
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f8214bd68183111cba2e0d71b611194c.setIcon(icon_e12bb8706b7a9ea6883c1932aa8344d0);
+            
+    
+            var marker_2b66c076abca63d8d7590554bc8a7d5f = L.marker(
+                [51.5169546084828, -0.14282968762920947],
+                {
+}
+            ).addTo(map_a0b178591ae31ec56ef7ae9ef51569e4);
+        
+    
+            var div_icon_464fc9ae8a36a4d14b54b2d6076b5ed3 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 1.5rem; font-weight: bold; color: #333; white-space: nowrap; text-align: center; text-shadow: 0px 0px 4px rgba(255,255,255,1);\"\u003eRegent Street\u003c/div\u003e",
+  "iconSize": [100, 20],
+  "iconAnchor": [50, 0],
+  "className": "empty",
+});
+        
+    
+                marker_2b66c076abca63d8d7590554bc8a7d5f.setIcon(div_icon_464fc9ae8a36a4d14b54b2d6076b5ed3);
+            
+</script>
+</html>
