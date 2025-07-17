@@ -40,7 +40,6 @@ const CinemasList = () => {
 
       <ul>
         <li>BFI IMAX</li>
-        <li>Cine Lumiere, South Kensington</li>
         <li>The Nickel</li>
         <li>ActOne</li>
         <li>Ciné Reel</li>
