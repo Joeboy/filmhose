@@ -30,7 +30,7 @@ const Home: React.FC = () => {
         <li>
           <Link to="/hosepipe">
             <strong>Full Listings</strong> - Complete showtimes, including the
-            big releases
+            current big releases
           </Link>
         </li>
         <li>

@@ -26,23 +26,38 @@ const CinemaDetail = (props: CinemaDetailProps) => {
   return (
     <div className="cinema-detail">
       <h1>{cinema.name}</h1>
-      <p>
-        <a href={`/cinema-listings/${cinema.shortcode}`}>What's on</a>
-      </p>
-      {cinema.url && (
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        {cinema.address && (
+          <p>
+            <strong>Address:</strong> {cinema.address}
+          </p>
+        )}
+
+        {cinema.phone && (
+          <p>
+            <strong>Phone:</strong> {cinema.phone}
+          </p>
+        )}
+
+        {cinema.url && (
+          <p>
+            <strong>Website:</strong>{' '}
+            <a href={cinema.url} target="_blank" rel="noopener noreferrer">
+              {cinema.url}
+            </a>
+          </p>
+        )}
         <p>
-          Website:{' '}
-          <a href={cinema.url} target="_blank" rel="noopener noreferrer">
-            {cinema.url}
-          </a>
+          <a href={`/cinema-listings/${cinema.shortcode}`}>See what's on</a>
         </p>
-      )}
-      {cinema.address && <p>Address: {cinema.address}</p>}
-      {cinema.phone && <p>Phone: {cinema.phone}</p>}
+      </div>
+
       {cinema.latitude && cinema.longitude && (
         <div style={{ margin: '1em 0' }}>
+          <h3>Location</h3>
           <iframe
-            title="Google Map"
+            title={`Map showing location of ${cinema.name}`}
             width="100%"
             height="300"
             style={{ border: 0, borderRadius: '8px' }}
@@ -53,6 +68,23 @@ const CinemaDetail = (props: CinemaDetailProps) => {
           ></iframe>
         </div>
       )}
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        <p>
+          <strong>Find More London Cinemas:</strong>
+        </p>
+        <ul style={{ margin: '0.5rem 0' }}>
+          <li>
+            <a href="/cinemas">Browse all independent cinemas in London</a>
+          </li>
+          <li>
+            <a href="/hosepipe">Today's film listings</a>
+          </li>
+          <li>
+            <a href="/titles">Search for specific films across London</a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
