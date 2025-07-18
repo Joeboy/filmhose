@@ -51,6 +51,14 @@
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://cinescrapers.filmhose.uk" />
+
+    <!-- SEO Optimization -->
+    <meta name="language" content="en-GB" />
+    <meta name="geo.region" content="GB-LND" />
+    <meta name="geo.placename" content="London" />
+    <meta name="geo.position" content="51.5074;-0.1278" />
+    <meta name="ICBM" content="51.5074, -0.1278" />
 
     <!-- Google Search Console Verification -->
     <meta
@@ -59,6 +67,32 @@
     />
 
     <title>FilmHose</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FilmHose",
+        "url": "https://filmhose.uk",
+        "description": "Find cinema showtimes across London - independent cinemas, art house films, repertory, and mainstream movies",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://filmhose.uk/titles?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "FilmHose",
+          "url": "https://filmhose.uk",
+          "areaServed": {
+            "@type": "City",
+            "name": "London",
+            "addressCountry": "GB"
+          }
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

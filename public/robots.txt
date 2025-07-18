@@ -17,4 +17,7 @@ Disallow: /admin/
 Disallow: /.env
 Disallow: /node_modules/
 
-Sitemap: https://filmhose.com/sitemap.xml
+Sitemap: https://filmhose.uk/sitemap.xml
+
+# Crawl delay to be respectful
+Crawl-delay: 1

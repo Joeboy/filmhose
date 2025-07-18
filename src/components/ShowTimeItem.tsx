@@ -33,12 +33,15 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
               showtime.thumbnail +
               '.jpg'
             }
-            alt={showtime.title + ' thumbnail'}
+            alt={`${showtime.title} movie poster`}
             className="showtime-thumbnail"
             loading="lazy"
             decoding="async"
             width="150"
             height="200"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
           />
         </a>
       )}

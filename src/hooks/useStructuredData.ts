@@ -32,7 +32,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
         name: 'FilmHose',
         description:
           'Find cinema showtimes across London - independent cinemas, art house films, and mainstream movies',
-        url: 'https://filmhose.com',
+        url: 'https://filmhose.uk',
         sameAs: ['https://twitter.com/FilmHose'],
         areaServed: {
           '@type': 'City',
@@ -176,7 +176,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
         '@type': 'ItemList',
         name: 'London Cinemas',
         description: 'Independent and arts cinemas across London',
-        url: 'https://filmhose.com/cinemas',
+        url: 'https://filmhose.uk/cinemas',
       };
     }
 
