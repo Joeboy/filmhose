@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
 
 const Home: React.FC = () => {
-  usePageTitle();
+  usePageSEO();
   useStructuredData();
 
   return (

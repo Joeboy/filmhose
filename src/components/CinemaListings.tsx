@@ -8,7 +8,7 @@ import {
 import { toNaiveDateString } from '../toNaiveDateString';
 import { formatDateLabel } from '../formatDateLabel';
 import ShowTimeItem from './ShowTimeItem';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
 import './ShowTimeList.css';
 
@@ -54,7 +54,7 @@ const CinemaListings: React.FC = () => {
   const sortedDates = Object.keys(showtimesByDate).sort();
 
   // Set page title and structured data
-  usePageTitle({ cinemaName: cinema?.name });
+  usePageSEO({ cinemaName: cinema?.name });
   useStructuredData({
     cinema: cinema || undefined,
     showtimes: cinemaShowtimes,

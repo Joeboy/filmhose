@@ -4,7 +4,7 @@ import Calendar from './Calendar';
 import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
 import { toNaiveDateString } from '../toNaiveDateString';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
 import {
   ShowtimesContext,
@@ -49,7 +49,7 @@ const Listings: React.FC = () => {
   });
 
   // Set page title and structured data
-  usePageTitle({ selectedDate });
+  usePageSEO({ selectedDate });
   useStructuredData({ showtimes: filteredShowtimes, selectedDate });
 
   return (

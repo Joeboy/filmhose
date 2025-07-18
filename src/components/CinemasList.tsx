@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
 
 const CinemasList = () => {
@@ -10,7 +10,7 @@ const CinemasList = () => {
     a.name.localeCompare(b.name),
   );
 
-  usePageTitle();
+  usePageSEO();
   useStructuredData();
 
   return (

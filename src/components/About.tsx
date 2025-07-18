@@ -1,8 +1,8 @@
 import React from 'react';
-import { usePageTitle } from '../hooks/usePageTitle';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 const About: React.FC = () => {
-  usePageTitle();
+  usePageSEO();
 
   return (
     <div className="about container">
