@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Allow search engines to crawl all main pages
+Allow: /listings
+Allow: /cinemas
+Allow: /titles
+Allow: /about
+Allow: /help
+
+# Allow crawling of specific cinema and listing pages
+Allow: /cinemas/*
+Allow: /cinema-listings/*
+
+# Just in case:
+Disallow: /admin/
+Disallow: /.env
+Disallow: /node_modules/
+
+Sitemap: https://filmhose.com/sitemap.xml

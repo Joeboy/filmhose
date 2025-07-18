@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 interface CinemaDetailProps {
   shortname?: string;
@@ -13,6 +14,10 @@ const CinemaDetail = (props: CinemaDetailProps) => {
   const cinemas = Object.values(cinemasByShortcode);
 
   const cinema = cinemas.find((c) => c.shortname === shortname);
+
+  // Set page title
+  usePageTitle({ cinemaName: cinema?.name });
+
   if (!cinema) {
     return <div>Cinema not found.</div>;
   }

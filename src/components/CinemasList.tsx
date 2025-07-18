@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const CinemasList = () => {
+  usePageTitle();
+
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const cinemas = Object.values(cinemasByShortcode).sort((a, b) =>
     a.name.localeCompare(b.name),

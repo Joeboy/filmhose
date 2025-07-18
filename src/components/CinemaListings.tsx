@@ -8,6 +8,7 @@ import {
 import { toNaiveDateString } from '../toNaiveDateString';
 import { formatDateLabel } from '../formatDateLabel';
 import ShowTimeItem from './ShowTimeItem';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './ShowTimeList.css';
 
 const CinemaListings: React.FC = () => {
@@ -16,6 +17,9 @@ const CinemaListings: React.FC = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
 
   const cinema = cinema_shortcode ? cinemasByShortcode[cinema_shortcode] : null;
+
+  // Set page title
+  usePageTitle({ cinemaName: cinema?.name });
 
   // Filter and group showtimes by date for this cinema
   const showtimesByDate = useMemo(() => {

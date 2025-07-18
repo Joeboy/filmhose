@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const Home: React.FC = () => {
+  usePageTitle();
+
   return (
     <div>
       <ul className="home-nav-list">

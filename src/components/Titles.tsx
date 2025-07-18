@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useContext } from 'react';
 import SearchPanel from './SearchPanel';
+import { usePageTitle } from '../hooks/usePageTitle';
 import {
   type ShowTime,
   ShowtimesContext,
@@ -7,6 +8,8 @@ import {
 } from './Types';
 
 const Titles: React.FC = () => {
+  usePageTitle();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedTitles, setExpandedTitles] = useState<Set<string>>(new Set());
 
