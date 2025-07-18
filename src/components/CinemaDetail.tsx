@@ -21,7 +21,7 @@ const CinemaDetail = (props: CinemaDetailProps) => {
     <div className="cinema-detail">
       <h1>{cinema.name}</h1>
       <p>
-        <a href={`/listings/${cinema.shortcode}`}>What's on</a>
+        <a href={`/cinema-listings/${cinema.shortcode}`}>What's on</a>
       </p>
       {cinema.url && (
         <p>

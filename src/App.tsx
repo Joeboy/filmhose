@@ -6,6 +6,7 @@ import './App.css';
 import About from './components/About';
 import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
+import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
 import Home from './components/Home';
@@ -170,6 +171,10 @@ const App: FC = () => {
                       <Route
                         path="/cinemas/:shortname"
                         element={<CinemaDetail />}
+                      />
+                      <Route
+                        path="/cinema-listings/:cinema_shortcode"
+                        element={<CinemaListings />}
                       />
                       <Route path="/titles" element={<Titles />} />
                     </Routes>
