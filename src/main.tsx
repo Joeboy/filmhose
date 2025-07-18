@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 
-// Register service worker for better caching
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+// Register service worker for better caching (currently disabled)
+if (false && 'serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')
