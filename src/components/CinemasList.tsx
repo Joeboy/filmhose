@@ -51,7 +51,6 @@ const CinemasList = () => {
         <li>Ciné Reel</li>
         <li>Electric Cinema</li>
         <li>David Lean Cinema</li>
-        <li>Chiswick Cinema</li>
         <li>Cinema Museum, Kennington</li>
         <li>Theatreship, Canary Wharf</li>
         <li>Whirled Cinema</li>
