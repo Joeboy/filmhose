@@ -25,18 +25,16 @@ const HelpWanted: React.FC = () => {
         <a href="https://github.com/Joeboy/cinescrapers">CineScrapers</a>{' '}
         project. The idea is to create{' '}
         <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> for
-        all the independent and arts cinemas in London. So far there are 24
-        sites covered, and another 9 on the TO DO list. It doesn't seem{' '}
-        <em>too</em> difficult or massively time-consuming, maybe it takes an
-        hour per website (depending on the site). If anybody's up for helping
-        out, please submit a pull request to the CineScrapers GitHub project.
+        all the independent and arts cinemas in London. If there's a cinema
+        you'd like to see on the list, feel free to raise an issue, or even
+        better, submit a pull request, at the cinemscrapers github project.
       </p>
       <h4>Other Data Sources</h4>
       <p>
         Obviously if there are any more official sources available for any of
         these cinemas, it would be great to hear about that! I had a look for
         what APIs are available, but the things I found were expensive, limited
-        or both. If you're mates with any of these cinemas, please ask if
+        or both. If you're mates with any of these cinemas, please ask them if
         there's any way I could get their listings data more straightforwardly!
       </p>
       <h4>Sponsorship</h4>
@@ -49,13 +47,6 @@ const HelpWanted: React.FC = () => {
       <p>
         Also if anybody wants to do some more corporate sponsorship that gets
         your organization's name on the site, please get in touch with me.
-      </p>
-      <p>
-        There's still a lot of scrapers to write, and they'll need to be
-        maintained on an ongoing basis. There's a significant amount of work
-        involved so it would be great to have some financial support to keep it
-        going. Also, for $70 a month I think I could subscribe to the listings
-        from the big cinema chains and make the listings more exhaustive.
       </p>
 
       <h4>Get in touch</h4>

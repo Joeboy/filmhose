@@ -52,13 +52,9 @@ const CinemasList = () => {
         <li>David Lean Cinema</li>
         <li>Cinema Museum, Kennington</li>
         <li>Theatreship, Canary Wharf</li>
-        <li>Whirled Cinema</li>
         <li>Sands Films</li>
       </ul>
       <p>&nbsp;</p>
-      <p>
-        Feel free to <a href="/help">lend a hand</a> if you have python skills!
-      </p>
     </div>
   );
 };
