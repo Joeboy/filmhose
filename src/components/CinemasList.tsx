@@ -30,7 +30,7 @@ const CinemasList = () => {
       <div className="cinema-map" style={{ marginBottom: '2rem' }}>
         <h2>Cinema Locations</h2>
         <iframe
-          src="/cinema_map.html"
+          src="https://data.filmhose.uk/cinema_map.html"
           width="100%"
           height="400px"
           style={{
