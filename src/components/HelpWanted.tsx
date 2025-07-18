@@ -25,8 +25,8 @@ const HelpWanted: React.FC = () => {
         <a href="https://github.com/Joeboy/cinescrapers">CineScrapers</a>{' '}
         project. The idea is to create{' '}
         <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> for
-        all the independent and arts cinemas in London. So far there are 22
-        sites covered, and another 10 on the TO DO list. It doesn't seem{' '}
+        all the independent and arts cinemas in London. So far there are 24
+        sites covered, and another 9 on the TO DO list. It doesn't seem{' '}
         <em>too</em> difficult or massively time-consuming, maybe it takes an
         hour per website (depending on the site). If anybody's up for helping
         out, please submit a pull request to the CineScrapers GitHub project.
