@@ -15,6 +15,9 @@ const AppHeader: React.FC = () => (
               float: 'left',
               height: '3.5rem',
             }}
+            width="56"
+            height="56"
+            fetchPriority="high"
           />
         </Link>
         <h1>

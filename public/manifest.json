@@ -1,0 +1,20 @@
+{
+  "name": "FilmHose - London Cinema Listings",
+  "short_name": "FilmHose",
+  "description": "Find cinema showtimes across London - independent cinemas, art house films, repertory, and mainstream movies",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#222827",
+  "theme_color": "#222827",
+  "orientation": "portrait-primary",
+  "categories": ["entertainment", "lifestyle"],
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

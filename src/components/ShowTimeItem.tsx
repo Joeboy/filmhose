@@ -35,6 +35,10 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
             }
             alt={showtime.title + ' thumbnail'}
             className="showtime-thumbnail"
+            loading="lazy"
+            decoding="async"
+            width="150"
+            height="200"
           />
         </a>
       )}
