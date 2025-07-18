@@ -12,7 +12,7 @@ Allow: /help
 Allow: /cinemas/*
 Allow: /cinema-listings/*
 
-# Just in case:
+# Just in case...
 Disallow: /admin/
 Disallow: /.env
 Disallow: /node_modules/
