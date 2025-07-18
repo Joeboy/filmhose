@@ -16,11 +16,13 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     let title = 'FilmHose';
     let description =
       "Find cinema showtimes across London's independent and arts cinemas";
+    let canonicalUrl = `https://filmhose.uk${path}`;
 
     if (path === '/') {
       title = 'FilmHose - London Cinema Listings';
       description =
         "Discover showtimes for independent and arts cinemas across London. Browse today's listings for art house films, repertory screenings, and mainstream movies.";
+      canonicalUrl = 'https://filmhose.uk/';
     } else if (path === '/listings') {
       if (selectedDate) {
         const date = new Date(selectedDate);
@@ -77,6 +79,17 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     // Update document title
     document.title = title;
 
+    // Update canonical URL
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', canonicalUrl);
+    } else {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', canonicalUrl);
+      document.head.appendChild(canonicalLink);
+    }
+
     // Update meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -110,6 +123,28 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       ogTitle.setAttribute('property', 'og:title');
       ogTitle.setAttribute('content', title);
       document.head.appendChild(ogTitle);
+    }
+
+    // Update Open Graph URL
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', canonicalUrl);
+    } else {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      ogUrl.setAttribute('content', canonicalUrl);
+      document.head.appendChild(ogUrl);
+    }
+
+    // Update Twitter URL
+    let twitterUrl = document.querySelector('meta[property="twitter:url"]');
+    if (twitterUrl) {
+      twitterUrl.setAttribute('content', canonicalUrl);
+    } else {
+      twitterUrl = document.createElement('meta');
+      twitterUrl.setAttribute('property', 'twitter:url');
+      twitterUrl.setAttribute('content', canonicalUrl);
+      document.head.appendChild(twitterUrl);
     }
   }, [location.pathname, cinemaName, selectedDate, movieTitle]);
 };
