@@ -2,14 +2,17 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useStructuredData } from '../hooks/useStructuredData';
 
 const CinemasList = () => {
-  usePageTitle();
-
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const cinemas = Object.values(cinemasByShortcode).sort((a, b) =>
     a.name.localeCompare(b.name),
   );
+
+  usePageTitle();
+  useStructuredData();
+
   return (
     <div className="cinemas-list">
       <h1>Cinemas</h1>

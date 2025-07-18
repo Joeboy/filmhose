@@ -5,6 +5,7 @@ import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
 import { toNaiveDateString } from '../toNaiveDateString';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useStructuredData } from '../hooks/useStructuredData';
 import {
   ShowtimesContext,
   SearchSettingsContext,
@@ -16,9 +17,6 @@ const Listings: React.FC = () => {
   const showtimes = useContext(ShowtimesContext);
   const { searchSettings } = useContext(SearchSettingsContext);
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
-
-  // Set page title
-  usePageTitle({ selectedDate });
 
   // Set excludeManyShowings based on the route
   const shouldExcludeManyShowings = location.pathname === '/listings';
@@ -49,6 +47,10 @@ const Listings: React.FC = () => {
     const key = toNaiveDateString(datetimeObj.toJSDate());
     return key === selectedDate;
   });
+
+  // Set page title and structured data
+  usePageTitle({ selectedDate });
+  useStructuredData({ showtimes: filteredShowtimes, selectedDate });
 
   return (
     <>

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useStructuredData } from '../hooks/useStructuredData';
 
 interface CinemaDetailProps {
   shortname?: string;
@@ -15,9 +16,9 @@ const CinemaDetail = (props: CinemaDetailProps) => {
 
   const cinema = cinemas.find((c) => c.shortname === shortname);
 
-  // Set page title
+  // Set page title and structured data
   usePageTitle({ cinemaName: cinema?.name });
-
+  useStructuredData({ cinema });
   if (!cinema) {
     return <div>Cinema not found.</div>;
   }

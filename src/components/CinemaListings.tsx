@@ -9,6 +9,7 @@ import { toNaiveDateString } from '../toNaiveDateString';
 import { formatDateLabel } from '../formatDateLabel';
 import ShowTimeItem from './ShowTimeItem';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useStructuredData } from '../hooks/useStructuredData';
 import './ShowTimeList.css';
 
 const CinemaListings: React.FC = () => {
@@ -17,9 +18,6 @@ const CinemaListings: React.FC = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
 
   const cinema = cinema_shortcode ? cinemasByShortcode[cinema_shortcode] : null;
-
-  // Set page title
-  usePageTitle({ cinemaName: cinema?.name });
 
   // Filter and group showtimes by date for this cinema
   const showtimesByDate = useMemo(() => {
@@ -44,7 +42,23 @@ const CinemaListings: React.FC = () => {
     return grouped;
   }, [cinema_shortcode, showtimes]);
 
+  // Get all showtimes for this cinema for structured data
+  const cinemaShowtimes = useMemo(() => {
+    if (!cinema_shortcode || !showtimes) return [];
+    return showtimes.filter(
+      (showtime) => showtime.cinema_shortcode === cinema_shortcode,
+    );
+  }, [cinema_shortcode, showtimes]);
+
+  // Get sorted dates
   const sortedDates = Object.keys(showtimesByDate).sort();
+
+  // Set page title and structured data
+  usePageTitle({ cinemaName: cinema?.name });
+  useStructuredData({
+    cinema: cinema || undefined,
+    showtimes: cinemaShowtimes,
+  });
 
   if (!cinema_shortcode) {
     return <div>No cinema specified</div>;

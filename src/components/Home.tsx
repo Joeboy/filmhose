@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useStructuredData } from '../hooks/useStructuredData';
 
 const Home: React.FC = () => {
   usePageTitle();
+  useStructuredData();
 
   return (
     <div>
