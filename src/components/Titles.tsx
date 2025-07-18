@@ -122,7 +122,19 @@ const Titles: React.FC = () => {
       {/* Results count */}
       <p style={{ marginBottom: '1em', color: '#666' }}>
         {groupedTitles.length} title{groupedTitles.length !== 1 ? 's' : ''}{' '}
-        found
+        found (
+        {groupedTitles.reduce(
+          (total, group) => total + group.showtimes.length,
+          0,
+        )}{' '}
+        showtime
+        {groupedTitles.reduce(
+          (total, group) => total + group.showtimes.length,
+          0,
+        ) !== 1
+          ? 's'
+          : ''}
+        )
       </p>
 
       {/* Titles list */}
