@@ -65,16 +65,6 @@ const App: FC = () => {
   // Set all cinemas as selected by default when cinemas are loaded (only once)
   useEffect(() => {
     if (Object.keys(cinemasByShortcode).length > 0 && !hasInitializedCinemas) {
-      // Check if we're on a cinema-specific URL - if so, don't initialize from cookies
-      const currentPath = window.location.pathname;
-      const isCinemaSpecificPath = /^\/listings\/[A-Z]{2}$/.test(currentPath);
-
-      if (isCinemaSpecificPath) {
-        // Skip cookie initialization for cinema-specific URLs
-        setHasInitializedCinemas(true);
-        return;
-      }
-
       // Check if there are saved cinema settings in cookies
       const getCookieValue = (name: string) => {
         const value = `; ${document.cookie}`;
@@ -160,10 +150,6 @@ const App: FC = () => {
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/listings" element={<Listings />} />
-                      <Route
-                        path="/listings/:cinema_shortcode"
-                        element={<Listings />}
-                      />
                       <Route path="/hosepipe" element={<Listings />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/help" element={<HelpWanted />} />

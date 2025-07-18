@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Calendar from './Calendar';
 import SearchPanel from './SearchPanel';
 import ShowTimeList from './ShowTimeList';
@@ -12,38 +12,9 @@ import {
 
 const Listings: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { cinema_shortcode } = useParams<{ cinema_shortcode?: string }>();
   const showtimes = useContext(ShowtimesContext);
-  const { searchSettings, setSearchSettings } = useContext(
-    SearchSettingsContext,
-  );
+  const { searchSettings } = useContext(SearchSettingsContext);
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
-  const prevCinemaShortcode = useRef<string | undefined>(undefined);
-
-  // Update search settings when cinema_shortcode changes
-  useEffect(() => {
-    if (cinema_shortcode && cinema_shortcode !== prevCinemaShortcode.current) {
-      setSearchSettings({
-        selectedCinemas: [cinema_shortcode],
-      });
-      prevCinemaShortcode.current = cinema_shortcode;
-    }
-  }, [cinema_shortcode, setSearchSettings]);
-
-  // Navigate to /listings/ when user changes cinema selection from URL-specified cinema
-  useEffect(() => {
-    if (
-      cinema_shortcode &&
-      searchSettings.selectedCinemas.length > 0 && // Only after state has been set
-      !(
-        searchSettings.selectedCinemas.length === 1 &&
-        searchSettings.selectedCinemas.includes(cinema_shortcode)
-      )
-    ) {
-      navigate('/listings/');
-    }
-  }, [cinema_shortcode, searchSettings.selectedCinemas, navigate]);
 
   // Set excludeManyShowings based on the route
   const shouldExcludeManyShowings = location.pathname === '/listings';
@@ -78,7 +49,7 @@ const Listings: React.FC = () => {
   return (
     <>
       <Calendar selectedDate={selectedDate} onSelectDate={setSelectedDate} />
-      <SearchPanel forceOpen={!!cinema_shortcode} />
+      <SearchPanel />
       <ShowTimeList
         showtimes={filteredShowtimes}
         date={new Date(selectedDate)}

@@ -3,12 +3,10 @@ import type { Cinema } from './Types';
 import { CinemasByShortcodeContext, SearchSettingsContext } from './Types';
 
 interface SearchPanelProps {
-  forceOpen?: boolean;
   overrideSelectedCinemas?: string[];
 }
 
 const SearchPanel: React.FC<SearchPanelProps> = ({
-  forceOpen = false,
   overrideSelectedCinemas,
 }) => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
@@ -26,13 +24,8 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
   const selectedCinemas =
     overrideSelectedCinemas || searchSettings.selectedCinemas;
 
-  // State for showing/hiding options - use forceOpen prop if provided
-  const [showOptions, setShowOptions] = React.useState(forceOpen);
-
-  // Update showOptions when forceOpen changes
-  React.useEffect(() => {
-    setShowOptions(forceOpen);
-  }, [forceOpen]);
+  // State for showing/hiding options
+  const [showOptions, setShowOptions] = React.useState(false);
 
   // Handler for toggling a cinema checkbox
   const handleCinemaToggle = (shortcode: string) => {
