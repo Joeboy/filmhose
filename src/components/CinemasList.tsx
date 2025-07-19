@@ -48,7 +48,6 @@ const CinemasList = () => {
       <ul>
         <li>BFI IMAX</li>
         <li>The Nickel</li>
-        <li>ActOne</li>
         <li>Ciné Reel</li>
         <li>David Lean Cinema</li>
         <li>Cinema Museum, Kennington</li>
