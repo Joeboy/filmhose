@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { CinemasByShortcodeContext } from './Types';
 import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
+import { sortStringsByTitle } from '../Utils';
 
 const CinemasList = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const cinemas = Object.values(cinemasByShortcode).sort((a, b) =>
-    a.name.localeCompare(b.name),
+    sortStringsByTitle(a.name, b.name),
   );
 
   usePageSEO();
