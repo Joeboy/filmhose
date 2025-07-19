@@ -123,7 +123,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
 
     // Listings page with multiple cinemas
     else if (
-      (path === '/listings' || path === '/hosepipe') &&
+      (path === '/distilled' || path === '/hosepipe') &&
       showtimes &&
       showtimes.length > 0
     ) {

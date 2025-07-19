@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
       <ul className="home-nav-list">
         <li>
-          <Link to="/listings">
+          <Link to="/distilled">
             <strong>Distilled Listings</strong> - See showtimes by date,
             excluding films with lots of showings. Go here to find rarer
             opportunities to catch interesting films, without the clutter of

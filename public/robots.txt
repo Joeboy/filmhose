@@ -2,7 +2,8 @@ User-agent: *
 Allow: /
 
 # Allow search engines to crawl all main pages
-Allow: /listings
+Allow: /hosepipe
+Allow: /distilled
 Allow: /cinemas
 Allow: /titles
 Allow: /about

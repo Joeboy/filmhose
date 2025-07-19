@@ -23,7 +23,7 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       description =
         "Discover showtimes for independent and arts cinemas across London. Browse today's listings for art house films, repertory screenings, and mainstream movies.";
       canonicalUrl = 'https://filmhose.uk/';
-    } else if (path === '/listings') {
+    } else if (path === '/distilled') {
       if (selectedDate) {
         const date = new Date(selectedDate);
         const formattedDate = date.toLocaleDateString('en-GB', {

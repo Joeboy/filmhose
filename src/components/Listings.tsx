@@ -19,13 +19,13 @@ const Listings: React.FC = () => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext);
 
   // Set excludeManyShowings based on the route
-  const shouldExcludeManyShowings = location.pathname === '/listings';
+  const shouldExcludeManyShowings = location.pathname === '/distilled';
 
   const { selectedCinemas } = searchSettings;
 
   let filteredShowtimes = showtimes;
 
-  // Filter out films with more than 10 showings if this is the /listings route
+  // Filter out films with more than 10 showings if this is the /distilled route
   if (shouldExcludeManyShowings) {
     const titleCounts: Record<string, number> = {};
     for (const show of filteredShowtimes) {
