@@ -54,6 +54,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
           streetAddress: cinema.address,
           addressLocality: 'London',
           addressCountry: 'GB',
+          postalCode: 'SW1A 1AA',
         },
         geo: {
           '@type': 'GeoCoordinates',
@@ -87,6 +88,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
           streetAddress: cinema.address,
           addressLocality: 'London',
           addressCountry: 'GB',
+          postalCode: 'SW1A 1AA',
         },
         geo: {
           '@type': 'GeoCoordinates',
@@ -114,6 +116,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
             streetAddress: cinema.address,
             addressLocality: 'London',
             addressCountry: 'GB',
+            postalCode: 'SW1A 1AA',
           },
         },
         workFeatured: {
@@ -163,6 +166,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
               streetAddress: showtime.cinema?.address,
               addressLocality: 'London',
               addressCountry: 'GB',
+              postalCode: 'SW1A 1AA',
             },
           },
           workFeatured: {
