@@ -8,6 +8,7 @@ export interface Cinema {
   url: string;
   address?: string;
   phone?: string;
+  postcode?: string;
   latitude: number;
   longitude: number;
 }
