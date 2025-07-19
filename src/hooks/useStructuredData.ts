@@ -60,6 +60,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
           latitude: cinema.latitude,
           longitude: cinema.longitude,
         },
+        priceRange: '£8-£20',
       };
 
       // Add phone if available
@@ -76,7 +77,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
       showtimes.length > 0
     ) {
       // Create the main cinema schema
-      const cinemaSchema = {
+      const cinemaSchema: any = {
         '@context': 'https://schema.org',
         '@type': 'MovieTheater',
         name: cinema.name,
@@ -92,7 +93,13 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
           latitude: cinema.latitude,
           longitude: cinema.longitude,
         },
+        priceRange: '£0-£20',
       };
+
+      // Add phone if available
+      if (cinema.phone) {
+        cinemaSchema.telephone = cinema.phone;
+      }
 
       // Create screening events for showtimes
       const screeningEvents = showtimes.slice(0, 10).map((showtime) => ({
