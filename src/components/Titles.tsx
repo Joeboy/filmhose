@@ -6,6 +6,7 @@ import {
   ShowtimesContext,
   SearchSettingsContext,
 } from './Types';
+import { sortStringsByTitle } from '../Utils';
 
 const Titles: React.FC = () => {
   usePageSEO();
@@ -67,7 +68,7 @@ const Titles: React.FC = () => {
           showtime.title.toLowerCase().includes(searchTerm.toLowerCase()),
         );
       })
-      .sort((a, b) => a.localeCompare(b));
+      .sort(sortStringsByTitle);
 
     return filteredNormTitles.map((normTitle) => ({
       normTitle,
