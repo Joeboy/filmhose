@@ -135,9 +135,13 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
             name: showtime.title,
             description:
               showtime.description || `Screening of ${showtime.title}`,
-            image: showtime.thumbnail || showtime.image_src,
+            image: showtime.thumbnail
+              ? `https://data.filmhose.uk/thumbnails/${showtime.thumbnail}.jpg`
+              : showtime.image_src,
           },
-          image: showtime.thumbnail || showtime.image_src,
+          image: showtime.thumbnail
+            ? `https://data.filmhose.uk/thumbnails/${showtime.thumbnail}.jpg`
+            : showtime.image_src,
           url: showtime.link,
           eventStatus: 'https://schema.org/EventScheduled',
           eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -202,9 +206,13 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
               name: showtime.title,
               description:
                 showtime.description || `Screening of ${showtime.title}`,
-              image: showtime.thumbnail || showtime.image_src,
+              image: showtime.thumbnail
+                ? `https://data.filmhose.uk/thumbnails/${showtime.thumbnail}.jpg`
+                : showtime.image_src,
             },
-            image: showtime.thumbnail || showtime.image_src,
+            image: showtime.thumbnail
+              ? `https://data.filmhose.uk/thumbnails/${showtime.thumbnail}.jpg`
+              : showtime.image_src,
             url: showtime.link,
             eventStatus: 'https://schema.org/EventScheduled',
             eventAttendanceMode:
