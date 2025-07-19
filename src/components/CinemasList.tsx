@@ -43,7 +43,11 @@ const CinemasList = () => {
         />
       </div>
 
-      <p>And this is what's on the TO DO list:</p>
+      <p>
+        These are a few that I'd like to add, but whose websites have so far
+        resisted my efforts. At some point I might have to overcome my social
+        anxiety and ask if they can just send me their listings.
+      </p>
 
       <ul>
         <li>BFI IMAX</li>
