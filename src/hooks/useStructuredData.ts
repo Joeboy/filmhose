@@ -47,6 +47,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'MovieTheater',
+        '@id': `https://filmhose.uk/cinemas/${cinema.shortcode}`,
         name: cinema.name,
         url: cinema.url,
         address: {
@@ -81,6 +82,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
       const cinemaSchema: any = {
         '@context': 'https://schema.org',
         '@type': 'MovieTheater',
+        '@id': `https://filmhose.uk/cinemas/${cinema.shortcode}`,
         name: cinema.name,
         url: cinema.url,
         address: {
@@ -104,30 +106,43 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
       }
 
       // Create screening events for showtimes
-      const screeningEvents = showtimes.slice(0, 10).map((showtime) => ({
-        '@type': 'ScreeningEvent',
-        name: showtime.title,
-        startDate: showtime.datetime,
-        location: {
-          '@type': 'MovieTheater',
-          name: cinema.name,
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: cinema.address,
-            addressLocality: 'London',
-            addressCountry: 'GB',
-            postalCode: cinema.postcode,
-          },
-        },
-        workFeatured: {
-          '@type': 'Movie',
-          name: showtime.title,
-          description: showtime.description,
-        },
-        url: showtime.link,
-      }));
+      const screeningEvents = showtimes.slice(0, 10).map((showtime) => {
+        // Ensure ISO 8601 date format
+        const startDate = showtime.datetime.includes('T')
+          ? showtime.datetime
+          : `${showtime.datetime}T00:00:00+00:00`;
 
-      // Combine cinema and events
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'ScreeningEvent',
+          '@id': `https://filmhose.uk/screening/${showtime.id}`,
+          name: showtime.title,
+          startDate: startDate,
+          location: {
+            '@type': 'MovieTheater',
+            '@id': `https://filmhose.uk/cinemas/${cinema.shortcode}`,
+            name: cinema.name,
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: cinema.address,
+              addressLocality: 'London',
+              addressCountry: 'GB',
+              postalCode: cinema.postcode,
+            },
+          },
+          workFeatured: {
+            '@type': 'Movie',
+            name: showtime.title,
+            description:
+              showtime.description || `Screening of ${showtime.title}`,
+          },
+          url: showtime.link,
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        };
+      });
+
+      // Return multiple separate schemas
       structuredData = [cinemaSchema, ...screeningEvents];
     }
 
@@ -154,28 +169,44 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
       const events = Object.values(showtimesByCinema)
         .flat()
         .slice(0, 10)
-        .map((showtime) => ({
-          '@type': 'ScreeningEvent',
-          name: showtime.title,
-          startDate: showtime.datetime,
-          location: {
-            '@type': 'MovieTheater',
-            name: showtime.cinema?.name,
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: showtime.cinema?.address,
-              addressLocality: 'London',
-              addressCountry: 'GB',
-              postalCode: showtime.cinema?.postcode,
-            },
-          },
-          workFeatured: {
-            '@type': 'Movie',
+        .map((showtime) => {
+          // Ensure ISO 8601 date format
+          const startDate = showtime.datetime.includes('T')
+            ? showtime.datetime
+            : `${showtime.datetime}T00:00:00+00:00`;
+
+          return {
+            '@context': 'https://schema.org',
+            '@type': 'ScreeningEvent',
+            '@id': `https://filmhose.uk/screening/${showtime.id}`,
             name: showtime.title,
-            description: showtime.description,
-          },
-          url: showtime.link,
-        }));
+            startDate: startDate,
+            location: {
+              '@type': 'MovieTheater',
+              '@id': showtime.cinema
+                ? `https://filmhose.uk/cinemas/${showtime.cinema.shortcode}`
+                : undefined,
+              name: showtime.cinema?.name,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: showtime.cinema?.address,
+                addressLocality: 'London',
+                addressCountry: 'GB',
+                postalCode: showtime.cinema?.postcode,
+              },
+            },
+            workFeatured: {
+              '@type': 'Movie',
+              name: showtime.title,
+              description:
+                showtime.description || `Screening of ${showtime.title}`,
+            },
+            url: showtime.link,
+            eventStatus: 'https://schema.org/EventScheduled',
+            eventAttendanceMode:
+              'https://schema.org/OfflineEventAttendanceMode',
+          };
+        });
 
       structuredData = events;
     }
