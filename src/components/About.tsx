@@ -6,7 +6,7 @@ const About: React.FC = () => {
 
   return (
     <div className="about container">
-      <h2>About FilmHose</h2>
+      <h1>About FilmHose</h1>
       <p>
         The origin story here is that I kept finding myself looking at multiple
         cinema websites to see if they were showing anything exciting. At some

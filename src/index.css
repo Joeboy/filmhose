@@ -44,8 +44,13 @@ img {
 
 /* Typography */
 h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: .8rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .showtime-list h2 {

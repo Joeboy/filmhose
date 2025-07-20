@@ -9,14 +9,14 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <div className="home-intro" style={{ marginBottom: '2rem' }}>
-        <p>
-          Welcome to <strong>FilmHose</strong> - your guide to London's
-          independent and arts cinema scene. Discover showtimes for art house
-          films, repertory screenings, and unique movie experiences across the
-          capital's non-chain cinemas.
-        </p>
-      </div>
+      <h1>Welcome to FilmHose</h1>
+      <h2>Listings for London's independent and arts cinemas</h2>
+      <p>
+        Welcome to <strong>FilmHose</strong> - your guide to London's
+        independent and arts cinema scene. Discover showtimes for art house
+        films, repertory screenings, and unique movie experiences across the
+        capital's non-chain cinemas.
+      </p>
 
       <ul className="home-nav-list">
         <li>
@@ -45,11 +45,6 @@ const Home: React.FC = () => {
           </Link>
         </li>
       </ul>
-
-      <div
-        className="home-features"
-        style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666' }}
-      ></div>
     </div>
   );
 };

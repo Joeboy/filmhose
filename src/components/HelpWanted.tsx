@@ -6,7 +6,7 @@ const HelpWanted: React.FC = () => {
 
   return (
     <div className="help-wanted container">
-      <h2>Help Wanted</h2>
+      <h1>Help Wanted</h1>
       <p>Things I could use help with:</p>
       <h4>Testing and feedback</h4>
       <p>

@@ -28,7 +28,7 @@ const CinemasList = () => {
       <p>&nbsp;</p>
 
       <p>And here they are on a map:</p>
-      <div className="cinema-map" style={{ marginBottom: '2rem' }}>
+      <div style={{ marginBottom: '2rem' }}>
         <h2>Cinema Locations</h2>
         <iframe
           src="https://data.filmhose.uk/cinema_map.html"
