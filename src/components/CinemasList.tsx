@@ -44,19 +44,40 @@ const CinemasList = () => {
       </div>
 
       <p>
-        These are a few that I'd like to add, but whose websites have so far
-        resisted my efforts. At some point I might have to overcome my social
-        anxiety and ask if they can just send me their listings.
+        These are a few that I'd like to add, but their websites have so far
+        resisted my efforts. There are definitely some gems here so do check
+        them out!
       </p>
 
       <ul>
-        <li>BFI IMAX</li>
-        <li>The Nickel</li>
-        <li>Ciné Reel</li>
-        <li>David Lean Cinema</li>
-        <li>Cinema Museum, Kennington</li>
-        <li>Theatreship, Canary Wharf</li>
-        <li>Sands Films</li>
+        <li>
+          <a href="https://www.bfi.org.uk/bfi-imax">BFI IMAX</a>
+        </li>
+        <li>
+          <a href="https://thenickel.co.uk">The Nickel</a>
+        </li>
+        <li>
+          <a href="https://www.cinereel.co">Ciné Reel</a>
+        </li>
+        <li>
+          <a href="https://www.davidleancinema.org.uk">David Lean Cinema</a>
+        </li>
+        <li>
+          <a href="https://www.cinemamuseum.org.uk">
+            Cinema Museum, Kennington
+          </a>
+        </li>
+        <li>
+          <a href="https://www.theatreship.co.uk">Theatreship, Canary Wharf</a>
+        </li>
+        <li>
+          <a href="https://www.sandsfilms.co.uk">Sands Films</a>
+        </li>
+        <li>
+          <a href="https://www.tnbfc.co.uk/newham-community-cinema">
+            Newham Community Cinema
+          </a>
+        </li>
       </ul>
       <p>&nbsp;</p>
     </div>
