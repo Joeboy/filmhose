@@ -44,9 +44,8 @@ const CinemasList = () => {
       </div>
 
       <p>
-        These are a few that I'd like to add, but whose websites have so far
-        resisted my efforts. There are definitely some gems here so do check
-        them out!
+        These are a few that I'd love to add, but whose websites have so far
+        resisted my efforts. There are some real gems here so do check them out!
       </p>
 
       <ul>
