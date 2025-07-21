@@ -57,7 +57,7 @@ const CinemasList = () => {
           <a href="https://thenickel.co.uk">The Nickel</a>
         </li>
         <li>
-          <a href="https://www.cinereel.co">Ciné Reel</a>
+          <a href="https://www.cine-real.com">Ciné Reel</a>
         </li>
         <li>
           <a href="https://www.davidleancinema.org.uk">David Lean Cinema</a>
