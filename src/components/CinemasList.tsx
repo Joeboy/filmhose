@@ -63,9 +63,7 @@ const CinemasList = () => {
           <a href="https://www.davidleancinema.org.uk">David Lean Cinema</a>
         </li>
         <li>
-          <a href="https://www.cinemamuseum.org.uk">
-            Cinema Museum, Kennington
-          </a>
+          <a href="http://www.cinemamuseum.org.uk">Cinema Museum, Kennington</a>
         </li>
         <li>
           <a href="https://www.theatreship.co.uk">Theatreship, Canary Wharf</a>
