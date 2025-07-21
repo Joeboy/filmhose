@@ -44,7 +44,7 @@ const CinemasList = () => {
       </div>
 
       <p>
-        These are a few that I'd like to add, but their websites have so far
+        These are a few that I'd like to add, but whose websites have so far
         resisted my efforts. There are definitely some gems here so do check
         them out!
       </p>
@@ -55,9 +55,6 @@ const CinemasList = () => {
         </li>
         <li>
           <a href="https://thenickel.co.uk">The Nickel</a>
-        </li>
-        <li>
-          <a href="https://www.cine-real.com">Ciné Real</a>
         </li>
         <li>
           <a href="https://www.davidleancinema.org.uk">David Lean Cinema</a>
