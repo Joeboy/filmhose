@@ -1,9 +1,6 @@
 name = "filmhose"
-main = "src/worker.ts"
 compatibility_date = "2025-06-22"
-
-[site]
-bucket = "./dist"
+pages_build_output_dir = "./dist"
 
 [build]
 command = "npm run build"
