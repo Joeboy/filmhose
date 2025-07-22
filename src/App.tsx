@@ -11,6 +11,7 @@ import CinemasList from './components/CinemasList';
 import HelpWanted from './components/HelpWanted';
 import Home from './components/Home';
 import Listings from './components/Listings';
+import NotFound from './components/NotFound';
 import Titles from './components/Titles';
 import {
   type Cinema,
@@ -163,6 +164,7 @@ const App: FC = () => {
                         element={<CinemaListings />}
                       />
                       <Route path="/titles" element={<Titles />} />
+                      <Route path="*" element={<NotFound />} />
                     </Routes>
                   </SelectedDateContext.Provider>
                 </ShowtimesContext.Provider>
