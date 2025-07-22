@@ -56,8 +56,10 @@ export const onRequest: PagesFunction = async (context) => {
     return next();
   }
 
-  // Check if the route is valid
-  if (!isValidRoute(url.pathname)) {
+  // For right now, we check for url.search here in an effort to persuade
+  // google that we don't have urls that use query parameters anymore. Which
+  // is true, for the time being.
+  if (!isValidRoute(url.pathname) || url.search) {
     // Get the index.html content but return with 404 status
     const response = await next();
     return new Response(response.body, {
