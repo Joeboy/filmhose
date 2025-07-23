@@ -72,7 +72,7 @@ const CinemaListings: React.FC = () => {
     <div>
       <h1>{cinema.name} Listings</h1>
       <p>
-        {cinema.address}, <a href="{cinema.url}">{cinema.url}</a>
+        {cinema.address}, <a href={cinema.url}>{cinema.url}</a>
       </p>
 
       {sortedDates.length === 0 ? (
