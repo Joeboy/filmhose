@@ -115,7 +115,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
         return {
           '@context': 'https://schema.org',
           '@type': 'ScreeningEvent',
-          '@id': `https://filmhose.uk/screening/${showtime.id}`,
+          '@id': `${showtime.link}#showtime-${showtime.id}`,
           name: showtime.title,
           startDate: startDate,
           location: {
@@ -184,7 +184,7 @@ export const useStructuredData = (options: UseStructuredDataOptions = {}) => {
           return {
             '@context': 'https://schema.org',
             '@type': 'ScreeningEvent',
-            '@id': `https://filmhose.uk/screening/${showtime.id}`,
+            '@id': `${showtime.link}#showtime-${showtime.id}`,
             name: showtime.title,
             startDate: startDate,
             location: {
