@@ -63,6 +63,13 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           ? showtime.description.slice(0, 200) + '...'
           : showtime.description}
       </p>
+      {showtime.tmdb_id && (
+        <p className="showtime-listing-description">
+          <a href={`https://www.themoviedb.org/movie/${showtime.tmdb_id}`}>
+            TMDB (experimental)
+          </a>
+        </p>
+      )}
       <div style={{ clear: 'both' }} />
       {showPopup && cinema && typeof cinema.shortname === 'string' && (
         <div

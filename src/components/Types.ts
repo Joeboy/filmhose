@@ -27,6 +27,7 @@ export interface ShowTime {
   thumbnail: string;
   last_updated: string;
   scraper: string;
+  tmdb_id?: number;
 }
 
 export interface SearchSettings {
