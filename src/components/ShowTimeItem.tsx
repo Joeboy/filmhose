@@ -66,8 +66,9 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
       {showtime.tmdb_id && (
         <p className="showtime-listing-description">
           <a href={`https://www.themoviedb.org/movie/${showtime.tmdb_id}`}>
-            TMDB (experimental)
-          </a>
+            TMDB
+          </a>{' '}
+          (experimental)
         </p>
       )}
       <div style={{ clear: 'both' }} />
