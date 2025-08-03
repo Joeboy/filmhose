@@ -15,13 +15,13 @@ import NotFound from './components/NotFound';
 import Titles from './components/Titles';
 import {
   type Cinema,
-  type ShowTime,
   type SearchSettings,
+  type ShowTime,
   CinemasByShortcodeContext,
-  SearchSettingsContext,
   LoadingShowtimesContext,
-  ShowtimesContext,
+  SearchSettingsContext,
   SelectedDateContext,
+  ShowtimesContext,
 } from './components/Types';
 import { toNaiveDateString } from './toNaiveDateString';
 
@@ -30,6 +30,9 @@ const App: FC = () => {
   const [showtimes, setShowtimes] = useState<ShowTime[]>([]);
   const [cinemasByShortcode, setCinemasByShortcode] = useState<
     Record<string, Cinema>
+  >({});
+  const [tmdbRecommendations, setTmdbRecommendations] = useState<
+    Record<number, number[]>
   >({});
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date()),
@@ -60,6 +63,12 @@ const App: FC = () => {
           }
         }
         setCinemasByShortcode(cinemaMap);
+      });
+    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/tmdb_recommendations.json')
+      .then((res) => res.json())
+      .then((tmdbData) => {
+        setTmdbRecommendations(tmdbData);
+        // console.log(tmdbData);
       });
   }, []);
 
@@ -107,7 +116,11 @@ const App: FC = () => {
   }, [cinemasByShortcode, hasInitializedCinemas]);
 
   useEffect(() => {
-    if (rawShowtimes.length && Object.keys(cinemasByShortcode).length) {
+    if (
+      rawShowtimes.length &&
+      Object.keys(cinemasByShortcode).length &&
+      Object.keys(tmdbRecommendations).length
+    ) {
       // Update each showtime object with cinema details and DateTime object
       const nowLondon = DateTime.now().setZone('Europe/London');
       const cutoff = nowLondon.minus({ minutes: 30 });
@@ -118,6 +131,9 @@ const App: FC = () => {
           datetimeObj: DateTime.fromISO(showtime.datetime, {
             zone: 'Europe/London',
           }),
+          tmdb_recommendations: showtime.tmdb_id
+            ? tmdbRecommendations[showtime.tmdb_id]
+            : undefined,
         }))
         // Filter out past showtimes
         .filter(({ datetimeObj }) => datetimeObj && datetimeObj > cutoff)
@@ -127,7 +143,7 @@ const App: FC = () => {
         );
       setShowtimes(processedShowtimes);
     }
-  }, [rawShowtimes, cinemasByShortcode]);
+  }, [rawShowtimes, cinemasByShortcode, tmdbRecommendations]);
 
   return (
     <Router>

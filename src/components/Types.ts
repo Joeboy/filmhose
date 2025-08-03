@@ -28,6 +28,7 @@ export interface ShowTime {
   last_updated: string;
   scraper: string;
   tmdb_id?: number;
+  tmdb_recommendations?: number[];
 }
 
 export interface SearchSettings {
