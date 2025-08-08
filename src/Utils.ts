@@ -24,10 +24,25 @@ export const safeFetch = async (url: string) => {
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error(
-        `Failed to fetch ${url}: ${res.status} ${res.statusText}`,
+        `HTTP ${res.status} ${res.statusText} while fetching ${url}`,
       );
     }
-    return await res.json();
+
+    // Get the response text first to inspect it if JSON parsing fails
+    const text = await res.text();
+
+    try {
+      return JSON.parse(text);
+    } catch (jsonError) {
+      console.error(`JSON parsing failed for ${url}:`);
+      console.error(`Response text (first 200 chars):`, text.substring(0, 200));
+      console.error(`JSON error:`, jsonError);
+      const errorMessage =
+        jsonError instanceof Error
+          ? jsonError.message
+          : 'Unknown JSON parsing error';
+      throw new Error(`Invalid JSON response from ${url}: ${errorMessage}`);
+    }
   } catch (error) {
     console.error(`Error fetching ${url}:`, error);
     throw error;
