@@ -18,3 +18,18 @@ export const sortStringsByTitle = (a: string, b: string): number => {
     ignorePunctuation: false,
   });
 };
+
+export const safeFetch = async (url: string) => {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(
+        `Failed to fetch ${url}: ${res.status} ${res.statusText}`,
+      );
+    }
+    return await res.json();
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error);
+    throw error;
+  }
+};

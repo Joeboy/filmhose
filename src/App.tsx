@@ -24,6 +24,7 @@ import {
   ShowtimesContext,
 } from './components/Types';
 import { toNaiveDateString } from './toNaiveDateString';
+import { safeFetch } from './Utils';
 
 const App: FC = () => {
   const [rawShowtimes, setRawShowtimes] = useState<ShowTime[]>([]);
@@ -47,14 +48,18 @@ const App: FC = () => {
   // can use it easily
   useEffect(() => {
     setLoadingShowtimes(true);
-    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
-      .then((res) => res.json())
+
+    safeFetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
       .then((data) => {
         setRawShowtimes(data as ShowTime[]);
         setLoadingShowtimes(false);
+      })
+      .catch((error) => {
+        console.error('Failed to load showtimes:', error);
+        setLoadingShowtimes(false);
       });
-    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
-      .then((res) => res.json())
+
+    safeFetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
       .then((cinemaData) => {
         const cinemaMap: Record<string, Cinema> = {};
         for (const c of cinemaData as Cinema[]) {
@@ -63,12 +68,19 @@ const App: FC = () => {
           }
         }
         setCinemasByShortcode(cinemaMap);
+      })
+      .catch((error) => {
+        console.error('Failed to load cinemas:', error);
       });
-    fetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/tmdb_recommendations.json')
-      .then((res) => res.json())
+
+    safeFetch(
+      import.meta.env.VITE_CINESCRAPERS_HOST + '/tmdb_recommendations.json',
+    )
       .then((tmdbData) => {
         setTmdbRecommendations(tmdbData);
-        // console.log(tmdbData);
+      })
+      .catch((error) => {
+        console.error('Failed to load TMDB recommendations:', error);
       });
   }, []);
 
