@@ -30,6 +30,10 @@ export const safeFetch = async (url: string) => {
 
     // Get the response text first to inspect it if JSON parsing fails
     const text = await res.text();
+    console.log(
+      `Response from ${url} (first 200 chars):`,
+      text.substring(0, 200),
+    );
 
     try {
       return JSON.parse(text);
