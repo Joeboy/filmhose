@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CinemasByShortcodeContext } from './Types';
 import { usePageSEO } from '../hooks/usePageSEO';
 import { useStructuredData } from '../hooks/useStructuredData';
 import { sortStringsByTitle } from '../Utils';
+import { CinemasByShortcodeContext } from './Types';
 
 const CinemasList = () => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
@@ -63,9 +63,6 @@ const CinemasList = () => {
         </li>
         <li>
           <a href="https://www.theatreship.co.uk">Theatreship, Canary Wharf</a>
-        </li>
-        <li>
-          <a href="https://www.sandsfilms.co.uk">Sands Films</a>
         </li>
         <li>
           <a href="https://www.tnbfc.co.uk/newham-community-cinema">
