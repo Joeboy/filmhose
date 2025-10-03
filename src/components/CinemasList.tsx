@@ -19,7 +19,7 @@ const CinemasList = () => {
       <h1>Cinemas</h1>
       <p>
         This is the list of cinema websites I'm getting{' '}
-        <Link to={'/hosepipe/listings'}>listings</Link> data for:
+        <Link to={'/hosepipe'}>listings</Link> data for:
       </p>
       <ul>
         {cinemas.map((cinema) => (
