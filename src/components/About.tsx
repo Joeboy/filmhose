@@ -8,31 +8,34 @@ const About: React.FC = () => {
     <div className="about container">
       <h1>About FilmHose</h1>
       <p>
-        The origin story here is that I kept finding myself looking at multiple
-        cinema websites to see if they were showing anything exciting. At some
-        point I thought, "Wouldn't it be nice if there was a single place to see
-        all the listings for London's independent and arts cinemas?" As far as I
-        can see it doesn't exist.
+        Filmhose is a project to aggregate cinema listings for London's
+        independent and arts cinemas. The origin story is that I kept finding
+        myself looking at multiple cinema websites to see if they were showing
+        anything exciting, and eventually decided to try creating a listings
+        aggregator to scrape all the listings into a single publicly available
+        source.
       </p>
       <p>
-        The obvious problem was collating all the data. London has a lot of
-        cinemas, and they all publish their listings in different ways. So with
-        that in mind I started the{' '}
-        <a href="https://github.com/Joeboy/cinescrapers">CineScrapers</a>{' '}
-        project. The idea there is to write{' '}
-        <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a> that
-        grab data from the individual cinema websites, and assemble it all in
-        one place. This is still a work in progress. Right now I have scrapers
-        for twenty-five cinemas, with another handful on the list.
+        It's a bit challenging because these cinemas all publish their listings
+        in different ways, it's not as simple as just pulling in a feed from
+        somewhere. The listings are mostly gathered using custom{' '}
+        <a href="https://en.wikipedia.org/wiki/Web_scraping">scrapers</a>, which
+        you can see <a href="https://github.com/Joeboy/cinescrapers">here</a> if
+        you're interested.
+      </p>
+      <p>
+        Unfortunately it's all a bit error-prone and often requires manual
+        intervention. There's no income stream or business model here, it's just
+        me in my spare time. Please have appropriate expectations! Honestly I'm
+        not particularly careful about checking the data. If you see any issues,
+        please let me know. And if you want to support the site financially
+        *definitely* let me know. I'm open to sponsorship / advertising if it's
+        appropriate and doesn't compromise the website.
       </p>
       <p>
         FilmHose is a <a href="https://react.dev/">React</a> app that lets you
         browse the data. The source is available{' '}
         <a href="https://github.com/Joeboy/filmhose">here</a>.
-      </p>
-      <p>
-        If any of this seems interesting, go <a href="/help">here</a> to see how
-        you can help.
       </p>
       <p>Follow the socials on:</p>
       <ul>

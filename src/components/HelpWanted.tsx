@@ -28,6 +28,8 @@ const HelpWanted: React.FC = () => {
         all the independent and arts cinemas in London. If there's a cinema
         you'd like to see on the list, feel free to raise an issue, or even
         better, submit a pull request, at the cinemscrapers github project.
+        (Full disclosure: right now, I have a lot of local changes I need to fix
+        up and push, sorry, I suck).
       </p>
       <h4>Other Data Sources</h4>
       <p>
