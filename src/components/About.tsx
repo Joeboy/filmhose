@@ -55,6 +55,7 @@ const About: React.FC = () => {
           </a>
         </li>
       </ul>{' '}
+      <p>&nbsp;</p>
       <h2>Trivia you probably don't care about:</h2>
       <ul>
         <li>
