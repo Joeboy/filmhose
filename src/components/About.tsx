@@ -32,6 +32,29 @@ const About: React.FC = () => {
         *definitely* let me know. I'm open to sponsorship / advertising if it's
         appropriate and doesn't compromise the website.
       </p>
+      <p>Follow the socials on:</p>
+      <ul>
+        <li>
+          Bluesky:{' '}
+          <a
+            href="https://bsky.app/profile/filmhose.bsky.social"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @filmhose.bsky.social
+          </a>
+        </li>
+        <li>
+          Twitter/X:{' '}
+          <a
+            href="https://x.com/FilmHose"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @FilmHose
+          </a>
+        </li>
+      </ul>{' '}
       <p>Trivia you probably don't care about:</p>
       <ul>
         <li>
@@ -69,29 +92,6 @@ const About: React.FC = () => {
           John!
         </li>
       </ul>
-      <p>Follow the socials on:</p>
-      <ul>
-        <li>
-          Bluesky:{' '}
-          <a
-            href="https://bsky.app/profile/filmhose.bsky.social"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @filmhose.bsky.social
-          </a>
-        </li>
-        <li>
-          Twitter/X:{' '}
-          <a
-            href="https://x.com/FilmHose"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @FilmHose
-          </a>
-        </li>
-      </ul>{' '}
     </div>
   );
 };
