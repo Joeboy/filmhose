@@ -55,7 +55,7 @@ const About: React.FC = () => {
           </a>
         </li>
       </ul>{' '}
-      <p>Trivia you probably don't care about:</p>
+      <h2>Trivia you probably don't care about:</h2>
       <ul>
         <li>
           I usually try to run the scrapers (ie. update the listings data) on
