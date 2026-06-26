@@ -36,10 +36,60 @@
 
 .showtime-listing .showtime-thumbnail {
   width: 135px;
-  height: 135px;
+  height: auto;
+  aspect-ratio: 342 / 513;
   float: right;
   border: 1px solid black;
   margin: .7em .5em 0 .5em;
+}
+
+.included-movies {
+  margin: 0.5rem 0.4rem 0.2rem 0.4rem;
+}
+
+.included-movies-heading {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.included-movies-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.included-movie-item {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0.45rem 0;
+}
+
+.included-movie-thumbnail {
+  width: 72px;
+  height: auto;
+  aspect-ratio: 342 / 513;
+  border: 1px solid #444;
+  flex: 0 0 auto;
+}
+
+.included-movie-text {
+  min-width: 0;
+}
+
+.included-movie-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1f1f1f;
+}
+
+.included-movie-overview {
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  color: #333;
 }
 
 .cinema-popup-overlay {

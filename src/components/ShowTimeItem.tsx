@@ -16,6 +16,9 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
     minute: '2-digit',
     hour12: true,
   });
+  const posterSrc = showtime.thumbnail
+    ? `${import.meta.env.VITE_CINESCRAPERS_HOST}/thumbnails/${showtime.thumbnail}.jpg`
+    : showtime.image_src;
 
   return (
     <div className="showtime-listing">
@@ -24,21 +27,16 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           {showtime.title}
         </a>
       </h3>
-      {showtime.thumbnail && (
+      {posterSrc && (
         <a href={showtime.link}>
           <img
-            src={
-              import.meta.env.VITE_CINESCRAPERS_HOST +
-              '/thumbnails/' +
-              showtime.thumbnail +
-              '.jpg'
-            }
+            src={posterSrc}
             alt={`${showtime.title} movie poster`}
             className="showtime-thumbnail"
             loading="lazy"
             decoding="async"
-            width="150"
-            height="200"
+            width="342"
+            height="513"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}
@@ -63,6 +61,40 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           ? showtime.description.slice(0, 200) + '...'
           : showtime.description}
       </p>
+      {!!showtime.included_movies?.length && (
+        <div className="included-movies">
+          <p className="included-movies-heading">Included films:</p>
+          <ul className="included-movies-list">
+            {showtime.included_movies.map((includedMovie) => (
+              <li key={`${showtime.id}-${includedMovie.id}`}>
+                <div className="included-movie-item">
+                  {includedMovie.image_src && (
+                    <img
+                      src={includedMovie.image_src}
+                      alt={`${includedMovie.title} movie poster`}
+                      className="included-movie-thumbnail"
+                      loading="lazy"
+                      decoding="async"
+                      width="342"
+                      height="513"
+                    />
+                  )}
+                  <div className="included-movie-text">
+                    <p className="included-movie-title">
+                      {includedMovie.title}
+                    </p>
+                    <p className="included-movie-overview">
+                      {includedMovie.overview.length > 240
+                        ? `${includedMovie.overview.slice(0, 240)}...`
+                        : includedMovie.overview}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {showtime.tmdb_id && (
         <p className="showtime-listing-description">
           <a href={`https://www.themoviedb.org/movie/${showtime.tmdb_id}`}>

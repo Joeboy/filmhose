@@ -29,6 +29,12 @@ export interface ShowTime {
   scraper: string;
   tmdb_id?: number;
   tmdb_recommendations?: number[];
+  included_movies?: {
+    id: string;
+    title: string;
+    overview: string;
+    image_src: string;
+  }[];
 }
 
 export interface SearchSettings {

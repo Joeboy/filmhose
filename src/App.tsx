@@ -26,15 +26,53 @@ import {
 import { toNaiveDateString } from './toNaiveDateString';
 import { safeFetch } from './Utils';
 
+// Type definitions for the new data format
+interface Movie {
+  id: string;
+  title: string;
+  normalizedTitle: string;
+  overview?: string;
+  posterPath?: string;
+  genres: Array<string | number>;
+  included_movie_ids?: Array<string | number>;
+}
+
+interface RawShowtime {
+  dateTime: string;
+  bookingUrl: string;
+  category: string;
+  url: string;
+  venue_id: number;
+  movie_id: string;
+}
+
+interface CinescrapersData {
+  showtimes: RawShowtime[];
+  venues: Array<{
+    id: number;
+    slug: string;
+    name: string;
+    address?: string;
+    geo?: {
+      lat: number;
+      lon: number;
+    };
+    structure?: string;
+    type?: string;
+    url?: string;
+    socials?: Record<string, string | null>;
+    groupName?: string | null;
+  }>;
+  movies: Movie[];
+}
+
 const App: FC = () => {
-  const [rawShowtimes, setRawShowtimes] = useState<ShowTime[]>([]);
+  const [rawShowtimes, setRawShowtimes] = useState<RawShowtime[]>([]);
   const [showtimes, setShowtimes] = useState<ShowTime[]>([]);
   const [cinemasByShortcode, setCinemasByShortcode] = useState<
     Record<string, Cinema>
   >({});
-  const [tmdbRecommendations, setTmdbRecommendations] = useState<
-    Record<number, number[]>
-  >({});
+  const [movies, setMovies] = useState<Record<string, Movie>>({});
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date()),
   );
@@ -44,44 +82,47 @@ const App: FC = () => {
     selectedCinemas: [],
   });
 
-  // These useEffects fetch the showtime and cinema data and fix it up so we
-  // can use it easily
+  // Load cinescrapers.json data and build id-to-data maps at startup
   useEffect(() => {
     setLoadingShowtimes(true);
 
-    safeFetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinescrapers.json')
+    safeFetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/clusterflick.json')
       .then((data) => {
-        setRawShowtimes(data as ShowTime[]);
-        setLoadingShowtimes(false);
-      })
-      .catch((error) => {
-        console.error('Failed to load showtimes:', error);
-        setLoadingShowtimes(false);
-      });
+        const cinescrapersData = data as CinescrapersData;
 
-    safeFetch(import.meta.env.VITE_CINESCRAPERS_HOST + '/cinemas.json')
-      .then((cinemaData) => {
+        // Build movie map (id -> movie) for O(1) lookups
+        const movieMap: Record<string, Movie> = {};
+        for (const movie of cinescrapersData.movies) {
+          movieMap[movie.id] = movie;
+        }
+        setMovies(movieMap);
+
+        // Build cinemas map from venues (using id as shortcode)
         const cinemaMap: Record<string, Cinema> = {};
-        for (const c of cinemaData as Cinema[]) {
-          if (c.shortcode) {
-            cinemaMap[c.shortcode] = c;
-          }
+        for (const venue of cinescrapersData.venues) {
+          const cinema: Cinema = {
+            shortcode: venue.id.toString(),
+            shortname: venue.slug,
+            name: venue.name,
+            url: venue.url || '',
+            address: venue.address,
+            latitude: venue.geo?.lat || 0,
+            longitude: venue.geo?.lon || 0,
+          };
+          cinemaMap[venue.id.toString()] = cinema;
         }
         setCinemasByShortcode(cinemaMap);
+
+        // Set raw showtimes
+        setRawShowtimes(cinescrapersData.showtimes);
+        setLoadingShowtimes(false);
       })
       .catch((error) => {
-        console.error('Failed to load cinemas:', error);
+        console.error('Failed to load cinescrapers.json:', error);
+        setLoadingShowtimes(false);
       });
 
-    safeFetch(
-      import.meta.env.VITE_CINESCRAPERS_HOST + '/tmdb_recommendations.json',
-    )
-      .then((tmdbData) => {
-        setTmdbRecommendations(tmdbData);
-      })
-      .catch((error) => {
-        console.error('Failed to load TMDB recommendations:', error);
-      });
+    // TODO: Load TMDB recommendations if tmdb_id is added to showtime data
   }, []);
 
   // Set all cinemas as selected by default when cinemas are loaded (only once)
@@ -96,27 +137,21 @@ const App: FC = () => {
       };
 
       const savedCinemas = getCookieValue('selectedCinemas');
-      let initialSelectedCinemas: string[];
+      let initialSelectedCinemas: string[] = Object.keys(cinemasByShortcode);
 
       if (savedCinemas && savedCinemas.trim() !== '') {
         try {
           const cookieData = JSON.parse(decodeURIComponent(savedCinemas));
-          if (cookieData.cinemas) {
-            const cinemaShortcodes = cookieData.cinemas.match(/.{1,2}/g) || [];
+          if (Array.isArray(cookieData.cinemas)) {
             // Filter to only include valid cinema shortcodes that exist
-            initialSelectedCinemas = cinemaShortcodes.filter(
+            initialSelectedCinemas = cookieData.cinemas.filter(
               (shortcode: string) =>
                 Object.keys(cinemasByShortcode).includes(shortcode),
             );
-          } else {
-            initialSelectedCinemas = Object.keys(cinemasByShortcode);
           }
         } catch (error) {
-          initialSelectedCinemas = Object.keys(cinemasByShortcode);
+          // Cookie parsing failed, use default (all cinemas)
         }
-      } else {
-        // Default to all cinemas if no saved settings
-        initialSelectedCinemas = Object.keys(cinemasByShortcode);
       }
 
       setSearchSettings((prevSettings) => ({
@@ -131,31 +166,62 @@ const App: FC = () => {
     if (
       rawShowtimes.length &&
       Object.keys(cinemasByShortcode).length &&
-      Object.keys(tmdbRecommendations).length
+      Object.keys(movies).length
     ) {
-      // Update each showtime object with cinema details and DateTime object
+      // Transform showtimes from new format to ShowTime interface
       const nowLondon = DateTime.now().setZone('Europe/London');
       const cutoff = nowLondon.minus({ minutes: 30 });
+
       const processedShowtimes = rawShowtimes
-        .map((showtime) => ({
-          ...showtime,
-          cinema: cinemasByShortcode[showtime.cinema_shortcode],
-          datetimeObj: DateTime.fromISO(showtime.datetime, {
-            zone: 'Europe/London',
-          }),
-          tmdb_recommendations: showtime.tmdb_id
-            ? tmdbRecommendations[showtime.tmdb_id]
-            : undefined,
-        }))
+        .map((rawShowtime) => {
+          const movie = movies[rawShowtime.movie_id];
+          const venueId = rawShowtime.venue_id.toString();
+          const imageSrc = movie?.posterPath
+            ? `https://image.tmdb.org/t/p/w342${movie.posterPath}`
+            : '';
+          const includedMovies = (movie?.included_movie_ids || [])
+            .map((id) => movies[String(id)])
+            .filter((includedMovie): includedMovie is Movie => !!includedMovie)
+            .map((includedMovie) => ({
+              id: includedMovie.id,
+              title: includedMovie.title,
+              overview: includedMovie.overview || '',
+              image_src: includedMovie.posterPath
+                ? `https://image.tmdb.org/t/p/w342${includedMovie.posterPath}`
+                : '',
+            }));
+
+          const showtime: ShowTime = {
+            id: `${venueId}-${rawShowtime.movie_id}-${rawShowtime.dateTime}`,
+            cinema_shortcode: venueId,
+            cinema: cinemasByShortcode[venueId],
+            title: movie?.title || '',
+            norm_title: movie?.normalizedTitle || '',
+            link: rawShowtime.url,
+            datetime: rawShowtime.dateTime,
+            datetimeObj: DateTime.fromISO(rawShowtime.dateTime, {
+              zone: 'Europe/London',
+            }),
+            description: movie?.overview || rawShowtime.category,
+            image_src: imageSrc,
+            thumbnail: '',
+            last_updated: new Date().toISOString(),
+            scraper: 'cinescrapers',
+            included_movies: includedMovies,
+          };
+
+          return showtime;
+        })
         // Filter out past showtimes
         .filter(({ datetimeObj }) => datetimeObj && datetimeObj > cutoff)
         .sort(
           (a, b) =>
             (a.datetimeObj?.toMillis() || 0) - (b.datetimeObj?.toMillis() || 0),
         );
+
       setShowtimes(processedShowtimes);
     }
-  }, [rawShowtimes, cinemasByShortcode, tmdbRecommendations]);
+  }, [rawShowtimes, cinemasByShortcode, movies]);
 
   return (
     <Router>

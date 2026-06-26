@@ -4,24 +4,25 @@ import { useSearchParams } from 'react-router-dom';
 import { formatDateLabel } from '../formatDateLabel';
 import ShowTimeItem from './ShowTimeItem';
 import './ShowTimeList.css';
-import { CinemasByShortcodeContext, LoadingShowtimesContext, type ShowTime } from './Types';
+import {
+  CinemasByShortcodeContext,
+  LoadingShowtimesContext,
+  type ShowTime,
+} from './Types';
 
 interface ShowTimeListProps {
   showtimes: ShowTime[];
   date: Date;
 }
 
-const ShowTimeList: React.FC<ShowTimeListProps> = ({
-  showtimes,
-  date,
-}) => {
+const ShowTimeList: React.FC<ShowTimeListProps> = ({ showtimes, date }) => {
   const cinemasByShortcode = useContext(CinemasByShortcodeContext);
   const { loadingShowtimes } = useContext(LoadingShowtimesContext);
 
   const [searchParams] = useSearchParams();
   const cinemas_param = searchParams.get('cinemas');
   const cinema_shortcodes: string[] = cinemas_param
-    ? cinemas_param.match(/.{1,2}/g) ?? []
+    ? cinemas_param.split(',').filter(Boolean)
     : [];
 
   let emptyMsg = 'Could not find any matching showtimes.';
@@ -42,7 +43,7 @@ const ShowTimeList: React.FC<ShowTimeListProps> = ({
       ? showtimes.filter(
           (showtime) =>
             showtime.cinema &&
-            cinema_shortcodes.includes(showtime.cinema.shortcode)
+            cinema_shortcodes.includes(showtime.cinema.shortcode),
         )
       : showtimes;
 

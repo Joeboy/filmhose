@@ -65,8 +65,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
     );
 
     if (confirmed) {
-      const selectedCinemaString = selectedCinemas.join('');
-      const cookieData = JSON.stringify({ cinemas: selectedCinemaString });
+      const cookieData = JSON.stringify({ cinemas: selectedCinemas });
       // Set cookie with 1 year expiration
       const expirationDate = new Date();
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
