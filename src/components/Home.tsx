@@ -45,6 +45,18 @@ const Home: React.FC = () => {
           </Link>
         </li>
       </ul>
+
+      <p>
+        Many thanks to{' '}
+        <a
+          href="https://clusterflick.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          https://clusterflick.com/
+        </a>{' '}
+        for aggregating this data!
+      </p>
     </div>
   );
 };
