@@ -70,10 +70,6 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     } else if (path === '/about') {
       title = 'About FilmHose - London Cinema Listings';
       description = 'The Origin Story. The Mission.';
-    } else if (path === '/help') {
-      title = 'Help Wanted - FilmHose';
-      description =
-        'Help improve FilmHose by contributing to FilmHose. Feedback, suggestions, and technical contributions are welcome!.';
     }
 
     // Update document title

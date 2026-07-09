@@ -8,7 +8,6 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
-import HelpWanted from './components/HelpWanted';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import NotFound from './components/NotFound';
@@ -247,7 +246,6 @@ const App: FC = () => {
                       <Route path="/distilled" element={<Listings />} />
                       <Route path="/hosepipe" element={<Listings />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/help" element={<HelpWanted />} />
                       <Route path="/cinemas" element={<CinemasList />} />
                       <Route
                         path="/cinemas/:shortname"
