@@ -22,17 +22,18 @@ const Listings: React.FC = () => {
   const shouldExcludeManyShowings = location.pathname === '/distilled';
 
   const { selectedCinemas } = searchSettings;
+  const MAX_SHOWINGS_THRESHOLD = 8;
 
   let filteredShowtimes = showtimes;
 
-  // Filter out films with more than 10 showings if this is the /distilled route
+  // Filter out films with more than MAX_SHOWINGS_THRESHOLD showings if this is the /distilled route
   if (shouldExcludeManyShowings) {
     const titleCounts: Record<string, number> = {};
     for (const show of filteredShowtimes) {
       titleCounts[show.norm_title] = (titleCounts[show.norm_title] || 0) + 1;
     }
     filteredShowtimes = filteredShowtimes.filter(
-      (show) => titleCounts[show.norm_title] <= 10,
+      (show) => titleCounts[show.norm_title] <= MAX_SHOWINGS_THRESHOLD,
     );
   }
 
