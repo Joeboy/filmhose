@@ -61,7 +61,7 @@ const Home: React.FC = () => {
           <Link to="/decade/1980s">1980s</Link>,{' '}
           <Link to="/decade/1990s">1990s</Link>,{' '}
           <Link to="/decade/2000s">2000s</Link>,{' '}
-          <Link to="/decade/2010s">2010s</Link>,{' '}
+          <Link to="/decade/2010s">2010s</Link>.
         </li>
       </ul>
 
