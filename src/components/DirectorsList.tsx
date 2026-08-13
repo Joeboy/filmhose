@@ -70,9 +70,13 @@ const DirectorsList: React.FC = () => {
   const showtimes = useContext(ShowtimesContext);
   const { searchSettings } = useContext(SearchSettingsContext);
 
+  const formatCount = (value: number, singular: string, plural: string) =>
+    `${value} ${value === 1 ? singular : plural}`;
+
   const directorCounts = useMemo(() => {
     const selectedCinemaSet = new Set(searchSettings.selectedCinemas);
     const counts = new Map<string, number>();
+    const filmCounts = new Map<string, Set<string>>();
 
     showtimes.forEach((showtime) => {
       if (
@@ -94,6 +98,10 @@ const DirectorsList: React.FC = () => {
         }
 
         counts.set(normalizedId, (counts.get(normalizedId) || 0) + 1);
+
+        const directorFilms = filmCounts.get(normalizedId) || new Set<string>();
+        directorFilms.add(showtime.movie_id);
+        filmCounts.set(normalizedId, directorFilms);
       });
     });
 
@@ -101,6 +109,7 @@ const DirectorsList: React.FC = () => {
       id,
       name: peopleById[id]?.name || `Director ${id}`,
       count: counts.get(id) || 0,
+      filmCount: filmCounts.get(id)?.size || 0,
     })).sort((a, b) => {
       if (b.count !== a.count) {
         return b.count - a.count;
@@ -114,8 +123,8 @@ const DirectorsList: React.FC = () => {
       <h1>Films directed by...</h1>
 
       <ul>
-        {directorCounts.map(({ id, name, count }) => {
-          const content = `${name} (${count} showings)`;
+        {directorCounts.map(({ id, name, count, filmCount }) => {
+          const content = `${name} (${formatCount(filmCount, 'film', 'films')}, ${formatCount(count, 'showing', 'showings')})`;
 
           return (
             <li key={id}>
