@@ -45,34 +45,11 @@ const Home: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link to="/director/240">Films by Stanley Kubrick</Link>
-        </li>
-        <li>
-          <Link to="/director/5602">Films by David Lynch</Link>
-        </li>
-        <li>
-          <Link to="/director/8452">Films by Andrei Tarkovsky</Link>
-        </li>
-        <li>
-          <Link to="/director/1032">Films by Martin Scorsese</Link>
-        </li>
-        <li>
-          <Link to="/director/224">Films by David Cronenberg</Link>
-        </li>
-        <li>
-          <Link to="/director/3146">Films by Billy Wilder</Link>
-        </li>
-        <li>
-          <Link to="/director/2636">Films by Alfred Hitchcock</Link>
-        </li>
-        <li>
-          <Link to="/director/578">Films by Ridley Scott</Link>
-        </li>
-        <li>
-          <Link to="/director/5026">Films by Akira Kurosawa</Link>
-        </li>
-        <li>
-          <Link to="/director/4762">Films by Paul Thomas Anderson</Link>
+          <strong>Films by</strong>:{' '}
+          <Link to="/director/240">Stanley Kubrick</Link>,{' '}
+          <Link to="/director/8452">Andrei Tarkovsky</Link>,{' '}
+          <Link to="/director/5602">David Lynch</Link>,{' '}
+          <Link to="/directors">more...</Link>
         </li>
       </ul>
 

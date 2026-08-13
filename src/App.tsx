@@ -9,6 +9,7 @@ import CinemaDetail from './components/CinemaDetail';
 import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
 import DirectorPage from './components/DirectorPage.tsx';
+import DirectorsList from './components/DirectorsList';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import NotFound from './components/NotFound';
@@ -264,6 +265,10 @@ const App: FC = () => {
                             element={<CinemaListings />}
                           />
                           <Route path="/titles" element={<Titles />} />
+                          <Route
+                            path="/directors"
+                            element={<DirectorsList />}
+                          />
                           <Route
                             path="/director/:director_id"
                             element={<DirectorPage />}
