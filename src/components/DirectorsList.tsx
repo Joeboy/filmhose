@@ -79,14 +79,13 @@ const DirectorsList: React.FC = () => {
     const filmCounts = new Map<string, Set<string>>();
 
     showtimes.forEach((showtime) => {
-      if (
-        !showtime.movie_id ||
-        !selectedCinemaSet.has(showtime.cinema_shortcode)
-      ) {
+      const movieId = showtime.movie_id;
+
+      if (!movieId || !selectedCinemaSet.has(showtime.cinema_shortcode)) {
         return;
       }
 
-      const movie = moviesById[showtime.movie_id];
+      const movie = moviesById[movieId];
       if (!movie || !Array.isArray(movie.directors)) {
         return;
       }
@@ -100,7 +99,7 @@ const DirectorsList: React.FC = () => {
         counts.set(normalizedId, (counts.get(normalizedId) || 0) + 1);
 
         const directorFilms = filmCounts.get(normalizedId) || new Set<string>();
-        directorFilms.add(showtime.movie_id);
+        directorFilms.add(movieId);
         filmCounts.set(normalizedId, directorFilms);
       });
     });
