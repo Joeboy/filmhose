@@ -8,6 +8,7 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
+import DecadePage from './components/DecadePage';
 import DirectorPage from './components/DirectorPage.tsx';
 import DirectorsList from './components/DirectorsList';
 import Home from './components/Home';
@@ -265,6 +266,10 @@ const App: FC = () => {
                             element={<CinemaListings />}
                           />
                           <Route path="/titles" element={<Titles />} />
+                          <Route
+                            path="/decade/:decade"
+                            element={<DecadePage />}
+                          />
                           <Route
                             path="/directors"
                             element={<DirectorsList />}

@@ -51,6 +51,18 @@ const Home: React.FC = () => {
           <Link to="/director/5602">David Lynch</Link>,{' '}
           <Link to="/directors">more...</Link>
         </li>
+        <li>
+          <strong>Films from the</strong>: <Link to="/decade/1920s">1920s</Link>
+          , <Link to="/decade/1930s">1930s</Link>,{' '}
+          <Link to="/decade/1940s">1940s</Link>,{' '}
+          <Link to="/decade/1950s">1950s</Link>,{' '}
+          <Link to="/decade/1960s">1960s</Link>,{' '}
+          <Link to="/decade/1970s">1970s</Link>,{' '}
+          <Link to="/decade/1980s">1980s</Link>,{' '}
+          <Link to="/decade/1990s">1990s</Link>,{' '}
+          <Link to="/decade/2000s">2000s</Link>,{' '}
+          <Link to="/decade/2010s">2010s</Link>,{' '}
+        </li>
       </ul>
 
       <p>

@@ -49,6 +49,8 @@ export interface MovieData {
   normalizedTitle: string;
   overview?: string;
   posterPath?: string;
+  releaseDate?: string;
+  year?: string;
   genres: Array<string | number>;
   included_movie_ids?: Array<string | number>;
   directors?: Array<string | number>;

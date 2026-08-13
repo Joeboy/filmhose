@@ -6,11 +6,13 @@ interface UsePageSEOOptions {
   selectedDate?: string;
   movieTitle?: string;
   directorName?: string;
+  decadeLabel?: string;
 }
 
 export const usePageSEO = (options: UsePageSEOOptions = {}) => {
   const location = useLocation();
-  const { cinemaName, selectedDate, movieTitle, directorName } = options;
+  const { cinemaName, selectedDate, movieTitle, directorName, decadeLabel } =
+    options;
 
   useEffect(() => {
     const path = location.pathname;
@@ -68,6 +70,15 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       title = 'Search Movies by Title - FilmHose';
       description =
         "Search for movie showtimes by film title across London's independent and arts cinemas. Find where and when your favourite films are screening in the city.";
+    } else if (path.startsWith('/decade/')) {
+      if (decadeLabel) {
+        title = `Films from the ${decadeLabel} - FilmHose`;
+        description = `Browse films and showtimes from the ${decadeLabel} across London's independent and arts cinemas.`;
+      } else {
+        title = 'Films by Decade - FilmHose';
+        description =
+          "Browse films and showtimes grouped by decade across London's independent and arts cinemas.";
+      }
     } else if (path.startsWith('/director/') && directorName) {
       title = `${directorName} Films - FilmHose`;
       description = `Browse upcoming film screenings by ${directorName} across London's independent and arts cinemas.`;
@@ -146,5 +157,12 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       twitterUrl.setAttribute('content', canonicalUrl);
       document.head.appendChild(twitterUrl);
     }
-  }, [location.pathname, cinemaName, selectedDate, movieTitle, directorName]);
+  }, [
+    location.pathname,
+    cinemaName,
+    selectedDate,
+    movieTitle,
+    directorName,
+    decadeLabel,
+  ]);
 };
