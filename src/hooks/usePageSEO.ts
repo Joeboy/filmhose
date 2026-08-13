@@ -5,11 +5,12 @@ interface UsePageSEOOptions {
   cinemaName?: string;
   selectedDate?: string;
   movieTitle?: string;
+  directorName?: string;
 }
 
 export const usePageSEO = (options: UsePageSEOOptions = {}) => {
   const location = useLocation();
-  const { cinemaName, selectedDate, movieTitle } = options;
+  const { cinemaName, selectedDate, movieTitle, directorName } = options;
 
   useEffect(() => {
     const path = location.pathname;
@@ -67,6 +68,9 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       title = 'Search Movies by Title - FilmHose';
       description =
         "Search for movie showtimes by film title across London's independent and arts cinemas. Find where and when your favourite films are screening in the city.";
+    } else if (path.startsWith('/director/') && directorName) {
+      title = `${directorName} Films - FilmHose`;
+      description = `Browse upcoming film screenings by ${directorName} across London's independent and arts cinemas.`;
     } else if (path === '/about') {
       title = 'About FilmHose - London Cinema Listings';
       description = 'The Origin Story. The Mission.';
@@ -142,5 +146,5 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       twitterUrl.setAttribute('content', canonicalUrl);
       document.head.appendChild(twitterUrl);
     }
-  }, [location.pathname, cinemaName, selectedDate, movieTitle]);
+  }, [location.pathname, cinemaName, selectedDate, movieTitle, directorName]);
 };

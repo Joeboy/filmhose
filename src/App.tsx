@@ -8,16 +8,21 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
+import DirectorPage from './components/DirectorPage.tsx';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import NotFound from './components/NotFound';
 import Titles from './components/Titles';
 import {
   type Cinema,
+  type MovieData,
+  type MoviePerson,
   type SearchSettings,
   type ShowTime,
   CinemasByShortcodeContext,
   LoadingShowtimesContext,
+  MoviesByIdContext,
+  PeopleByIdContext,
   SearchSettingsContext,
   SelectedDateContext,
   ShowtimesContext,
@@ -26,15 +31,7 @@ import { toNaiveDateString } from './toNaiveDateString';
 import { safeFetch } from './Utils';
 
 // Type definitions for the new data format
-interface Movie {
-  id: string;
-  title: string;
-  normalizedTitle: string;
-  overview?: string;
-  posterPath?: string;
-  genres: Array<string | number>;
-  included_movie_ids?: Array<string | number>;
-}
+interface Movie extends MovieData {}
 
 interface RawShowtime {
   dateTime: string;
@@ -62,6 +59,7 @@ interface CinescrapersData {
     socials?: Record<string, string | null>;
     groupName?: string | null;
   }>;
+  people: MoviePerson[];
   movies: Movie[];
 }
 
@@ -72,6 +70,7 @@ const App: FC = () => {
     Record<string, Cinema>
   >({});
   const [movies, setMovies] = useState<Record<string, Movie>>({});
+  const [peopleById, setPeopleById] = useState<Record<string, MoviePerson>>({});
   const [selectedDate, setSelectedDate] = useState(() =>
     toNaiveDateString(new Date()),
   );
@@ -95,6 +94,12 @@ const App: FC = () => {
           movieMap[movie.id] = movie;
         }
         setMovies(movieMap);
+
+        const peopleMap: Record<string, MoviePerson> = {};
+        for (const person of cinescrapersData.people || []) {
+          peopleMap[String(person.id)] = person;
+        }
+        setPeopleById(peopleMap);
 
         // Build cinemas map from venues (using id as shortcode)
         const cinemaMap: Record<string, Cinema> = {};
@@ -192,6 +197,7 @@ const App: FC = () => {
 
           const showtime: ShowTime = {
             id: `${venueId}-${rawShowtime.movie_id}-${rawShowtime.dateTime}`,
+            movie_id: rawShowtime.movie_id,
             cinema_shortcode: venueId,
             cinema: cinemasByShortcode[venueId],
             title: movie?.title || '',
@@ -228,40 +234,48 @@ const App: FC = () => {
         <AppHeader />
         <div className="container">
           <CinemasByShortcodeContext.Provider value={cinemasByShortcode}>
-            <SearchSettingsContext.Provider
-              value={{
-                searchSettings,
-                setSearchSettings,
-              }}
-            >
-              <LoadingShowtimesContext.Provider
-                value={{ loadingShowtimes, setLoadingShowtimes }}
-              >
-                <ShowtimesContext.Provider value={showtimes}>
-                  <SelectedDateContext.Provider
-                    value={{ selectedDate, setSelectedDate }}
+            <MoviesByIdContext.Provider value={movies}>
+              <PeopleByIdContext.Provider value={peopleById}>
+                <SearchSettingsContext.Provider
+                  value={{
+                    searchSettings,
+                    setSearchSettings,
+                  }}
+                >
+                  <LoadingShowtimesContext.Provider
+                    value={{ loadingShowtimes, setLoadingShowtimes }}
                   >
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/distilled" element={<Listings />} />
-                      <Route path="/hosepipe" element={<Listings />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/cinemas" element={<CinemasList />} />
-                      <Route
-                        path="/cinemas/:shortname"
-                        element={<CinemaDetail />}
-                      />
-                      <Route
-                        path="/cinema-listings/:cinema_shortcode"
-                        element={<CinemaListings />}
-                      />
-                      <Route path="/titles" element={<Titles />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </SelectedDateContext.Provider>
-                </ShowtimesContext.Provider>
-              </LoadingShowtimesContext.Provider>
-            </SearchSettingsContext.Provider>
+                    <ShowtimesContext.Provider value={showtimes}>
+                      <SelectedDateContext.Provider
+                        value={{ selectedDate, setSelectedDate }}
+                      >
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+                          <Route path="/distilled" element={<Listings />} />
+                          <Route path="/hosepipe" element={<Listings />} />
+                          <Route path="/about" element={<About />} />
+                          <Route path="/cinemas" element={<CinemasList />} />
+                          <Route
+                            path="/cinemas/:shortname"
+                            element={<CinemaDetail />}
+                          />
+                          <Route
+                            path="/cinema-listings/:cinema_shortcode"
+                            element={<CinemaListings />}
+                          />
+                          <Route path="/titles" element={<Titles />} />
+                          <Route
+                            path="/director/:director_id"
+                            element={<DirectorPage />}
+                          />
+                          <Route path="*" element={<NotFound />} />
+                        </Routes>
+                      </SelectedDateContext.Provider>
+                    </ShowtimesContext.Provider>
+                  </LoadingShowtimesContext.Provider>
+                </SearchSettingsContext.Provider>
+              </PeopleByIdContext.Provider>
+            </MoviesByIdContext.Provider>
           </CinemasByShortcodeContext.Provider>
         </div>
       </div>

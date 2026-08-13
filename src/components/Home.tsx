@@ -44,6 +44,36 @@ const Home: React.FC = () => {
             <strong>Cinema Directory</strong> - Explore the venues
           </Link>
         </li>
+        <li>
+          <Link to="/director/240">Films by Stanley Kubrick</Link>
+        </li>
+        <li>
+          <Link to="/director/5602">Films by David Lynch</Link>
+        </li>
+        <li>
+          <Link to="/director/8452">Films by Andrei Tarkovsky</Link>
+        </li>
+        <li>
+          <Link to="/director/1032">Films by Martin Scorsese</Link>
+        </li>
+        <li>
+          <Link to="/director/224">Films by David Cronenberg</Link>
+        </li>
+        <li>
+          <Link to="/director/3146">Films by Billy Wilder</Link>
+        </li>
+        <li>
+          <Link to="/director/2636">Films by Alfred Hitchcock</Link>
+        </li>
+        <li>
+          <Link to="/director/578">Films by Ridley Scott</Link>
+        </li>
+        <li>
+          <Link to="/director/5026">Films by Akira Kurosawa</Link>
+        </li>
+        <li>
+          <Link to="/director/4762">Films by Paul Thomas Anderson</Link>
+        </li>
       </ul>
 
       <p>

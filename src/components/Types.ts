@@ -15,6 +15,7 @@ export interface Cinema {
 
 export interface ShowTime {
   id: string;
+  movie_id?: string;
   cinema_shortcode: string;
   cinema?: Cinema;
   title: string;
@@ -37,6 +38,23 @@ export interface ShowTime {
   }[];
 }
 
+export interface MoviePerson {
+  id: string;
+  name: string;
+}
+
+export interface MovieData {
+  id: string;
+  title: string;
+  normalizedTitle: string;
+  overview?: string;
+  posterPath?: string;
+  genres: Array<string | number>;
+  included_movie_ids?: Array<string | number>;
+  directors?: Array<string | number>;
+  actors?: Array<string | number>;
+}
+
 export interface SearchSettings {
   selectedCinemas: string[];
 }
@@ -44,6 +62,9 @@ export interface SearchSettings {
 export const CinemasByShortcodeContext = createContext<Record<string, Cinema>>(
   {},
 );
+
+export const MoviesByIdContext = createContext<Record<string, MovieData>>({});
+export const PeopleByIdContext = createContext<Record<string, MoviePerson>>({});
 
 export interface SearchSettingsContextType {
   searchSettings: SearchSettings;
