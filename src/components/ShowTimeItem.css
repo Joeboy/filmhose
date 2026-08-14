@@ -34,6 +34,12 @@
   color: #222827;
 }
 
+.showtime-listing .showtime-listing-morefrom {
+  margin: 0.25rem 0.2rem .2rem 0.4rem;
+  font-size: 0.9rem;
+  color: var(--listing-meta-color);
+}
+
 .showtime-listing .showtime-thumbnail {
 }
 

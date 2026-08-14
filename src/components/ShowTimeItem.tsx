@@ -1,7 +1,9 @@
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ShowTimeItem.css';
-import type { ShowTime } from './Types';
+import { BIGSHOT_DIRECTOR_IDS_SET } from './Constants';
+import { MoviesByIdContext, PeopleByIdContext, type ShowTime } from './Types';
 import CinemaDetail from './CinemaDetail';
 
 interface Props {
@@ -10,6 +12,8 @@ interface Props {
 
 const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const moviesById = useContext(MoviesByIdContext);
+  const peopleById = useContext(PeopleByIdContext);
   const cinema = showtime.cinema;
   const timeString = new Date(showtime.datetime).toLocaleTimeString([], {
     hour: 'numeric',
@@ -19,6 +23,31 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const posterSrc = showtime.thumbnail
     ? `${import.meta.env.VITE_CINESCRAPERS_HOST}/thumbnails/${showtime.thumbnail}.jpg`
     : showtime.image_src;
+  const bigshotDirector = useMemo(() => {
+    if (!showtime.movie_id) {
+      return null;
+    }
+
+    const directors = moviesById[showtime.movie_id]?.directors;
+    if (!Array.isArray(directors) || directors.length === 0) {
+      return null;
+    }
+
+    const matchingDirectorId = directors
+      .map((directorId) => String(directorId))
+      .find((directorId) => BIGSHOT_DIRECTOR_IDS_SET.has(directorId));
+
+    if (!matchingDirectorId) {
+      return null;
+    }
+
+    return {
+      id: matchingDirectorId,
+      name:
+        peopleById[matchingDirectorId]?.name ||
+        `Director ${matchingDirectorId}`,
+    };
+  }, [moviesById, peopleById, showtime.movie_id]);
 
   return (
     <div className="showtime-listing">
@@ -61,6 +90,15 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           ? showtime.description.slice(0, 200) + '...'
           : showtime.description}
       </p>
+      {bigshotDirector && (
+        <p className="showtime-listing-morefrom">
+          More from{' '}
+          <Link to={`/director/${bigshotDirector.id}`}>
+            <strong>{bigshotDirector.name}</strong>
+          </Link>
+        </p>
+      )}
+
       {!!showtime.included_movies?.length && (
         <div className="included-movies">
           <p className="included-movies-heading">Included films:</p>
@@ -94,14 +132,6 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
             ))}
           </ul>
         </div>
-      )}
-      {showtime.tmdb_id && (
-        <p className="showtime-listing-description">
-          <a href={`https://www.themoviedb.org/movie/${showtime.tmdb_id}`}>
-            TMDB
-          </a>{' '}
-          (experimental)
-        </p>
       )}
       <div style={{ clear: 'both' }} />
       {showPopup && cinema && typeof cinema.shortname === 'string' && (
