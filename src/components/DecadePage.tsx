@@ -49,6 +49,7 @@ const DecadePage: React.FC = () => {
         normTitle: string;
         showtimes: ShowTime[];
         mostFrequentTitle: string;
+        posterSrc: string;
       }>;
     }
 
@@ -91,12 +92,17 @@ const DecadePage: React.FC = () => {
           titleCounts[showtime.title] = (titleCounts[showtime.title] || 0) + 1;
         });
 
+        const posterShowtime = groups[normTitle].find(
+          (showtime) => !!showtime.image_src,
+        );
+
         return {
           normTitle,
           showtimes: groups[normTitle],
           mostFrequentTitle: Object.entries(titleCounts).reduce((a, b) =>
             a[1] > b[1] ? a : b,
           )[0],
+          posterSrc: posterShowtime?.image_src || '',
         };
       });
   }, [
@@ -130,48 +136,47 @@ const DecadePage: React.FC = () => {
 
       <SearchPanel />
 
-      <p style={{ marginBottom: '1em', color: '#666' }}>
+      <p
+        className="listing-card-showtime-title"
+        style={{ marginBottom: '1em' }}
+      >
         {groupedTitles.length} title{groupedTitles.length !== 1 ? 's' : ''}{' '}
         found ({totalShowtimes} showtime{totalShowtimes !== 1 ? 's' : ''})
       </p>
 
-      <div>
+      <div className="listing-card-stack">
         {groupedTitles.map(
-          ({ normTitle, showtimes: titleShowtimes, mostFrequentTitle }) => (
-            <div
-              key={normTitle}
-              style={{
-                marginBottom: '1em',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-              }}
-            >
-              <div
-                style={{
-                  padding: '1em',
-                  background: '#f9f9f9',
-                  borderRadius: '4px 4px 0 0',
-                }}
-              >
-                <strong>{mostFrequentTitle}</strong>
-                <span
-                  style={{
-                    marginLeft: '0.5em',
-                    color: '#666',
-                    fontSize: '0.9em',
-                  }}
-                >
-                  ({titleShowtimes.length} showing
-                  {titleShowtimes.length !== 1 ? 's' : ''})
-                </span>
+          ({
+            normTitle,
+            showtimes: titleShowtimes,
+            mostFrequentTitle,
+            posterSrc,
+          }) => (
+            <div key={normTitle} className="listing-card">
+              <div className="listing-card-header">
+                <div>{mostFrequentTitle}</div>
               </div>
 
-              <div style={{ padding: '1em' }}>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <div className="listing-card-body">
+                {posterSrc && (
+                  <img
+                    src={posterSrc}
+                    alt={`${mostFrequentTitle} movie poster`}
+                    loading="lazy"
+                    decoding="async"
+                    width="135"
+                    height="203"
+                    className="listing-poster"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                )}
+                <ul className="listing-card-showtime-list">
                   {titleShowtimes.map((showtime, index) => (
                     <li
                       key={`${showtime.cinema_shortcode}-${showtime.datetime}-${index}`}
-                      style={{ marginBottom: '0.5em' }}
+                      className="listing-card-showtime-item"
                     >
                       <a
                         href={showtime.link}
@@ -184,7 +189,7 @@ const DecadePage: React.FC = () => {
                           ?.toFormat('h:mm a')
                           .padStart(8, '\u00A0') || 'Time unavailable'}{' '}
                         · {showtime.cinema?.name || 'Cinema unavailable'}
-                        <span style={{ color: '#666', fontSize: '0.9em' }}>
+                        <span className="listing-card-showtime-title">
                           {' '}
                           · {showtime.title}
                         </span>

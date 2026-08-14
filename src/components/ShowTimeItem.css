@@ -4,12 +4,12 @@
 
 
 .showtime-listing h3 {
-  background-color: #222827;
-  color: white;
+  background-color: var(--listing-title-bg);
+  color: var(--listing-title-fg);
   font-weight: normal;
   font-size: 1rem;
   margin: 0px;
-  padding: 0.2rem 8px 0.2rem 0.4rem;
+  padding: var(--listing-title-padding);
 }
 
 .showtime-listing h3 a {
@@ -24,7 +24,7 @@
 .showtime-listing .showtime-listing-details {
   margin: 0.25rem 0.2rem .2rem 0.4rem;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--listing-meta-color);
 }
 
 .showtime-listing .showtime-listing-description {
@@ -35,12 +35,6 @@
 }
 
 .showtime-listing .showtime-thumbnail {
-  width: 135px;
-  height: auto;
-  aspect-ratio: 342 / 513;
-  float: right;
-  border: 1px solid black;
-  margin: .7em .5em 0 .5em;
 }
 
 .included-movies {

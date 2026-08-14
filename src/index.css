@@ -14,6 +14,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --listing-title-bg: #222827;
+  --listing-title-fg: #fff;
+  --listing-title-padding: 0.2rem 8px 0.2rem 0.4rem;
+  --listing-border-color: #000;
+  --listing-meta-color: #666;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
@@ -198,4 +206,55 @@ ul.showtime-list {
 .cinema-selection-button:active {
   transform: translateY(0);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Shared listing-card styles used by distilled-adjacent views */
+.listing-card {
+  margin-bottom: 1em;
+  border: 1px solid var(--listing-border-color);
+}
+
+.listing-card-stack .listing-card {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.listing-card-stack .listing-card:last-child {
+  border-bottom: 1px solid var(--listing-border-color);
+}
+
+.listing-card-header {
+  padding: var(--listing-title-padding);
+  background: var(--listing-title-bg);
+  color: var(--listing-title-fg);
+  line-height: 1.35;
+}
+
+.listing-card-body {
+  padding: 0.25rem 0.2rem 1rem 0.4rem;
+  display: flow-root;
+}
+
+.listing-poster {
+  width: 135px;
+  height: auto;
+  aspect-ratio: 342 / 513;
+  float: right;
+  border: 1px solid var(--listing-border-color);
+  margin: 0.7em 0.5em 0 0.5em;
+}
+
+.listing-card-showtime-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listing-card-showtime-item {
+  margin-bottom: 0.5em;
+}
+
+.listing-card-showtime-title {
+  color: var(--listing-meta-color);
+  font-size: 0.9em;
 }

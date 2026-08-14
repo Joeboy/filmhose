@@ -32,7 +32,7 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           <img
             src={posterSrc}
             alt={`${showtime.title} movie poster`}
-            className="showtime-thumbnail"
+            className="showtime-thumbnail listing-poster"
             loading="lazy"
             decoding="async"
             width="342"
