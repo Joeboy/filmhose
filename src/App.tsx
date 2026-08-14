@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Listings from './components/Listings';
 import NotFound from './components/NotFound';
 import Titles from './components/Titles';
+import YearPage from './components/YearPage';
 import {
   type Cinema,
   type MovieData,
@@ -270,6 +271,7 @@ const App: FC = () => {
                             path="/decade/:decade"
                             element={<DecadePage />}
                           />
+                          <Route path="/year/:year" element={<YearPage />} />
                           <Route
                             path="/directors"
                             element={<DirectorsList />}

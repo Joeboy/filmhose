@@ -7,12 +7,19 @@ interface UsePageSEOOptions {
   movieTitle?: string;
   directorName?: string;
   decadeLabel?: string;
+  yearLabel?: string;
 }
 
 export const usePageSEO = (options: UsePageSEOOptions = {}) => {
   const location = useLocation();
-  const { cinemaName, selectedDate, movieTitle, directorName, decadeLabel } =
-    options;
+  const {
+    cinemaName,
+    selectedDate,
+    movieTitle,
+    directorName,
+    decadeLabel,
+    yearLabel,
+  } = options;
 
   useEffect(() => {
     const path = location.pathname;
@@ -82,6 +89,15 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     } else if (path.startsWith('/director/') && directorName) {
       title = `${directorName} Films - FilmHose`;
       description = `Browse upcoming film screenings by ${directorName} across London's independent and arts cinemas.`;
+    } else if (path.startsWith('/year/')) {
+      if (yearLabel) {
+        title = `Films from ${yearLabel} - FilmHose`;
+        description = `Browse films and showtimes from ${yearLabel} across London's independent and arts cinemas.`;
+      } else {
+        title = 'Films by Year - FilmHose';
+        description =
+          "Browse films and showtimes grouped by year across London's independent and arts cinemas.";
+      }
     } else if (path === '/about') {
       title = 'About FilmHose - London Cinema Listings';
       description = 'The Origin Story. The Mission.';
@@ -164,5 +180,6 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     movieTitle,
     directorName,
     decadeLabel,
+    yearLabel,
   ]);
 };

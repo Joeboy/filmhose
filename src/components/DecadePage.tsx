@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import SearchPanel from './SearchPanel';
 import { usePageSEO } from '../hooks/usePageSEO';
 import {
-  type MovieData,
   MoviesByIdContext,
   SearchSettingsContext,
   ShowtimesContext,
   type ShowTime,
 } from './Types';
 import { sortStringsByTitle } from '../Utils';
+import { getMovieYear } from '../movieYearUtils';
 
 const getDecadeStart = (decadeParam: string | undefined) => {
   if (!decadeParam) return null;
@@ -18,16 +18,6 @@ const getDecadeStart = (decadeParam: string | undefined) => {
   if (!match) return null;
 
   return Number(match[1]);
-};
-
-const getMovieYear = (movie?: MovieData) => {
-  if (!movie) return null;
-
-  const yearValue = movie.year || movie.releaseDate?.slice(0, 4);
-  if (!yearValue) return null;
-
-  const parsedYear = Number(yearValue);
-  return Number.isFinite(parsedYear) ? parsedYear : null;
 };
 
 const DecadePage: React.FC = () => {

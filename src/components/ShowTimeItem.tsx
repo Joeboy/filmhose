@@ -1,10 +1,11 @@
 import type { FC } from 'react';
 import { useContext, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import './ShowTimeItem.css';
 import { BIGSHOT_DIRECTOR_IDS_SET } from './Constants';
 import { MoviesByIdContext, PeopleByIdContext, type ShowTime } from './Types';
 import CinemaDetail from './CinemaDetail';
+import { getMovieYear } from '../movieYearUtils';
 
 interface Props {
   showtime: ShowTime;
@@ -12,6 +13,8 @@ interface Props {
 
 const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const isDirectorPage = !!useMatch('/director/:director_id');
+  const isYearPage = !!useMatch('/year/:year');
   const moviesById = useContext(MoviesByIdContext);
   const peopleById = useContext(PeopleByIdContext);
   const cinema = showtime.cinema;
@@ -48,6 +51,18 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
         `Director ${matchingDirectorId}`,
     };
   }, [moviesById, peopleById, showtime.movie_id]);
+  const movieYear = useMemo(() => {
+    if (!showtime.movie_id) {
+      return null;
+    }
+
+    const year = getMovieYear(moviesById[showtime.movie_id]);
+    if (year === null || year >= 2020) {
+      return null;
+    }
+
+    return year;
+  }, [moviesById, showtime.movie_id]);
 
   return (
     <div className="showtime-listing">
@@ -90,11 +105,19 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           ? showtime.description.slice(0, 200) + '...'
           : showtime.description}
       </p>
-      {bigshotDirector && (
+      {!isDirectorPage && bigshotDirector && (
         <p className="showtime-listing-morefrom">
           More from{' '}
           <Link to={`/director/${bigshotDirector.id}`}>
             <strong>{bigshotDirector.name}</strong>
+          </Link>
+        </p>
+      )}
+      {!isYearPage && movieYear !== null && (
+        <p className="showtime-listing-morefrom">
+          More from{' '}
+          <Link to={`/year/${movieYear}`}>
+            <strong>{movieYear}</strong>
           </Link>
         </p>
       )}

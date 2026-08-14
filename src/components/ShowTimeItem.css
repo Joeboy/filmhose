@@ -40,7 +40,14 @@
   color: var(--listing-meta-color);
 }
 
-.showtime-listing .showtime-thumbnail {
+.showtime-listing .showtime-listing-morefrom a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.showtime-listing .showtime-listing-morefrom a:hover {
+  opacity: 0.85;
 }
 
 .included-movies {
