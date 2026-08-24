@@ -53,12 +53,14 @@ const DirectorsList: React.FC = () => {
       name: peopleById[id]?.name || `Director ${id}`,
       count: counts.get(id) || 0,
       filmCount: filmCounts.get(id)?.size || 0,
-    })).sort((a, b) => {
-      if (b.count !== a.count) {
-        return b.count - a.count;
-      }
-      return a.name.localeCompare(b.name);
-    });
+    }))
+      .filter(({ count }) => count > 0)
+      .sort((a, b) => {
+        if (b.count !== a.count) {
+          return b.count - a.count;
+        }
+        return a.name.localeCompare(b.name);
+      });
   }, [moviesById, peopleById, searchSettings.selectedCinemas, showtimes]);
 
   return (
@@ -71,11 +73,7 @@ const DirectorsList: React.FC = () => {
 
           return (
             <li key={id}>
-              {count > 0 ? (
-                <Link to={`/director/${id}`}>{content}</Link>
-              ) : (
-                <span>{content}</span>
-              )}
+              <Link to={`/director/${id}`}>{content}</Link>
             </li>
           );
         })}
