@@ -11,30 +11,42 @@ import {
 import { sortStringsByTitle } from '../Utils';
 import { getMovieYear } from '../movieYearUtils';
 
-const getDecadeStart = (decadeParam: string | undefined) => {
-  if (!decadeParam) return null;
+interface YearRange {
+  start: number;
+  end: number;
+  label: string;
+}
 
-  const match = decadeParam.match(/^(\d{4})s$/);
+const parseYearRange = (params: { range?: string }): YearRange | null => {
+  if (!params.range) return null;
+
+  const match = params.range.match(/^(\d{4})-(\d{4})$/);
   if (!match) return null;
 
-  return Number(match[1]);
+  const first = Number(match[1]);
+  const second = Number(match[2]);
+  const start = Math.min(first, second);
+  const end = Math.max(first, second);
+  return {
+    start,
+    end,
+    label: start === end ? String(start) : `${start}\u2013${end}`,
+  };
 };
 
-const DecadePage: React.FC = () => {
-  const { decade } = useParams<{ decade: string }>();
+const ReleaseYears: React.FC = () => {
+  const params = useParams<{ range?: string }>();
 
   const showtimes = useContext(ShowtimesContext);
   const movies = useContext(MoviesByIdContext);
   const { searchSettings } = useContext(SearchSettingsContext);
 
-  const decadeStart = getDecadeStart(decade);
-  const decadeLabel = decadeStart ? `${decadeStart}s` : undefined;
-  const decadeEnd = decadeStart ? decadeStart + 9 : null;
+  const yearRange = parseYearRange(params);
 
-  usePageSEO({ decadeLabel });
+  usePageSEO({ yearRangeLabel: yearRange?.label });
 
   const groupedTitles = useMemo(() => {
-    if (!decadeStart || !decadeEnd || !showtimes.length) {
+    if (!yearRange || !showtimes.length) {
       return [] as Array<{
         normTitle: string;
         showtimes: ShowTime[];
@@ -52,7 +64,9 @@ const DecadePage: React.FC = () => {
       const movieYear = getMovieYear(movie);
 
       return (
-        movieYear !== null && movieYear >= decadeStart && movieYear <= decadeEnd
+        movieYear !== null &&
+        movieYear >= yearRange.start &&
+        movieYear <= yearRange.end
       );
     });
 
@@ -95,22 +109,13 @@ const DecadePage: React.FC = () => {
           posterSrc: posterShowtime?.image_src || '',
         };
       });
-  }, [
-    decadeStart,
-    decadeEnd,
-    movies,
-    searchSettings.selectedCinemas,
-    showtimes,
-  ]);
+  }, [yearRange, movies, searchSettings.selectedCinemas, showtimes]);
 
-  if (!decadeStart || !decadeEnd) {
+  if (!yearRange) {
     return (
       <div>
-        <h1>Films by Decade</h1>
-        <p>
-          That decade route is invalid. Use a path like /decade/1950s or
-          /decade/1990s.
-        </p>
+        <h1>Films by Release Year</h1>
+        <p>That route is invalid. Use a path like /between/1955-1958.</p>
       </div>
     );
   }
@@ -122,7 +127,7 @@ const DecadePage: React.FC = () => {
 
   return (
     <div>
-      <h1>Films from the {decadeLabel}</h1>
+      <h1>Films released {yearRange.label}</h1>
 
       <SearchPanel />
 
@@ -196,4 +201,4 @@ const DecadePage: React.FC = () => {
   );
 };
 
-export default DecadePage;
+export default ReleaseYears;

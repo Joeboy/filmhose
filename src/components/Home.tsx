@@ -52,16 +52,21 @@ const Home: React.FC = () => {
           <Link to="/directors">more...</Link>
         </li>
         <li>
-          <strong>Films from the</strong>: <Link to="/decade/1920s">1920s</Link>
-          , <Link to="/decade/1930s">1930s</Link>,{' '}
-          <Link to="/decade/1940s">1940s</Link>,{' '}
-          <Link to="/decade/1950s">1950s</Link>,{' '}
-          <Link to="/decade/1960s">1960s</Link>,{' '}
-          <Link to="/decade/1970s">1970s</Link>,{' '}
-          <Link to="/decade/1980s">1980s</Link>,{' '}
-          <Link to="/decade/1990s">1990s</Link>,{' '}
-          <Link to="/decade/2000s">2000s</Link>,{' '}
-          <Link to="/decade/2010s">2010s</Link>.
+          <strong>Films from the</strong>:{' '}
+          <Link to="/between/1920-1929">1920s</Link>,{' '}
+          <Link to="/between/1930-1939">1930s</Link>,{' '}
+          <Link to="/between/1940-1949">1940s</Link>,{' '}
+          <Link to="/between/1950-1959">1950s</Link>,{' '}
+          <Link to="/between/1960-1969">1960s</Link>,{' '}
+          <Link to="/between/1970-1979">1970s</Link>,{' '}
+          <Link to="/between/1980-1989">1980s</Link>,{' '}
+          <Link to="/between/1990-1999">1990s</Link>,{' '}
+          <Link to="/between/2000-2009">2000s</Link>,{' '}
+          <Link to="/between/2010-2019">2010s</Link>,{' '}
+          <Link to="/between/1900-1999">
+            20<sup>th</sup> century
+          </Link>
+          .
         </li>
       </ul>
 

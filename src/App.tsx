@@ -8,14 +8,13 @@ import AppHeader from './components/AppHeader';
 import CinemaDetail from './components/CinemaDetail';
 import CinemaListings from './components/CinemaListings';
 import CinemasList from './components/CinemasList';
-import DecadePage from './components/DecadePage';
 import DirectorPage from './components/DirectorPage.tsx';
 import DirectorsList from './components/DirectorsList';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import NotFound from './components/NotFound';
+import ReleaseYears from './components/ReleaseYears';
 import Titles from './components/Titles';
-import YearPage from './components/YearPage';
 import {
   type Cinema,
   type MovieData,
@@ -268,10 +267,9 @@ const App: FC = () => {
                           />
                           <Route path="/titles" element={<Titles />} />
                           <Route
-                            path="/decade/:decade"
-                            element={<DecadePage />}
+                            path="/between/:range"
+                            element={<ReleaseYears />}
                           />
-                          <Route path="/year/:year" element={<YearPage />} />
                           <Route
                             path="/directors"
                             element={<DirectorsList />}

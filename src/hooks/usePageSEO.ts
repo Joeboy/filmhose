@@ -6,20 +6,13 @@ interface UsePageSEOOptions {
   selectedDate?: string;
   movieTitle?: string;
   directorName?: string;
-  decadeLabel?: string;
-  yearLabel?: string;
+  yearRangeLabel?: string;
 }
 
 export const usePageSEO = (options: UsePageSEOOptions = {}) => {
   const location = useLocation();
-  const {
-    cinemaName,
-    selectedDate,
-    movieTitle,
-    directorName,
-    decadeLabel,
-    yearLabel,
-  } = options;
+  const { cinemaName, selectedDate, movieTitle, directorName, yearRangeLabel } =
+    options;
 
   useEffect(() => {
     const path = location.pathname;
@@ -77,26 +70,17 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
       title = 'Search Movies by Title - FilmHose';
       description =
         "Search for movie showtimes by film title across London's independent and arts cinemas. Find where and when your favourite films are screening in the city.";
-    } else if (path.startsWith('/decade/')) {
-      if (decadeLabel) {
-        title = `Films from the ${decadeLabel} - FilmHose`;
-        description = `Browse films and showtimes from the ${decadeLabel} across London's independent and arts cinemas.`;
-      } else {
-        title = 'Films by Decade - FilmHose';
-        description =
-          "Browse films and showtimes grouped by decade across London's independent and arts cinemas.";
-      }
     } else if (path.startsWith('/director/') && directorName) {
       title = `${directorName} Films - FilmHose`;
       description = `Browse upcoming film screenings by ${directorName} across London's independent and arts cinemas.`;
-    } else if (path.startsWith('/year/')) {
-      if (yearLabel) {
-        title = `Films from ${yearLabel} - FilmHose`;
-        description = `Browse films and showtimes from ${yearLabel} across London's independent and arts cinemas.`;
+    } else if (path.startsWith('/between/')) {
+      if (yearRangeLabel) {
+        title = `Films from ${yearRangeLabel} - FilmHose`;
+        description = `Browse films and showtimes from ${yearRangeLabel} across London's independent and arts cinemas.`;
       } else {
-        title = 'Films by Year - FilmHose';
+        title = 'Films by Release Year Range - FilmHose';
         description =
-          "Browse films and showtimes grouped by year across London's independent and arts cinemas.";
+          "Browse films and showtimes grouped by release year range across London's independent and arts cinemas.";
       }
     } else if (path === '/about') {
       title = 'About FilmHose - London Cinema Listings';
@@ -179,7 +163,6 @@ export const usePageSEO = (options: UsePageSEOOptions = {}) => {
     selectedDate,
     movieTitle,
     directorName,
-    decadeLabel,
-    yearLabel,
+    yearRangeLabel,
   ]);
 };

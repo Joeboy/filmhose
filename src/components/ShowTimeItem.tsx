@@ -14,7 +14,7 @@ interface Props {
 const ShowTimeItem: FC<Props> = ({ showtime }) => {
   const [showPopup, setShowPopup] = useState(false);
   const isDirectorPage = !!useMatch('/director/:director_id');
-  const isYearPage = !!useMatch('/year/:year');
+  const isBetweenPage = !!useMatch('/between/:range');
   const moviesById = useContext(MoviesByIdContext);
   const peopleById = useContext(PeopleByIdContext);
   const cinema = showtime.cinema;
@@ -113,10 +113,10 @@ const ShowTimeItem: FC<Props> = ({ showtime }) => {
           </Link>
         </p>
       )}
-      {!isYearPage && movieYear !== null && (
+      {!isBetweenPage && movieYear !== null && (
         <p className="showtime-listing-morefrom">
           More from{' '}
-          <Link to={`/year/${movieYear}`}>
+          <Link to={`/between/${movieYear}-${movieYear}`}>
             <strong>{movieYear}</strong>
           </Link>
         </p>
